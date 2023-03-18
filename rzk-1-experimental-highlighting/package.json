@@ -1,0 +1,27 @@
+{
+  "name": "rzk-1-experimental-highlighting",
+  "displayName": "rzk-1 (experimental)",
+  "description": "Syntax Highlighting for rzk, an experimental proof assistant for synthetic ∞-categories",
+  "version": "0.0.2",
+  "repository": "https://github.com/fizruk/vscode-rzk",
+  "publisher": "NikolaiKudasovfizruk",
+  "engines": {
+    "vscode": "^1.76.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "rzk",
+      "aliases": ["rzk-1", "rzk"],
+      "extensions": [".rzk"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "rzk",
+      "scopeName": "source.rzk",
+      "path": "./syntaxes/rzk.tmLanguage.json"
+    }]
+  }
+}

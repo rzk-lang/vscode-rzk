@@ -1,0 +1,134 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "rzk-1",
+  "patterns": [
+	{
+		"match": "^(#lang)\\s+([^\\(\\)\\[\\]\\{\\}\\s]+)\\s*$",
+		"captures": {
+			"1": { "name": "meta.preprocessor" },
+			"2": { "name": "meta.preprocessor.string" }
+		}
+	},
+	{
+		"match": "^(#def)\\s+([^\\(\\)\\[\\]\\{\\}\\s]+)\\s*(:|$)",
+		"captures": {
+			"1": { "name": "meta.preprocessor" },
+			"2": { "name": "entity.name.function" }
+		}
+	},
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#strings"
+    },
+	{
+	  "include": "#comments"
+	},
+	{
+		"include": "#builtin_cubes_topes_types"
+	},
+	{
+		"include": "#builtin_points"
+	},
+	{
+		"include": "#builtin_terms"
+	},
+	{
+		"include": "#subscript_type_annotations"
+	},
+	{
+		"include": "#contexts"
+	},
+	{
+		"include" : "#operators"
+	}
+	],
+  "repository": {
+	"builtin_cubes_topes_types": {
+		"patterns": [{
+			"name": "entity.name.type.rzk",
+			"match": "(\\b(CUBE|TOPE|U|𝒰|Sigma|1|2|TOP|BOT|𝟙|𝟚)\\b|(∑|⊤|⊥))"
+		}]
+	},
+	"builtin_points": {
+		"patterns": [{
+			"name": "constant.numeric.rzk",
+			"match": "((\\*_1|⋆)|\\b(0_2|1_2)\\b)"
+		}]
+	},
+	"builtin_terms": {
+		"patterns": [{
+			"name": "constant.character",
+			"match": "\\b(recOR|rec∨|recBOT|rec⊥|idJ|refl|first|second|π₁|π₂)\\b"
+		}]
+	},
+	"subscript_type_annotations": {
+		"patterns": [{
+			"name": "string.interpolated.rzk",
+			"begin": "_\\{",
+			"end": "\\}",
+			"patterns": [
+				{
+					"include": "#contexts"
+				},
+				{
+					"include": "#subscript_type_annotations"
+				}
+			]
+		}]
+	},
+	"contexts" : {
+		"patterns": [{
+			"match": "(\\\\)\\s*([^\\(\\)\\[\\]\\{\\}\\s]+)\\s*(->|→)",
+			"captures": {
+				"1": { "name": ""},
+				"2": { "name": "variable.parameter.rzk" },
+				"3": { "name": "punctuation"}
+			}
+		}, {
+			"match": "\\(\\s*([^\\(\\)\\[\\]\\{\\}\\s]+)\\s*\\:",
+			"captures": {
+				"1": { "name": "variable.parameter.rzk" }
+			}
+		}, {
+			"match": "\\{\\s*([^\\(\\)\\[\\]\\{\\}\\s]+)\\s*:\\s*([^\\}|]+)\\s+\\|\\s+([^\\}|]+)\\}",
+			"captures": {
+				"1": { "name": "variable.parameter.rzk" },
+				"2": { "patterns": { "include" : "#contexts" } },
+				"3": { "name": "constant.numeric" }
+			}
+		}, {
+			"match": "\\[\\s*([^\\|]+)\\s*(\\|->)",
+			"captures": {
+				"1": { "name" : "constant.numeric.rzk"},
+				"2": { "name" : "keyword.control"}
+			}	
+		}]
+	},
+	"comments": {
+		"patterns": [{
+			"name": "comment.line.rzk",
+			"match": "(\\s+|^)--\\s+.*$"
+		}]
+	},
+    "keywords": {
+      "patterns": [{
+        "name": "keyword.control.rzk",
+        "match": "\\b(if|while|for|return)\\b"
+      }]
+    },
+    "strings": {
+      "name": "string.quoted.double.rzk",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.rzk",
+          "match": "\\\\."
+        }
+      ]
+    }
+  },
+  "scopeName": "source.rzk"
+}
