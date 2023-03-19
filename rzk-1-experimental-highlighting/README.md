@@ -2,7 +2,7 @@
 
 This is a simple syntax highlighter for `rzk`, an experimental proof assistant for synthetic ∞-categories.
 
-\!\[Syntax highlighting example.\]\(images/example.png\)
+![Syntax highlighting example.](images/example.png)
 
 ## Release Notes
 
