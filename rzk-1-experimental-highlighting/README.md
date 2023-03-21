@@ -13,3 +13,7 @@ Initial release of the Syntax Highlighter for rzk
 ### 0.0.2
 
 Do not treat `<` and `>` as brackets in the extension.
+
+### 0.2.0
+
+Support rzk code blocks in Markdown files.
