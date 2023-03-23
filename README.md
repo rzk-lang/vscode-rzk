@@ -16,4 +16,8 @@ Do not treat `<` and `>` as brackets in the extension.
 
 ### 0.2.0
 
-Support rzk code blocks in Markdown files.
+Support `rzk` code blocks in Markdown files.
+
+### 0.2.1
+
+Add file icons for `.rzk` files.
