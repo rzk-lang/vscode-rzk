@@ -21,3 +21,7 @@ Support `rzk` code blocks in Markdown files.
 ### 0.2.1
 
 Add file icons for `.rzk` files.
+
+### 0.2.2
+
+Slight improvements in syntax highlighting.
