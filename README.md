@@ -25,3 +25,7 @@ Add file icons for `.rzk` files.
 ### 0.2.2
 
 Slight improvements in syntax highlighting.
+
+### 0.2.3
+
+Support syntax highlighting for most of rzk-v0.4.0

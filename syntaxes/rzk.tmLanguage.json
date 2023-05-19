@@ -6,21 +6,57 @@
 			"match": "^(#lang)\\s+([^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r]*)\\b\\s*$",
 			"captures": {
 				"1": {
-					"name": "meta.preprocessor"
+					"name": "keyword.control"
 				},
 				"2": {
-					"name": "meta.preprocessor.string"
+					"name": "entity.name.label"
 				}
 			}
 		},
 		{
-			"match": "^(#def)\\s+([^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r]*)\\b",
+			"match": "^(#check|#compute(-whnf|-nf)?|#set-option|#unset-option)\\b[^-]",
+			"captures": {
+				"1": {
+					"name": "keyword.control"
+				}
+			}
+		},
+		{
+			"match": "^(#section|#end)(\\s+[^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r]*)?\\b",
+			"captures": {
+				"1": {
+					"name": "keyword.control"
+				},
+				"2": {
+					"name": "support.constant.property-value"
+				}
+			}
+		},
+		{
+			"match": "^(#assume|#variable|#variables)\\s+([^\\-\\?\\!\\.\\\\;\\:,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r][^\\.\\\\;\\:,#\\\"\\]\\[\\)\\(\\}\\{><\\|]*)\\b",
+			"captures": {
+				"1": {
+					"name": "meta.preprocessor"
+				},
+				"2": {
+					"name": "variable.rzk"
+				}
+			}
+		},
+		{
+			"match": "^(#def|#define|#postulate)\\s+([^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r]*)\\b(\\s+(uses)\\s+\\(([^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\|][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\|]*)\\))?",
 			"captures": {
 				"1": {
 					"name": "meta.preprocessor"
 				},
 				"2": {
 					"name": "entity.name.function"
+				},
+				"4": {
+					"name": "support.constant.property-value"
+				},
+				"5": {
+					"name": "variable.parameter.rzk"
 				}
 			}
 		},
@@ -67,6 +103,10 @@
 				{
 					"name": "constant.character",
 					"match": "\\b(recOR|rec∨|recBOT|rec⊥|idJ|refl|first|second|π₁|π₂)\\b"
+				},
+				{
+					"name": "keyword.control",
+					"match": "\\b(as)\\b"
 				}
 			]
 		},

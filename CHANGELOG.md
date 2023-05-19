@@ -4,6 +4,6 @@ All notable changes to the "rzk-1-experimental-highlighting" extension will be d
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
+## v0.2.3 — 2022-05-20
 
-- Initial release
+- Support syntax highlighting for most of rzk-v0.4.0
