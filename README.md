@@ -29,3 +29,7 @@ Slight improvements in syntax highlighting.
 ### 0.2.3
 
 Support syntax highlighting for most of rzk-v0.4.0
+
+## v0.2.4 — 2022-05-27
+
+Support syntax highlighting for `*.rzk.md` files
