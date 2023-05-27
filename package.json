@@ -15,8 +15,8 @@
   "contributes": {
     "grammars": [
       {
-        "path": "./syntaxes/injection.json",
-        "scopeName": "markdown.rzk.codeblock",
+        "path": "./syntaxes/rzk-markdown-injection.tmLanguage.json",
+        "scopeName": "text.html.markdown.rzk",
         "injectTo": [
           "text.html.markdown"
         ],
@@ -28,6 +28,14 @@
         "language": "rzk",
         "scopeName": "source.rzk",
         "path": "./syntaxes/rzk.tmLanguage.json"
+      },
+      {
+        "language": "literate rzk markdown",
+        "scopeName": "text.html.markdown.rzk",
+        "path": "./syntaxes/literate-rzk-markdown.tmLanguage.json",
+        "filenamePatterns": [
+          "*.rzk.md"
+        ]
       }
     ],
     "languages": [
@@ -40,11 +48,35 @@
         "extensions": [
           ".rzk"
         ],
-        "configuration": "./language-configuration.json",
+        "configuration": "./language-configuration.jsonc",
         "icon": {
           "light": "./icons/rzk-light.png",
           "dark": "./icons/rzk-dark.png"
-        }
+        },
+        "scopeName": "source.rzk"
+      },
+      {
+        "id": "literate rzk markdown",
+        "aliases": [
+          "literate rzk-1 markdown",
+          "literate rzk markdown",
+          "rzk-1 markdown",
+          "rzk markdown",
+          "rzk-1-md",
+          "rzk-md"
+        ],
+        "extensions": [
+          ".rzk.md"
+        ],
+        "filenamePatterns": [
+          "*.rzk.md"
+        ],
+        "configuration": "./language-configuration.jsonc",
+        "icon": {
+          "light": "./icons/rzk-light.png",
+          "dark": "./icons/rzk-dark.png"
+        },
+        "scopeName": "text.html.markdown.rzk"
       }
     ]
   }

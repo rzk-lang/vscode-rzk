@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Literate rzk Markdown",
+  "scopeName": "text.html.markdown.rzk",
+  "fileTypes": ["rzk.md"],
+  "patterns": [
+    {
+      "include": "text.html.markdown"
+    }
+  ]
+}
