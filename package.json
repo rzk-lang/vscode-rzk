@@ -83,5 +83,8 @@
         "scopeName": "text.html.markdown.rzk"
       }
     ]
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0"
   }
 }
