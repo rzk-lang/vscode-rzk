@@ -11,7 +11,7 @@
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
       "args": ["--extensionDevelopmentPath=${workspaceFolder}"],
-      "preLaunchTask": "Convert YAML TextMate Grammar to JSON"
+      "preLaunchTask": "Convert YAML TextMate Grammars to JSON"
     }
   ]
 }
