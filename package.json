@@ -75,14 +75,14 @@
       {
         "id": "literate rzk markdown",
         "aliases": [
-          "Literate Rzk Markdown",
-          "literate rzk markdown",
           "Literate Rzk-1 Markdown",
           "literate rzk-1 markdown",
-          "rzk markdown",
           "rzk-1 markdown",
-          "rzk-md",
-          "rzk-1-md"
+          "rzk-1-md",
+          "Literate Rzk Markdown",
+          "literate rzk markdown",
+          "rzk markdown",
+          "rzk-md"
         ],
         "extensions": [
           ".rzk.tex"
@@ -100,11 +100,18 @@
       {
         "id": "literate rzk latex",
         "aliases": [
+          "Literate Rzk-1 LaTeX",
+          "Literate Rzk-1 Latex",
+          "literate rzk-1 latex",
+          "Rzk-1 LaTeX",
+          "Rzk-1 Latex",
+          "rzk-1 latex",
+          "rzk-1-tex",
           "Literate Rzk LaTeX",
-          "Rzk LaTeX",
           "Literate Rzk Latex",
-          "Rzk Latex",
           "literate rzk latex",
+          "Rzk LaTeX",
+          "Rzk Latex",
           "rzk latex",
           "rzk-latex",
           "rzk-tex"
