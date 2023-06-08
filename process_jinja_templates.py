@@ -4,9 +4,9 @@ import jinja2
 
 
 def process_jinja_template(template_str):
+
     template = jinja2.Template(
-        template_str, trim_blocks=True, lstrip_blocks=True, keep_trailing_newline=True
-    )
+        template_str, trim_blocks=True, lstrip_blocks=True, keep_trailing_newline=True)
 
     rendered_content = template.render()
     s = rendered_content.replace("\n\n\n", "\n\n")
@@ -18,6 +18,7 @@ def process_jinja_template(template_str):
 
 
 if __name__ == "__main__":
+
     j2file_pattern = re.compile(r".*\.j2(?:.*)?\.ya?ml$")
     root_dir = "."
 
@@ -30,7 +31,8 @@ if __name__ == "__main__":
                 with open(input_file, "r") as f:
                     template_str = f.read()
 
-                rendered_content = process_jinja_template(template_str)
+                rendered_content = process_jinja_template(
+                    template_str)
 
                 with open(output_file, "w") as f:
                     f.write(rendered_content)
