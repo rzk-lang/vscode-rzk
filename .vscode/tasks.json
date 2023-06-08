@@ -1,14 +1,26 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    "version": "2.0.0",
-    "tasks": [
-      {
-        "label": "Convert YAML TextMate Grammar to JSON",
-        "type": "shell",
-        "command": "bash",
-        "args": ["./convert_yml_to_json.sh"],
-        "problemMatcher": []
-      }
-    ]
-  }
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Convert YAML TextMate Grammar to JSON",
+      "dependsOn": "Process Jinja templates",
+      "type": "shell",
+      "command": "bash",
+      "args": ["./convert_yml_to_json.sh"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Process Jinja templates",
+      "type": "shell",
+      "command": "python",
+      "args": ["process_jinja_templates.py"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
