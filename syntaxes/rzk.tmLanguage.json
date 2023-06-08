@@ -1,286 +1,286 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "rzk-1",
-	"patterns": [
-		{
-			"match": "^(#lang)\\s+([^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r]*)\\b\\s*$",
-			"captures": {
-				"1": {
-					"name": "keyword.control"
-				},
-				"2": {
-					"name": "entity.name.label"
-				}
-			}
-		},
-		{
-			"match": "^(#check|#compute(-whnf|-nf)?|#set-option|#unset-option)\\b[^-]",
-			"captures": {
-				"1": {
-					"name": "keyword.control"
-				}
-			}
-		},
-		{
-			"match": "^(#section|#end)(\\s+[^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r]*)?\\b",
-			"captures": {
-				"1": {
-					"name": "keyword.control"
-				},
-				"2": {
-					"name": "support.constant.property-value"
-				}
-			}
-		},
-		{
-			"match": "^(#assume|#variable|#variables)\\s+([^\\-\\?\\!\\.\\\\;\\:,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r][^\\.\\\\;\\:,#\\\"\\]\\[\\)\\(\\}\\{><\\|]*)\\b",
-			"captures": {
-				"1": {
-					"name": "meta.preprocessor"
-				},
-				"2": {
-					"name": "variable.rzk"
-				}
-			}
-		},
-		{
-			"match": "^(#def|#define|#postulate)\\s+([^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r]*)\\b(\\s+(uses)\\s+\\(([^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\|][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\|]*)\\))?",
-			"captures": {
-				"1": {
-					"name": "meta.preprocessor"
-				},
-				"2": {
-					"name": "entity.name.function"
-				},
-				"4": {
-					"name": "support.constant.property-value"
-				},
-				"5": {
-					"name": "variable.parameter.rzk"
-				}
-			}
-		},
-		{
-			"include": "#strings"
-		},
-		{
-			"include": "#terms"
-		}
-	],
-	"repository": {
-		"terms": {
-			"patterns": [
-				{
-					"include": "#index-types"
-				},
-				{
-					"include": "#builtins"
-				},
-				{
-					"include": "#params"
-				},
-				{
-					"include": "#comments"
-				},
-				{
-					"include": "#ext-types"
-				},
-				{
-					"include": "#lambda-abstractions"
-				}
-			]
-		},
-		"builtins": {
-			"patterns": [
-				{
-					"name": "entity.name.type.rzk",
-					"match": "(\\b(CUBE|TOPE|U|𝒰|Sigma|1|2|𝟙|𝟚)\\b|(∑|Σ))"
-				},
-				{
-					"name": "string.regexp",
-					"match": "((\\*_1|⋆)|\\b(0_2|1_2|TOP|BOT)\\b|(===|<=|\\\\/|/\\\\|⊤|⊥))"
-				},
-				{
-					"name": "constant.character",
-					"match": "\\b(recOR|rec∨|recBOT|rec⊥|idJ|refl|first|second|π₁|π₂)\\b"
-				},
-				{
-					"name": "keyword.control",
-					"match": "\\b(as)\\b"
-				}
-			]
-		},
-		"param-identifiers": {
-			"patterns": [
-				{
-					"match": "[^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n]*",
-					"name": "variable.parameter.rzk"
-				}
-			]
-		},
-		"param-topes": {
-			"patterns": [
-				{
-					"match": "\\|([^}]*)",
-					"captures": {
-						"1": {
-							"name": "string.interpolated",
-							"patterns": [
-								{
-									"include": "#builtins"
-								}
-							]
-						}
-					}
-				}
-			]
-		},
-		"ext-type-topes": {
-			"patterns": [
-				{
-					"match": "([^\\|]*)\\|->",
-					"captures": {
-						"1": {
-							"name": "string.interpolated",
-							"patterns": [
-								{
-									"include": "#builtins"
-								}
-							]
-						}
-					}
-				}
-			]
-		},
-		"ext-types": {
-			"patterns": [
-				{
-					"begin": "\\[",
-					"end": "\\]",
-					"patterns": [
-						{
-							"include": "#ext-type-topes"
-						},
-						{
-							"include": "#terms"
-						}
-					]
-				}
-			]
-		},
-		"index-types": {
-			"patterns": [
-				{
-					"begin": "_{",
-					"end": "}",
-					"name": "comment.block",
-					"patterns": [
-						{
-							"include": "#builtins"
-						},
-						{
-							"include": "#index-types"
-						},
-						{
-							"include": "#comments"
-						}
-					]
-				}
-			]
-		},
-		"params": {
-			"patterns": [
-				{
-					"begin": "\\(\\s*([^{:]+)\\s*:",
-					"end": "\\)",
-					"beginCaptures": {
-						"1": {
-							"patterns": [
-								{
-									"include": "#param-identifiers"
-								},
-								{
-									"include": "#builtins"
-								},
-								{
-									"include": "#comments"
-								}
-							]
-						}
-					},
-					"patterns": [
-						{
-							"include": "#terms"
-						}
-					]
-				},
-				{
-					"begin": "{\\s*([^:]+)\\s*:",
-					"end": "}",
-					"beginCaptures": {
-						"1": {
-							"patterns": [
-								{
-									"include": "#param-identifiers"
-								},
-								{
-									"include": "#builtins"
-								},
-								{
-									"include": "#comments"
-								}
-							]
-						}
-					},
-					"patterns": [
-						{
-							"include": "#param-topes"
-						},
-						{
-							"include": "#terms"
-						}
-					]
-				}
-			]
-		},
-		"lambda-abstractions": {
-			"patterns": [
-				{
-					"begin": " (\\\\)\\b",
-					"end": "(->|→)",
-					"patterns": [
-						{
-							"include": "#params"
-						},
-						{
-							"include": "#param-identifiers"
-						},
-						{
-							"include": "#comments"
-						}
-					]
-				}
-			]
-		},
-		"comments": {
-			"patterns": [
-				{
-					"name": "comment.line.rzk",
-					"match": "(\\s+|^)--\\s+.*$"
-				}
-			]
-		},
-		"strings": {
-			"name": "string.quoted.double.rzk",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.rzk",
-					"match": "\\\\."
-				}
-			]
-		}
-	},
-	"scopeName": "source.rzk"
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "rzk-1",
+  "patterns": [
+    {
+      "match": "^(#lang)\\s+([^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r]*)\\b\\s*$",
+      "captures": {
+        "1": {
+          "name": "keyword.control"
+        },
+        "2": {
+          "name": "entity.name.label"
+        }
+      }
+    },
+    {
+      "match": "^(#check|#compute(-whnf|-nf)?|#set-option|#unset-option)\\b[^-]",
+      "captures": {
+        "1": {
+          "name": "keyword.control"
+        }
+      }
+    },
+    {
+      "match": "^(#section|#end)(\\s+[^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r]*)?\\b",
+      "captures": {
+        "1": {
+          "name": "keyword.control"
+        },
+        "2": {
+          "name": "support.constant.property-value"
+        }
+      }
+    },
+    {
+      "match": "^(#assume|#variable|#variables)\\s+([^\\-\\?\\!\\.\\\\;\\:,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r][^\\.\\\\;\\:,#\\\"\\]\\[\\)\\(\\}\\{><\\|]*)\\b",
+      "captures": {
+        "1": {
+          "name": "meta.preprocessor"
+        },
+        "2": {
+          "name": "variable.rzk"
+        }
+      }
+    },
+    {
+      "match": "^(#def|#define|#postulate)\\s+([^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r]*)\\b(\\s+(uses)\\s+\\(([^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\|][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\|]*)\\))?",
+      "captures": {
+        "1": {
+          "name": "meta.preprocessor"
+        },
+        "2": {
+          "name": "entity.name.function"
+        },
+        "4": {
+          "name": "support.constant.property-value"
+        },
+        "5": {
+          "name": "variable.parameter.rzk"
+        }
+      }
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#terms"
+    }
+  ],
+  "repository": {
+    "terms": {
+      "patterns": [
+        {
+          "include": "#index-types"
+        },
+        {
+          "include": "#builtins"
+        },
+        {
+          "include": "#params"
+        },
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#ext-types"
+        },
+        {
+          "include": "#lambda-abstractions"
+        }
+      ]
+    },
+    "builtins": {
+      "patterns": [
+        {
+          "name": "entity.name.type.rzk",
+          "match": "(\\b(CUBE|TOPE|U|𝒰|Sigma|1|2|𝟙|𝟚)\\b|(∑|Σ))"
+        },
+        {
+          "name": "string.regexp",
+          "match": "((\\*_1|⋆)|\\b(0_2|1_2|TOP|BOT)\\b|(===|<=|\\\\/|/\\\\|⊤|⊥))"
+        },
+        {
+          "name": "constant.character",
+          "match": "\\b(recOR|rec∨|recBOT|rec⊥|idJ|refl|first|second|π₁|π₂)\\b"
+        },
+        {
+          "name": "keyword.control",
+          "match": "\\b(as)\\b"
+        }
+      ]
+    },
+    "param-identifiers": {
+      "patterns": [
+        {
+          "match": "[^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n]*",
+          "name": "variable.parameter.rzk"
+        }
+      ]
+    },
+    "param-topes": {
+      "patterns": [
+        {
+          "match": "\\|([^}]*)",
+          "captures": {
+            "1": {
+              "name": "string.interpolated",
+              "patterns": [
+                {
+                  "include": "#builtins"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "ext-type-topes": {
+      "patterns": [
+        {
+          "match": "([^\\|]*)\\|->",
+          "captures": {
+            "1": {
+              "name": "string.interpolated",
+              "patterns": [
+                {
+                  "include": "#builtins"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "ext-types": {
+      "patterns": [
+        {
+          "begin": "\\[",
+          "end": "\\]",
+          "patterns": [
+            {
+              "include": "#ext-type-topes"
+            },
+            {
+              "include": "#terms"
+            }
+          ]
+        }
+      ]
+    },
+    "index-types": {
+      "patterns": [
+        {
+          "begin": "_{",
+          "end": "}",
+          "name": "comment.block",
+          "patterns": [
+            {
+              "include": "#builtins"
+            },
+            {
+              "include": "#index-types"
+            },
+            {
+              "include": "#comments"
+            }
+          ]
+        }
+      ]
+    },
+    "params": {
+      "patterns": [
+        {
+          "begin": "\\(\\s*([^{:]+)\\s*:",
+          "end": "\\)",
+          "beginCaptures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "#param-identifiers"
+                },
+                {
+                  "include": "#builtins"
+                },
+                {
+                  "include": "#comments"
+                }
+              ]
+            }
+          },
+          "patterns": [
+            {
+              "include": "#terms"
+            }
+          ]
+        },
+        {
+          "begin": "{\\s*([^:]+)\\s*:",
+          "end": "}",
+          "beginCaptures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "#param-identifiers"
+                },
+                {
+                  "include": "#builtins"
+                },
+                {
+                  "include": "#comments"
+                }
+              ]
+            }
+          },
+          "patterns": [
+            {
+              "include": "#param-topes"
+            },
+            {
+              "include": "#terms"
+            }
+          ]
+        }
+      ]
+    },
+    "lambda-abstractions": {
+      "patterns": [
+        {
+          "begin": " (\\\\)\\b",
+          "end": "(->|→)",
+          "patterns": [
+            {
+              "include": "#params"
+            },
+            {
+              "include": "#param-identifiers"
+            },
+            {
+              "include": "#comments"
+            }
+          ]
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.rzk",
+          "match": "(\\s+|^)--\\s+.*$"
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.rzk",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.rzk",
+          "match": "\\\\."
+        }
+      ]
+    }
+  },
+  "scopeName": "source.rzk"
 }
