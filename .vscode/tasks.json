@@ -4,23 +4,26 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Convert YAML TextMate Grammar to JSON",
+      "label": "Convert YAML TextMate Grammars to JSON",
       "dependsOn": "Process Jinja templates",
       "type": "shell",
       "command": "bash",
-      "args": ["./convert_yml_to_json.sh"],
-      "problemMatcher": []
+      "args": ["convert_yml_to_json.sh"],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
     },
     {
       "label": "Process Jinja templates",
       "type": "shell",
       "command": "python",
       "args": ["process_jinja_templates.py"],
+      "problemMatcher": [],
       "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "problemMatcher": []
+        "kind": "build"
+      }
     }
   ]
 }
