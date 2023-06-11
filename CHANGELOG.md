@@ -4,6 +4,14 @@ All notable changes to the "rzk-1-experimental-highlighting" extension will be d
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## v0.2.5 — 2022-06-11
+
+1. Support syntax highlighting for `*.rzk.tex` files (see [#5](https://github.com/fizruk/vscode-rzk/pull/5)).
+2. Add icons for literate Rzk files (both Markdown and TeX, see [#13](https://github.com/fizruk/vscode-rzk/pull/13)).
+3. Some minor fixes (restoring rainbow-parentheses and keybinding for code commenting).
+4. Using YAML for the language grammar (see [#6](https://github.com/fizruk/vscode-rzk/pull/6)).
+5. Add `launch.json` and prettify (see [#1](https://github.com/fizruk/vscode-rzk/pull/1))
+
 ## v0.2.4 — 2022-05-27
 
 Support syntax highlighting for `*.rzk.md` files
