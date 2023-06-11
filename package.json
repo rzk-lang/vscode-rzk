@@ -85,10 +85,10 @@
           "rzk-md"
         ],
         "extensions": [
-          ".rzk.tex"
+          ".rzk.md"
         ],
         "filenamePatterns": [
-          "*.rzk.tex"
+          "*.rzk.md"
         ],
         "configuration": "./language-configuration.json",
         "icon": {
@@ -118,6 +118,9 @@
         ],
         "extensions": [
           ".rzk.tex"
+        ],
+        "filenamePatterns": [
+          "*.rzk.tex"
         ],
         "icon": {
           "light": "./icons/rzk-tex-light.png",
