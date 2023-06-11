@@ -85,15 +85,15 @@
           "rzk-md"
         ],
         "extensions": [
-          ".rzk.tex"
+          ".rzk.md"
         ],
         "filenamePatterns": [
-          "*.rzk.tex"
+          "*.rzk.md"
         ],
         "configuration": "./language-configuration.json",
         "icon": {
-          "light": "./icons/rzk-light.png",
-          "dark": "./icons/rzk-dark.png"
+          "light": "./icons/rzk-md-light.png",
+          "dark": "./icons/rzk-md-dark.png"
         },
         "scopeName": "text.html.markdown.rzk"
       },
@@ -119,9 +119,12 @@
         "extensions": [
           ".rzk.tex"
         ],
+        "filenamePatterns": [
+          "*.rzk.tex"
+        ],
         "icon": {
-          "light": "./icons/rzk-light.png",
-          "dark": "./icons/rzk-dark.png"
+          "light": "./icons/rzk-tex-light.png",
+          "dark": "./icons/rzk-tex-dark.png"
         },
         "scopeName": "text.tex.latex.rzk"
       }
