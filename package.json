@@ -126,5 +126,8 @@
         "scopeName": "text.tex.latex.rzk"
       }
     ]
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0"
   }
 }
