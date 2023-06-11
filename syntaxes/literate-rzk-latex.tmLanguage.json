@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Literate Rzk LaTeX",
+  "scopeName": "text.tex.latex.rak",
+  "fileTypes": ["rzk.tex"],
+  "patterns": [
+    {
+      "include": "text.tex.latex"
+    }
+  ]
+}

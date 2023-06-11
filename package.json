@@ -15,6 +15,19 @@
   "contributes": {
     "grammars": [
       {
+        "language": "rzk",
+        "scopeName": "source.rzk",
+        "path": "./syntaxes/rzk.tmLanguage.json"
+      },
+      {
+        "language": "literate rzk markdown",
+        "scopeName": "text.html.markdown.rzk",
+        "path": "./syntaxes/literate-rzk-markdown.tmLanguage.json",
+        "filenamePatterns": [
+          "*.rzk.md"
+        ]
+      },
+      {
         "path": "./syntaxes/rzk-markdown-injection.tmLanguage.json",
         "scopeName": "source.rzk.embedded.markdown",
         "injectTo": [
@@ -27,17 +40,19 @@
         }
       },
       {
-        "language": "rzk",
-        "scopeName": "source.rzk",
-        "path": "./syntaxes/rzk.tmLanguage.json"
+        "language": "literate rzk latex",
+        "scopeName": "text.tex.latex.rzk",
+        "path": "./syntaxes/literate-rzk-latex.tmLanguage.json"
       },
       {
-        "language": "literate rzk markdown",
-        "scopeName": "text.html.markdown.rzk",
-        "path": "./syntaxes/literate-rzk-markdown.tmLanguage.json",
-        "filenamePatterns": [
-          "*.rzk.md"
-        ]
+        "scopeName": "source.rzk.embedded.latex",
+        "path": "./syntaxes/rzk-latex-injection.tmLanguage.json",
+        "injectTo": [
+          "text.tex.latex.rzk"
+        ],
+        "embeddedLanguages": {
+          "meta.embedded.block.rzk": "rzk"
+        }
       }
     ],
     "languages": [
@@ -60,20 +75,20 @@
       {
         "id": "literate rzk markdown",
         "aliases": [
-          "Literate Rzk Markdown",
-          "literate rzk markdown",
           "Literate Rzk-1 Markdown",
           "literate rzk-1 markdown",
-          "rzk markdown",
           "rzk-1 markdown",
-          "rzk-md",
-          "rzk-1-md"
+          "rzk-1-md",
+          "Literate Rzk Markdown",
+          "literate rzk markdown",
+          "rzk markdown",
+          "rzk-md"
         ],
         "extensions": [
-          ".rzk.md"
+          ".rzk.tex"
         ],
         "filenamePatterns": [
-          "*.rzk.md"
+          "*.rzk.tex"
         ],
         "configuration": "./language-configuration.json",
         "icon": {
@@ -81,6 +96,34 @@
           "dark": "./icons/rzk-dark.png"
         },
         "scopeName": "text.html.markdown.rzk"
+      },
+      {
+        "id": "literate rzk latex",
+        "aliases": [
+          "Literate Rzk-1 LaTeX",
+          "Literate Rzk-1 Latex",
+          "literate rzk-1 latex",
+          "Rzk-1 LaTeX",
+          "Rzk-1 Latex",
+          "rzk-1 latex",
+          "rzk-1-tex",
+          "Literate Rzk LaTeX",
+          "Literate Rzk Latex",
+          "literate rzk latex",
+          "Rzk LaTeX",
+          "Rzk Latex",
+          "rzk latex",
+          "rzk-latex",
+          "rzk-tex"
+        ],
+        "extensions": [
+          ".rzk.tex"
+        ],
+        "icon": {
+          "light": "./icons/rzk-light.png",
+          "dark": "./icons/rzk-dark.png"
+        },
+        "scopeName": "text.tex.latex.rzk"
       }
     ]
   }
