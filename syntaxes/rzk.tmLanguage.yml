@@ -6,26 +6,26 @@ patterns:
       \t\n\r][^\.\\;,#\"\]\[\)\(\}\{><\| \t\n\r]*)\b\s*$
     captures:
       "1":
-        name: keyword.control
+        name: keyword.control.lang.rzk
       "2":
-        name: entity.name.label
+        name: entity.name.label.rzk
   - match: ^(#check|#compute(-whnf|-nf)?|#set-option|#unset-option)\b[^-]
     captures:
       "1":
-        name: keyword.control
+        name: keyword.control.rzk
   - match: ^(#section|#end)(\s+[^\-\?\!\.\\;,#\"\]\[\)\(\}\{><\|
       \t\n\r][^\.\\;,#\"\]\[\)\(\}\{><\| \t\n\r]*)?\b
     captures:
       "1":
-        name: keyword.control
+        name: keyword.control.rzk
       "2":
-        name: support.constant.property-value
+        name: support.constant.property-value.rzk
   - match:
       ^(#assume|#variable|#variables)\s+([^\-\?\!\.\\;\:,#\"\]\[\)\(\}\{><\|
       \t\n\r][^\.\\;\:,#\"\]\[\)\(\}\{><\|]*)\b
     captures:
       "1":
-        name: meta.preprocessor
+        name: meta.preprocessor.rzk
       "2":
         name: variable.rzk
   - match: ^(#def|#define|#postulate)\s+([^\-\?\!\.\\;,#\"\]\[\)\(\}\{><\|
@@ -33,11 +33,11 @@ patterns:
       \t\n\r]*)\b(\s+(uses)\s+\(([^\-\?\!\.\\;,#\"\]\[\)\(\}\{><\|][^\.\\;,#\"\]\[\)\(\}\{><\|]*)\))?
     captures:
       "1":
-        name: meta.preprocessor
+        name: meta.preprocessor.rzk
       "2":
-        name: entity.name.function
+        name: entity.name.function.rzk
       "4":
-        name: support.constant.property-value
+        name: support.constant.property-value.rzk
       "5":
         name: variable.parameter.rzk
   - include: "#strings"
@@ -51,15 +51,20 @@ repository:
       - include: "#comments"
       - include: "#ext-types"
       - include: "#lambda-abstractions"
+      - include: "#operators"
   builtins:
     patterns:
+      - name: support.type.rzk
+        match: \b(CUBE|TOPE|U|𝒰)\b
       - name: entity.name.type.rzk
-        match: (\b(CUBE|TOPE|U|𝒰|Sigma|1|2|𝟙|𝟚)\b|(∑|Σ))
+        match: \b(Sigma|1|2|𝟙|𝟚|∑|Σ)\b
       - name: string.regexp
-        match: ((\*_1|⋆)|\b(0_2|1_2|TOP|BOT)\b|(===|<=|\\/|/\\|⊤|⊥))
-      - name: constant.character
-        match: \b(recOR|rec∨|recBOT|rec⊥|idJ|refl|first|second|π₁|π₂)\b
-      - name: keyword.control
+        match: (===|<=|\\/|/\\)
+      - name: support.constant.rzk
+        match: (\*_1|⋆)|\b(0_2|1_2|TOP|BOT)\b|(⊤|⊥)
+      - name: support.function.rzk
+        match: \b(recOR|rec∨|recBOT|rec⊥|idJ|refl|first|second|π₁|π₂)(\b|(?=_))
+      - name: keyword.control.as.rzk
         match: \b(as)\b
   param-identifiers:
     patterns:
@@ -69,20 +74,24 @@ repository:
         name: variable.parameter.rzk
   param-topes:
     patterns:
-      - match: \|([^}]*)
+      - match: (\|)([^}]*)
         captures:
           "1":
-            name: string.interpolated
+            name: keyword.operator.param-topes.rzk
+          "2":
+            name: string.interpolated.rzk
             patterns:
               - include: "#builtins"
   ext-type-topes:
     patterns:
-      - match: ([^\|]*)\|->
+      - match: ([^\|]*)(\|->)
         captures:
           "1":
-            name: string.interpolated
+            name: string.interpolated.rzk
             patterns:
               - include: "#builtins"
+          "2":
+            name: keyword.operator.mapsto.rzk
   ext-types:
     patterns:
       - begin: \[
@@ -94,14 +103,14 @@ repository:
     patterns:
       - begin: _{
         end: "}"
-        name: comment.block
+        name: comment.block.rzk
         patterns:
           - include: "#builtins"
           - include: "#index-types"
           - include: "#comments"
   params:
     patterns:
-      - begin: "\\(\\s*([^{:]+)\\s*:"
+      - begin: "\\(\\s*([^{:]+)\\s*(:)"
         end: \)
         beginCaptures:
           "1":
@@ -109,9 +118,11 @@ repository:
               - include: "#param-identifiers"
               - include: "#builtins"
               - include: "#comments"
+          "2":
+            name: keyword.operator.colon.params.rzk
         patterns:
           - include: "#terms"
-      - begin: "{\\s*([^:]+)\\s*:"
+      - begin: "{\\s*([^:]+)\\s*(:)"
         end: "}"
         beginCaptures:
           "1":
@@ -119,13 +130,21 @@ repository:
               - include: "#param-identifiers"
               - include: "#builtins"
               - include: "#comments"
+          "2":
+            name: keyword.operator.colon.params.rzk
         patterns:
           - include: "#param-topes"
           - include: "#terms"
   lambda-abstractions:
     patterns:
-      - begin: " (\\\\)\\b"
-        end: (->|→)
+      - begin: "\\b(\\\\)\\b"
+        beginCaptures:
+          "1":
+            name: keyword.operator.lambda.slash.rzk
+        end: (\b->|→)
+        endCaptures:
+          "1":
+            name: keyword.operator.lambda.to.rzk
         patterns:
           - include: "#params"
           - include: "#param-identifiers"
@@ -133,7 +152,7 @@ repository:
   comments:
     patterns:
       - name: comment.line.rzk
-        match: (\s+|^)--\s+.*$
+        match: (?<=\s|^)--.*$
   strings:
     name: string.quoted.double.rzk
     begin: '"'
@@ -141,4 +160,10 @@ repository:
     patterns:
       - name: constant.character.escape.rzk
         match: \\.
+  operators:
+    patterns:
+      - name: keyword.operator.rzk
+        match: (:=|->|[\\|:→<>])
+      - name: punctuation.rzk
+        match: ([,=])
 scopeName: source.rzk
