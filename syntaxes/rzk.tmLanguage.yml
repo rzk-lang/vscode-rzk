@@ -2,8 +2,7 @@ $schema: https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlangua
 comment: This TextMate Grammar file has been generated from a YAML file.
 name: rzk-1
 patterns:
-  - match: ^(#lang)\s+([^\-\?\!\.\\;,#\"\]\[\)\(\}\{><\|
-      \t\n\r][^\.\\;,#\"\]\[\)\(\}\{><\| \t\n\r]*)\b\s*$
+  - match: ^(#lang)\s+((?![-?!.])[^.\\;,#"\]\[)(}{><|\s]*)\b\s*$
     captures:
       "1":
         name: keyword.control.lang.rzk
@@ -13,24 +12,19 @@ patterns:
     captures:
       "1":
         name: keyword.control.rzk
-  - match: ^(#section|#end)(\s+[^\-\?\!\.\\;,#\"\]\[\)\(\}\{><\|
-      \t\n\r][^\.\\;,#\"\]\[\)\(\}\{><\| \t\n\r]*)?\b
+  - match: ^(#section|#end)(\s+(?![-?!.])[^.\\;,#"\]\[)(}{><|\s]*)?\b
     captures:
       "1":
         name: keyword.control.rzk
       "2":
         name: support.constant.property-value.rzk
-  - match:
-      ^(#assume|#variable|#variables)\s+([^\-\?\!\.\\;\:,#\"\]\[\)\(\}\{><\|
-      \t\n\r][^\.\\;\:,#\"\]\[\)\(\}\{><\|]*)\b
+  - match: ^(#assume|#variable|#variables)\s+((?![-?!.])[^.\\;,#"\]\[)(}{><|\s:]*)\b
     captures:
       "1":
         name: meta.preprocessor.rzk
       "2":
         name: variable.rzk
-  - match: ^(#def|#define|#postulate)\s+([^\-\?\!\.\\;,#\"\]\[\)\(\}\{><\|
-      \t\n\r][^\.\\;,#\"\]\[\)\(\}\{><\|
-      \t\n\r]*)\b(\s+(uses)\s+\(([^\-\?\!\.\\;,#\"\]\[\)\(\}\{><\|][^\.\\;,#\"\]\[\)\(\}\{><\|]*)\))?
+  - match: ^(#def|#define|#postulate)\s+((?![-?!.])[^.\\;,#"\]\[)(}{><|\s]*)\b(\s+(uses)\s+\(((?![-?!.])[^.\\;,#"\]\[)(}{><|]*)\))?
     captures:
       "1":
         name: meta.preprocessor.rzk
@@ -68,9 +62,7 @@ repository:
         match: \b(as)\b
   param-identifiers:
     patterns:
-      - match:
-          '[^\-\?\!\.\\;,#\"\]\[\)\(\}\{><\| \t\n][^\.\\;,#\"\]\[\)\(\}\{><\|
-          \t\n]*'
+      - match: (?![-?!.])[^.\\;,#"\]\[)(}{><|\s]*
         name: variable.parameter.rzk
   param-topes:
     patterns:
@@ -84,7 +76,7 @@ repository:
               - include: "#builtins"
   ext-type-topes:
     patterns:
-      - match: ([^\|]*)(\|->)
+      - match: ([^|]*)(\|->)
         captures:
           "1":
             name: string.interpolated.rzk
