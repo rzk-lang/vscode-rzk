@@ -57,13 +57,13 @@ repository:
       - name: support.type.rzk
         match: \b(CUBE|TOPE|U|𝒰)\b
       - name: entity.name.type.rzk
-        match: \b(Sigma|1|2|𝟙|𝟚|∑|Σ)\b
+        match: \b(1|2|𝟙|𝟚|Sigma|∑|Σ)\b
       - name: string.regexp
         match: (===|<=|\\/|/\\)
       - name: support.constant.rzk
         match: (\*_1|⋆)|\b(0_2|1_2|TOP|BOT)\b|(⊤|⊥)
       - name: support.function.rzk
-        match: \b(recOR|rec∨|recBOT|rec⊥|idJ|refl|first|second|π₁|π₂)(\b|(?=_))
+        match: \b(recOR|rec∨|recBOT|rec⊥|idJ|refl|first|second|π₁|π₂)(\b|(?=_{))
       - name: keyword.control.as.rzk
         match: \b(as)\b
   param-identifiers:

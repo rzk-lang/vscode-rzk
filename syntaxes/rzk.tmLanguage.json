@@ -102,7 +102,7 @@
         },
         {
           "name": "entity.name.type.rzk",
-          "match": "\\b(Sigma|1|2|𝟙|𝟚|∑|Σ)\\b"
+          "match": "\\b(1|2|𝟙|𝟚|Sigma|∑|Σ)\\b"
         },
         {
           "name": "string.regexp",
@@ -114,7 +114,7 @@
         },
         {
           "name": "support.function.rzk",
-          "match": "\\b(recOR|rec∨|recBOT|rec⊥|idJ|refl|first|second|π₁|π₂)(\\b|(?=_))"
+          "match": "\\b(recOR|rec∨|recBOT|rec⊥|idJ|refl|first|second|π₁|π₂)(\\b|(?=_{))"
         },
         {
           "name": "keyword.control.as.rzk",
