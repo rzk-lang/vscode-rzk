@@ -2,29 +2,29 @@ $schema: https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlangua
 comment: This TextMate Grammar file has been generated from a YAML file.
 name: rzk-1
 patterns:
-  - match: ^(#lang)\s+((?![-?!.])[^.\\;,#"\]\[)(}{><|\s]*)\b\s*$
+  - match: ^(#lang)\s+((?![-?!.])[^.\\;,#"\]\[)(}{><|\s]*)(?=$|[.\\;,#"\]\[)(}{><|\s])\s*$
     captures:
       "1":
         name: keyword.control.lang.rzk
       "2":
         name: entity.name.label.rzk
-  - match: ^(#check|#compute(-whnf|-nf)?|#set-option|#unset-option)\b[^-]
+  - match: ^(#check|#compute(-whnf|-nf)?|#set-option|#unset-option)(?=$|[.\\;,#"\]\[)(}{><|\s-])
     captures:
       "1":
         name: keyword.control.rzk
-  - match: ^(#section|#end)(\s+(?![-?!.])[^.\\;,#"\]\[)(}{><|\s]*)?\b
+  - match: ^(#section|#end)(\s+(?![-?!.])[^.\\;,#"\]\[)(}{><|\s]*)?(?=$|[.\\;,#"\]\[)(}{><|\s])
     captures:
       "1":
         name: keyword.control.rzk
       "2":
         name: support.constant.property-value.rzk
-  - match: ^(#assume|#variable|#variables)\s+((?![-?!.])[^.\\;,#"\]\[)(}{><|\s:]*)\b
+  - match: ^(#assume|#variable|#variables)\s+((?![-?!.])[^.\\;,#"\]\[)(}{><|\s:]*)(?=$|[.\\;,#"\]\[)(}{><|\s])
     captures:
       "1":
         name: meta.preprocessor.rzk
       "2":
         name: variable.rzk
-  - match: ^(#def|#define|#postulate)\s+((?![-?!.])[^.\\;,#"\]\[)(}{><|\s]*)\b(\s+(uses)\s+\(((?![-?!.])[^.\\;,#"\]\[)(}{><|]*)\))?
+  - match: ^(#def|#define|#postulate)\s+((?![-?!.])[^.\\;,#"\]\[)(}{><|\s]*)(?=$|[.\\;,#"\]\[)(}{><|\s])(\s+(uses)\s+\(((?![-?!.])[^.\\;,#"\]\[)(}{><|]*)\))?
     captures:
       "1":
         name: meta.preprocessor.rzk
@@ -49,20 +49,20 @@ repository:
   builtins:
     patterns:
       - name: support.type.rzk
-        match: \b(CUBE|TOPE|U|𝒰)\b
+        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(CUBE|TOPE|U|𝒰)(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: entity.name.type.rzk
-        match: \b(1|2|𝟙|𝟚|Sigma|∑|Σ)\b
+        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(1|2|𝟙|𝟚|Sigma|∑|Σ)(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: string.regexp
         match: (===|<=|\\/|/\\)
       - name: support.constant.rzk
-        match: (\*_1|⋆)|\b(0_2|1_2|TOP|BOT)\b|(⊤|⊥)
+        match: (⊤|⊥|\*_1|⋆)|(?<=^|[.\\;,#"\]\[)(}{><|\s])(0_2|1_2|TOP|BOT)(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: support.function.rzk
-        match: \b(recOR|rec∨|recBOT|rec⊥|idJ|refl|first|second|π₁|π₂)(\b|(?=_{))
+        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(recOR|rec∨|recBOT|rec⊥|idJ|refl|first|second|π₁|π₂)((?=$|[.\\;,#"\]\[)(}{><|\s])|(?=_{))
       - name: keyword.control.as.rzk
-        match: \b(as)\b
+        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])as(?=$|[.\\;,#"\]\[)(}{><|\s])
   param-identifiers:
     patterns:
-      - match: (?![-?!.])[^.\\;,#"\]\[)(}{><|\s]*
+      - match: ((?![-?!.])[^.\\;,#"\]\[)(}{><|\s]*)(\s*(?![-?!.])[^.\\;,#"\]\[)(}{><|\s]*)*
         name: variable.parameter.rzk
   param-topes:
     patterns:
@@ -102,7 +102,7 @@ repository:
           - include: "#comments"
   params:
     patterns:
-      - begin: "\\(\\s*([^{:]+)\\s*(:)"
+      - begin: \(\s*([^{:]+)\s*(:)(?=$|[.\\;,#"\]\[)(}{><|\s])
         end: \)
         beginCaptures:
           "1":
@@ -114,7 +114,7 @@ repository:
             name: keyword.operator.colon.params.rzk
         patterns:
           - include: "#terms"
-      - begin: "{\\s*([^:]+)\\s*(:)"
+      - begin: \{\s*([^:]+)\s*(:)(?=$|[.\\;,#"\]\[)(}{><|\s])
         end: "}"
         beginCaptures:
           "1":
@@ -129,13 +129,13 @@ repository:
           - include: "#terms"
   lambda-abstractions:
     patterns:
-      - begin: "\\b(\\\\)\\b"
+      - begin: \b(\\)(?=$|[.\\;,#"\]\[)(}{><|\s])
         beginCaptures:
           "1":
             name: keyword.operator.lambda.slash.rzk
-        end: (\b->|→)
+        end: (?<=^|[.\\;,#"\]\[)(}{><|\s])(->|→)
         endCaptures:
-          "1":
+          "0":
             name: keyword.operator.lambda.to.rzk
         patterns:
           - include: "#params"
@@ -144,7 +144,7 @@ repository:
   comments:
     patterns:
       - name: comment.line.rzk
-        match: (?<=\s|^)--.*$
+        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])--.*$
   strings:
     name: string.quoted.double.rzk
     begin: '"'
@@ -155,7 +155,13 @@ repository:
   operators:
     patterns:
       - name: keyword.operator.rzk
-        match: (:=|->|[\\|:→<>])
-      - name: punctuation.rzk
-        match: ([,=])
+        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(:=|->|:|→)(?=$|[.\\;,#"\]\[)(}{><|\s])
+      - name: punctuation.equals.rzk
+        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])=(?=$|[.\\;,#"\]\[)(}{><|\s])
+      - name: punctuation.comma.rzk
+        match: ","
+      - name: punctuation.multiplication.rzk
+        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])\*(?=$|[.\\;,#"\]\[)(}{><|\s])
+      - name: keyword.operator.rzk
+        match: (?<!(?<=^|[.\\;,#"\]\[)(}{><|\s])-)>|[\\|<]
 scopeName: source.rzk
