@@ -6,6 +6,12 @@
   "version": "0.2.5",
   "repository": "https://github.com/fizruk/vscode-rzk/rzk-1-experimental-highlighting",
   "publisher": "NikolaiKudasovfizruk",
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc --watch -p ./"
+  },
   "engines": {
     "vscode": "^1.76.0"
   },
@@ -131,6 +137,9 @@
     ]
   },
   "devDependencies": {
-    "js-yaml": "^4.1.0"
+    "@types/node": "^20.3.1",
+    "@types/vscode": "^1.79.1",
+    "js-yaml": "^4.1.0",
+    "typescript": "^5.1.3"
   }
 }
