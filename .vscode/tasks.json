@@ -5,7 +5,7 @@
   "tasks": [
     {
       "label": "Convert YAML TextMate Grammars to JSON",
-      "type": "shell",
+      "type": "process",
       "command": "bash",
       "args": ["convert_yml_to_json.sh"],
       "problemMatcher": [],
