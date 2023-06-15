@@ -4,6 +4,10 @@ All notable changes to the "rzk-1-experimental-highlighting" extension will be d
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+### v0.2.6 — 2022-06-16
+
+Add Markdown Preview button for Literate Rzk (see [#16](https://github.com/fizruk/vscode-rzk/pull/16)).
+
 ### v0.2.5 — 2022-06-11
 
 1. Support syntax highlighting for `*.rzk.tex` files (see [#5](https://github.com/fizruk/vscode-rzk/pull/5)).
