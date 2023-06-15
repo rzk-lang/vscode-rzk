@@ -128,7 +128,17 @@
         },
         "scopeName": "text.tex.latex.rzk"
       }
-    ]
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "when": "resourceLangId == 'literate rzk markdown'",
+          "command": "markdown.showPreviewToSide",
+          "alt": "markdown.showPreview",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "devDependencies": {
     "js-yaml": "^4.1.0"
