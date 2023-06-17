@@ -55,7 +55,7 @@ export function activate(context: vscode.ExtensionContext) {
   output.appendLine('Rzk extension activated.');
   context.subscriptions.push(
     vscode.languages.registerDocumentSemanticTokensProvider(
-      { language: 'rzk' },
+      ['rzk', 'literate rzk markdown'],
       new DocumentSemanticTokensProvider(),
       legend
     )
