@@ -100,6 +100,10 @@ class DocumentSemanticTokensProvider
     const processResult = spawnSync('rzk', ['tokenize'], { input: doc });
     const stdout = processResult.stdout.toString();
     output.appendLine(stdout);
-    return JSON.parse(stdout);
+    try {
+      return JSON.parse(stdout);
+    } catch {
+      return [];
+    }
   }
 }
