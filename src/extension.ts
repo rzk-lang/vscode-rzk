@@ -50,7 +50,9 @@ const legend = new vscode.SemanticTokensLegend(
   tokenModifiers as Writeable<typeof tokenModifiers>
 );
 
+let output = vscode.window.createOutputChannel('Rzk');
 export function activate(context: vscode.ExtensionContext) {
+  output.appendLine('Rzk extension activated.');
   context.subscriptions.push(
     vscode.languages.registerDocumentSemanticTokensProvider(
       { language: 'rzk' },
@@ -78,6 +80,7 @@ class DocumentSemanticTokensProvider
     document: vscode.TextDocument,
     token: vscode.CancellationToken
   ): Promise<vscode.SemanticTokens> {
+    output.appendLine(`Parsing file "${document.uri}"`);
     const allTokens: ParsedToken[] = this._parseText(document.getText());
     const builder = new vscode.SemanticTokensBuilder(legend);
     allTokens.forEach((token) => {
@@ -95,6 +98,8 @@ class DocumentSemanticTokensProvider
 
   private _parseText(doc: string): ParsedToken[] {
     const processResult = spawnSync('rzk', ['tokenize'], { input: doc });
-    return JSON.parse(processResult.stdout.toString());
+    const stdout = processResult.stdout.toString();
+    output.appendLine(stdout);
+    return JSON.parse(stdout);
   }
 }
