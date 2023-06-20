@@ -48,7 +48,10 @@ class DocumentSemanticTokensProvider
   }
 
   private _parseText(doc: string): ParsedToken[] {
-    const processResult = spawnSync('rzk', ['tokenize'], { input: doc });
+    const path =
+      vscode.workspace.getConfiguration().get<string | null>('rzk.path') ??
+      'rzk';
+    const processResult = spawnSync(path, ['tokenize'], { input: doc });
     const stdout = processResult.stdout.toString();
     output.appendLine(stdout);
     try {
