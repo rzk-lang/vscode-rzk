@@ -31,7 +31,7 @@ class DocumentSemanticTokensProvider
     document: vscode.TextDocument,
     token: vscode.CancellationToken
   ): Promise<vscode.SemanticTokens> {
-    output.appendLine(`Parsing file "${document.uri}"`);
+    // output.appendLine(`Parsing file "${document.uri}"`);
     const allTokens: ParsedToken[] = this._parseText(document.getText());
     const builder = new vscode.SemanticTokensBuilder(legend);
     allTokens.forEach((token) => {
@@ -52,8 +52,18 @@ class DocumentSemanticTokensProvider
       vscode.workspace.getConfiguration().get<string | null>('rzk.path') ??
       'rzk';
     const processResult = spawnSync(path, ['tokenize'], { input: doc });
+    if (processResult.error) {
+      const { message, stack } = processResult.error;
+      output.appendLine('Error running rzk:' + message + '\n' + stack);
+      return [];
+    }
+    if (processResult.stderr.length) {
+      output.appendLine(
+        'Error tokenizing:\n' + processResult.stderr.toString()
+      );
+      return [];
+    }
     const stdout = processResult.stdout.toString();
-    output.appendLine(stdout);
     try {
       return JSON.parse(stdout);
     } catch {
