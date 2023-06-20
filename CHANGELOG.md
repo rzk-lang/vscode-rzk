@@ -4,6 +4,13 @@ All notable changes to the "rzk-1-experimental-highlighting" extension will be d
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+### v0.3.0 — 2022-06-20
+
+This version introduces improvements to the highlighting:
+
+1. Add semantic highlighting via `rzk tokenize` feature in rzk (v0.5 and higher, see https://github.com/fizruk/rzk/pull/53) (see [#15](https://github.com/fizruk/vscode-rzk/pull/15));
+2. Fix a few issues with TextMate highlighting (see [#14](https://github.com/fizruk/vscode-rzk/pull/14))
+
 ### v0.2.6 — 2022-06-16
 
 Add Markdown Preview button for Literate Rzk (see [#16](https://github.com/fizruk/vscode-rzk/pull/16)).

@@ -3,17 +3,18 @@
   "displayName": "rzk syntax highlighting",
   "description": "Syntax Highlighting for rzk, an experimental proof assistant for synthetic ∞-categories",
   "icon": "images/icon.png",
-  "version": "0.2.6",
-  "repository": "https://github.com/fizruk/vscode-rzk/rzk-1-experimental-highlighting",
+  "version": "0.3.0",
+  "repository": "https://github.com/fizruk/vscode-rzk",
   "publisher": "NikolaiKudasovfizruk",
   "main": "./out/extension.js",
+  "activationEvents": [],
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc --watch -p ./"
   },
   "engines": {
-    "vscode": "^1.76.0"
+    "vscode": "^1.79.1"
   },
   "categories": [
     "Programming Languages"
