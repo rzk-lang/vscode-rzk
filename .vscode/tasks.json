@@ -6,7 +6,7 @@
     {
       "label": "Convert YAML TextMate Grammars to JSON",
       "dependsOn": "Process Jinja templates",
-      "type": "shell",
+      "type": "process",
       "command": "bash",
       "args": ["./convert_yml_to_json.sh"],
       "problemMatcher": [],

@@ -3,9 +3,15 @@
   "displayName": "rzk syntax highlighting",
   "description": "Syntax Highlighting for rzk, an experimental proof assistant for synthetic ∞-categories",
   "icon": "images/icon.png",
-  "version": "0.2.4",
+  "version": "0.2.6",
   "repository": "https://github.com/fizruk/vscode-rzk/rzk-1-experimental-highlighting",
   "publisher": "NikolaiKudasovfizruk",
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc --watch -p ./"
+  },
   "engines": {
     "vscode": "^1.76.0"
   },
@@ -85,15 +91,15 @@
           "rzk-md"
         ],
         "extensions": [
-          ".rzk.tex"
+          ".rzk.md"
         ],
         "filenamePatterns": [
-          "*.rzk.tex"
+          "*.rzk.md"
         ],
         "configuration": "./language-configuration.json",
         "icon": {
-          "light": "./icons/rzk-light.png",
-          "dark": "./icons/rzk-dark.png"
+          "light": "./icons/rzk-md-light.png",
+          "dark": "./icons/rzk-md-dark.png"
         },
         "scopeName": "text.html.markdown.rzk"
       },
@@ -119,15 +125,31 @@
         "extensions": [
           ".rzk.tex"
         ],
+        "filenamePatterns": [
+          "*.rzk.tex"
+        ],
         "icon": {
-          "light": "./icons/rzk-light.png",
-          "dark": "./icons/rzk-dark.png"
+          "light": "./icons/rzk-tex-light.png",
+          "dark": "./icons/rzk-tex-dark.png"
         },
         "scopeName": "text.tex.latex.rzk"
       }
-    ]
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "when": "resourceLangId == 'literate rzk markdown'",
+          "command": "markdown.showPreviewToSide",
+          "alt": "markdown.showPreview",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "devDependencies": {
-    "js-yaml": "^4.1.0"
+    "@types/node": "^20.3.1",
+    "@types/vscode": "^1.79.1",
+    "js-yaml": "^4.1.0",
+    "typescript": "^5.1.3"
   }
 }

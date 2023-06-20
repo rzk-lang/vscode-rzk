@@ -4,40 +4,40 @@
   "name": "rzk-1",
   "patterns": [
     {
-      "match": "^(#lang)\\s+([^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r]*)\\b\\s*$",
+      "match": "^(#lang)\\s+((?![-?!.])[^.\\\\;,#\"\\]\\[)(}{><|\\s]*)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])\\s*$",
       "captures": {
         "1": {
-          "name": "keyword.control"
+          "name": "keyword.control.lang.rzk"
         },
         "2": {
-          "name": "entity.name.label"
+          "name": "entity.name.label.rzk"
         }
       }
     },
     {
-      "match": "^(#check|#compute(-whnf|-nf)?|#set-option|#unset-option)\\b[^-]",
+      "match": "^(#check|#compute(-whnf|-nf)?|#set-option|#unset-option)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s-])",
       "captures": {
         "1": {
-          "name": "keyword.control"
+          "name": "keyword.control.rzk"
         }
       }
     },
     {
-      "match": "^(#section|#end)(\\s+[^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r]*)?\\b",
+      "match": "^(#section|#end)(\\s+(?![-?!.])[^.\\\\;,#\"\\]\\[)(}{><|\\s]*)?(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])",
       "captures": {
         "1": {
-          "name": "keyword.control"
+          "name": "keyword.control.rzk"
         },
         "2": {
-          "name": "support.constant.property-value"
+          "name": "support.constant.property-value.rzk"
         }
       }
     },
     {
-      "match": "^(#assume|#variable|#variables)\\s+([^\\-\\?\\!\\.\\\\;\\:,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r][^\\.\\\\;\\:,#\\\"\\]\\[\\)\\(\\}\\{><\\|]*)\\b",
+      "match": "^(#assume|#variable|#variables)\\s+((?![-?!.])[^.\\\\;,#\"\\]\\[)(}{><|\\s:]*)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])",
       "captures": {
         "1": {
-          "name": "meta.preprocessor"
+          "name": "meta.preprocessor.rzk"
         },
         "2": {
           "name": "variable.rzk"
@@ -45,16 +45,16 @@
       }
     },
     {
-      "match": "^(#def|#define|#postulate)\\s+([^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n\\r]*)\\b(\\s+(uses)\\s+\\(([^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\|][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\|]*)\\))?",
+      "match": "^(#def|#define|#postulate)\\s+((?![-?!.])[^.\\\\;,#\"\\]\\[)(}{><|\\s]*)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])(\\s+(uses)\\s+\\(((?![-?!.])[^.\\\\;,#\"\\]\\[)(}{><|]*)\\))?",
       "captures": {
         "1": {
-          "name": "meta.preprocessor"
+          "name": "meta.preprocessor.rzk"
         },
         "2": {
-          "name": "entity.name.function"
+          "name": "entity.name.function.rzk"
         },
         "4": {
-          "name": "support.constant.property-value"
+          "name": "support.constant.property-value.rzk"
         },
         "5": {
           "name": "variable.parameter.rzk"
@@ -88,33 +88,44 @@
         },
         {
           "include": "#lambda-abstractions"
+        },
+        {
+          "include": "#operators"
         }
       ]
     },
     "builtins": {
       "patterns": [
         {
+          "name": "support.type.rzk",
+          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])(CUBE|TOPE|U|𝒰)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
+        },
+        {
           "name": "entity.name.type.rzk",
-          "match": "(\\b(CUBE|TOPE|U|𝒰|Sigma|1|2|𝟙|𝟚)\\b|(∑|Σ))"
+          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])(1|2|𝟙|𝟚|Sigma|∑|Σ)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
         },
         {
           "name": "string.regexp",
-          "match": "((\\*_1|⋆)|\\b(0_2|1_2|TOP|BOT)\\b|(===|<=|\\\\/|/\\\\|⊤|⊥))"
+          "match": "(===|<=|\\\\/|/\\\\)"
         },
         {
-          "name": "constant.character",
-          "match": "\\b(recOR|rec∨|recBOT|rec⊥|idJ|refl|first|second|π₁|π₂)\\b"
+          "name": "support.constant.rzk",
+          "match": "(⊤|⊥|\\*_1|⋆)|(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])(0_2|1_2|TOP|BOT)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
         },
         {
-          "name": "keyword.control",
-          "match": "\\b(as)\\b"
+          "name": "support.function.rzk",
+          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])(recOR|rec∨|recBOT|rec⊥|idJ|refl|first|second|π₁|π₂)((?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])|(?=_{))"
+        },
+        {
+          "name": "keyword.control.as.rzk",
+          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])as(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
         }
       ]
     },
     "param-identifiers": {
       "patterns": [
         {
-          "match": "[^\\-\\?\\!\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n][^\\.\\\\;,#\\\"\\]\\[\\)\\(\\}\\{><\\| \\t\\n]*",
+          "match": "((?![-?!.])[^.\\\\;,#\"\\]\\[)(}{><|\\s]*)(\\s*(?![-?!.])[^.\\\\;,#\"\\]\\[)(}{><|\\s]*)*",
           "name": "variable.parameter.rzk"
         }
       ]
@@ -122,10 +133,13 @@
     "param-topes": {
       "patterns": [
         {
-          "match": "\\|([^}]*)",
+          "match": "(\\|)([^}]*)",
           "captures": {
             "1": {
-              "name": "string.interpolated",
+              "name": "keyword.operator.param-topes.rzk"
+            },
+            "2": {
+              "name": "string.interpolated.rzk",
               "patterns": [
                 {
                   "include": "#builtins"
@@ -139,15 +153,18 @@
     "ext-type-topes": {
       "patterns": [
         {
-          "match": "([^\\|]*)\\|->",
+          "match": "([^|]*)(\\|->)",
           "captures": {
             "1": {
-              "name": "string.interpolated",
+              "name": "string.interpolated.rzk",
               "patterns": [
                 {
                   "include": "#builtins"
                 }
               ]
+            },
+            "2": {
+              "name": "keyword.operator.mapsto.rzk"
             }
           }
         }
@@ -174,7 +191,7 @@
         {
           "begin": "_{",
           "end": "}",
-          "name": "comment.block",
+          "name": "comment.block.rzk",
           "patterns": [
             {
               "include": "#builtins"
@@ -192,7 +209,7 @@
     "params": {
       "patterns": [
         {
-          "begin": "\\(\\s*([^{:]+)\\s*:",
+          "begin": "\\(\\s*([^{:]+)\\s*(:)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])",
           "end": "\\)",
           "beginCaptures": {
             "1": {
@@ -207,6 +224,9 @@
                   "include": "#comments"
                 }
               ]
+            },
+            "2": {
+              "name": "keyword.operator.colon.params.rzk"
             }
           },
           "patterns": [
@@ -216,7 +236,7 @@
           ]
         },
         {
-          "begin": "{\\s*([^:]+)\\s*:",
+          "begin": "\\{\\s*([^:]+)\\s*(:)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])",
           "end": "}",
           "beginCaptures": {
             "1": {
@@ -231,6 +251,9 @@
                   "include": "#comments"
                 }
               ]
+            },
+            "2": {
+              "name": "keyword.operator.colon.params.rzk"
             }
           },
           "patterns": [
@@ -247,8 +270,18 @@
     "lambda-abstractions": {
       "patterns": [
         {
-          "begin": " (\\\\)\\b",
-          "end": "(->|→)",
+          "begin": "\\b(\\\\)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.operator.lambda.slash.rzk"
+            }
+          },
+          "end": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])(->|→)",
+          "endCaptures": {
+            "0": {
+              "name": "keyword.operator.lambda.to.rzk"
+            }
+          },
           "patterns": [
             {
               "include": "#params"
@@ -267,7 +300,7 @@
       "patterns": [
         {
           "name": "comment.line.rzk",
-          "match": "(\\s+|^)--\\s+.*$"
+          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])--.*$"
         }
       ]
     },
@@ -279,6 +312,30 @@
         {
           "name": "constant.character.escape.rzk",
           "match": "\\\\."
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.rzk",
+          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])(:=|->|:|→)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
+        },
+        {
+          "name": "punctuation.equals.rzk",
+          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])=(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
+        },
+        {
+          "name": "punctuation.comma.rzk",
+          "match": ","
+        },
+        {
+          "name": "punctuation.multiplication.rzk",
+          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])\\*(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
+        },
+        {
+          "name": "keyword.operator.rzk",
+          "match": "(?<!(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])-)>|[\\\\|<]"
         }
       ]
     }
