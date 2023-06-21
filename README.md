@@ -15,3 +15,13 @@ See [Changelog](CHANGELOG.md) for recent updated and changes.
 More examples:
 
 ![Syntax highlighting example.](images/example-relfunext2.png)
+
+## Configuration
+
+Extension settings can be configured by going to the settings page (using the menu `File > Preferences > Settings`, or using the shortcut <kbd>CTRL + ,</kbd>).
+
+The currently available settings are:
+
+| Name       | Type             | Default value | Description |
+| ---------- | ---------------- | ------------- | ----------- |
+| `rzk.path` | `string \| null` | `null`        | The path to the `rzk` executable to use for the language server. Defaults to using the globally available one on the `PATH` |
