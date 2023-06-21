@@ -18,7 +18,7 @@ More examples:
 
 ## Configuration
 
-Extension settings can be configured by going to the settings page (using the menu `File > Preferences > Settings`, or using the shortcut <kbd>CTRL + ,</kbd>).
+Extension settings can be configured by going to the settings page (using the menu `File > Preferences > Settings`, or using the shortcut <kbd>CTRL + ,</kbd> on Windows/Linux or <kbd>⌘ + ,</kbd> on macOS).
 
 The currently available settings are:
 
