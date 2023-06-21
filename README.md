@@ -24,4 +24,4 @@ The currently available settings are:
 
 | Name       | Type             | Default value | Description |
 | ---------- | ---------------- | ------------- | ----------- |
-| `rzk.path` | `string \| null` | `null`        | The path to the `rzk` executable to use for the language server. Defaults to using the globally available one on the `PATH` |
+| `rzk.path` | `string \| null` | `null`        | The path to the `rzk` executable to use for the language server. `null` (default) means that `rzk` executable available in `PATH` will be used. |
