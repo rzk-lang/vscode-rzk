@@ -4,12 +4,17 @@ All notable changes to the "rzk-1-experimental-highlighting" extension will be d
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+### v0.3.1 — 2022-06-21
+
+1. Add `rzk.path` configuration option (see [#22](https://github.com/fizruk/vscode-rzk/pull/22)).
+2. Add GitHub Action to compile/check the extension (see [#23](https://github.com/fizruk/vscode-rzk/pull/23)).
+
 ### v0.3.0 — 2022-06-20
 
 This version introduces improvements to the highlighting:
 
-1. Add semantic highlighting via `rzk tokenize` feature in rzk (v0.5 and higher, see https://github.com/fizruk/rzk/pull/53) (see [#15](https://github.com/fizruk/vscode-rzk/pull/15));
-2. Fix a few issues with TextMate highlighting (see [#14](https://github.com/fizruk/vscode-rzk/pull/14))
+1. Add semantic highlighting via `rzk tokenize` feature in rzk (v0.5 and higher, see https://github.com/fizruk/rzk/pull/53) (see [#15](https://github.com/fizruk/vscode-rzk/pull/15)).
+2. Fix a few issues with TextMate highlighting (see [#14](https://github.com/fizruk/vscode-rzk/pull/14)).
 
 ### v0.2.6 — 2022-06-16
 
@@ -21,7 +26,7 @@ Add Markdown Preview button for Literate Rzk (see [#16](https://github.com/fizru
 2. Add icons for literate Rzk files (both Markdown and TeX, see [#13](https://github.com/fizruk/vscode-rzk/pull/13)).
 3. Some minor fixes (restoring rainbow-parentheses and keybinding for code commenting).
 4. Using YAML for the language grammar (see [#6](https://github.com/fizruk/vscode-rzk/pull/6)).
-5. Add `launch.json` and prettify (see [#1](https://github.com/fizruk/vscode-rzk/pull/1))
+5. Add `launch.json` and prettify (see [#1](https://github.com/fizruk/vscode-rzk/pull/1)).
 
 ### v0.2.4 — 2022-05-27
 
