@@ -1,10 +1,10 @@
 import * as vscode from 'vscode';
 import { spawnSync } from 'node:child_process';
+import { output } from './logging';
 import { type TokenModifier, type TokenType, legend } from './semanticTokens';
 
 // Inspired by https://github.com/microsoft/vscode-extension-samples/tree/main/semantic-tokens-sample
 
-let output = vscode.window.createOutputChannel('Rzk');
 export function activate(context: vscode.ExtensionContext) {
   output.appendLine('Rzk extension activated.');
   context.subscriptions.push(
