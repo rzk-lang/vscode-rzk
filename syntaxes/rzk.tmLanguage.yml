@@ -18,7 +18,7 @@ patterns:
         name: keyword.control.rzk
       "2":
         name: support.constant.property-value.rzk
-  - match: ^(#assume|#variable|#variables)\s+((?![-?!.])[^.\\;,#"\]\[)(}{><|\s:]*)(?=$|[.\\;,#"\]\[)(}{><|\s])
+  - match: ^(#assume|#variable|#variables)\s+((?![-?!.])[^.\\;,#"\]\[)(}{><|:]*)(?=$|[.\\;,#"\]\[)(}{><|\s])
     captures:
       "1":
         name: meta.preprocessor.rzk
