@@ -73,7 +73,7 @@ export async function installRzkIfNotExists({
   // Ignore the returned promise to not block the rest of the code waiting for user input
   void vscode.window
     .showWarningMessage(
-      "Cannot find 'rzk' in PATH. Install it?",
+      "Cannot find 'rzk' in PATH. Install latest version of rzk from GitHub releases?",
       'Yes',
       'Ignore'
     )
