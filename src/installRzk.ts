@@ -148,7 +148,7 @@ async function checkForUpdates(binPath: string, binFolder: vscode.Uri) {
         output.appendLine('Updating local rzk version');
         await vscode.window.withProgress(
           {
-            title: 'Updating rzk...',
+            title: `Updating rzk (v${version} => ${latestRelease.tag_name})...`,
             location: vscode.ProgressLocation.Notification,
             cancellable: false,
           },
