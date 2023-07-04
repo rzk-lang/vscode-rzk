@@ -63,6 +63,8 @@ interface ParsedToken {
 export class DocumentSemanticTokensProvider
   implements vscode.DocumentSemanticTokensProvider
 {
+  constructor(private rzkPath: string) {}
+
   async provideDocumentSemanticTokens(
     document: vscode.TextDocument,
     token: vscode.CancellationToken
@@ -84,10 +86,7 @@ export class DocumentSemanticTokensProvider
   }
 
   private _parseText(doc: string): ParsedToken[] {
-    const path =
-      vscode.workspace.getConfiguration().get<string | null>('rzk.path') ??
-      'rzk';
-    const processResult = spawnSync(path, ['tokenize'], { input: doc });
+    const processResult = spawnSync(this.rzkPath, ['tokenize'], { input: doc });
     if (processResult.error) {
       const { message, stack } = processResult.error;
       output.appendLine('Error running rzk:' + message + '\n' + stack);

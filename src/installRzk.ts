@@ -108,6 +108,9 @@ async function installLatestRzk(binFolder: vscode.Uri) {
   });
   await pipeline(assetStream, tarInputStream);
   output.appendLine('File extracted successfully');
+  vscode.window.showInformationMessage(
+    'Rzk installed successfully. Please reload the window for the changes to take effect'
+  );
 }
 
 async function checkForUpdates(binPath: string, binFolder: vscode.Uri) {
