@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import semver from 'semver';
 import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
 import { Readable } from 'node:stream';
@@ -65,6 +66,7 @@ export async function installRzkIfNotExists({
   if (localBin) {
     const path = join(binFolder.fsPath, localBin[0]);
     output.appendLine('Found local installation of rzk: ' + path);
+    await checkForUpdates(path, binFolder);
     return;
   }
 
@@ -106,4 +108,35 @@ async function installLatestRzk(binFolder: vscode.Uri) {
   });
   await pipeline(assetStream, tarInputStream);
   output.appendLine('File extracted successfully');
+}
+
+async function checkForUpdates(binPath: string, binFolder: vscode.Uri) {
+  output.appendLine('Checking if updates are available');
+  const version = spawnSync(binPath, ['version']).stdout.toString();
+  const latestRelease = await fetchLatestCompatibleRelease();
+  if (latestRelease == null) {
+    output.appendLine('Cannot find updates on GitHub');
+    return;
+  }
+  const alreadyLatest = semver.gte(
+    semver.coerce(version) ?? '',
+    semver.coerce(latestRelease.tag_name) ?? ''
+  );
+  if (alreadyLatest) {
+    output.appendLine('Local rzk version is already the latest available 👍');
+    return;
+  }
+  output.appendLine('An update is available. Prompting the user');
+  vscode.window
+    .showWarningMessage(
+      `Version ${version} of rzk is installed, but ${latestRelease.tag_name} is available. Would you like to update?`,
+      'Yes',
+      'No'
+    )
+    .then(async (value) => {
+      if (value === 'Yes') {
+        output.appendLine('Updating local rzk version');
+        await installLatestRzk(binFolder);
+      }
+    });
 }
