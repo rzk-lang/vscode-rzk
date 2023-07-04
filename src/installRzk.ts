@@ -81,17 +81,22 @@ export async function installRzkIfNotExists({
       if (value === 'Yes') {
         await vscode.window.withProgress(
           {
-            title: 'Installing rzk...',
             location: vscode.ProgressLocation.Notification,
             cancellable: false,
           },
-          (progress) => installLatestRzk(binFolder)
+          (progress) => {
+            progress.report({
+              message: `Installing rzk...`,
+            });
+            return installLatestRzk(binFolder, progress);
+          }
         );
       }
     });
 }
 
-async function installLatestRzk(binFolder: vscode.Uri) {
+type Progress = Parameters<Parameters<typeof vscode.window.withProgress>[1]>[0];
+async function installLatestRzk(binFolder: vscode.Uri, progress?: Progress) {
   output.appendLine('Installing rzk...');
   const release = await fetchLatestCompatibleRelease();
   if (!release) {
@@ -101,6 +106,9 @@ async function installLatestRzk(binFolder: vscode.Uri) {
     return;
   }
   output.appendLine(`Fetched rzk release ${release.tag_name} from GitHub`);
+  progress?.report({
+    message: `Installing rzk ${release.tag_name}...`,
+  });
   const assetBuffer = await fetchReleaseBinary(release);
   if (!assetBuffer) {
     output.appendLine('Failed to fetch release asset');
