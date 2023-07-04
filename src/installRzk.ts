@@ -34,7 +34,7 @@ export async function installRzkIfNotExists({
 }) {
   const path = getUserRzkPath();
   if (path != null) {
-    output.appendLine(`Using rzk from "${path}"`);
+    output.appendLine(`Using rzk from "${path === 'rzk' ? 'PATH' : path}"`);
     return;
   }
   // Create the bin folder (recursively) if it doesn't exist
@@ -79,7 +79,14 @@ export async function installRzkIfNotExists({
     )
     .then(async (value) => {
       if (value === 'Yes') {
-        await installLatestRzk(binFolder);
+        await vscode.window.withProgress(
+          {
+            title: 'Installing rzk...',
+            location: vscode.ProgressLocation.Notification,
+            cancellable: false,
+          },
+          (progress) => installLatestRzk(binFolder)
+        );
       }
     });
 }
@@ -139,7 +146,14 @@ async function checkForUpdates(binPath: string, binFolder: vscode.Uri) {
     .then(async (value) => {
       if (value === 'Yes') {
         output.appendLine('Updating local rzk version');
-        await installLatestRzk(binFolder);
+        await vscode.window.withProgress(
+          {
+            title: 'Updating rzk...',
+            location: vscode.ProgressLocation.Notification,
+            cancellable: false,
+          },
+          (progress) => installLatestRzk(binFolder)
+        );
       }
     });
 }
