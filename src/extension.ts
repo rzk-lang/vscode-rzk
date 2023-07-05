@@ -59,6 +59,8 @@ export function activate(context: vscode.ExtensionContext) {
 
   installRzkIfNotExists({ binFolder });
 
+  context.environmentVariableCollection.append('PATH', binFolder.fsPath);
+
   vscode.commands.registerCommand('rzk.clearLocalInstallations', () => {
     clearLocalInstallations(binFolder);
   });
