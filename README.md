@@ -8,7 +8,7 @@ Features:
 
 1. Basic syntax highlighting with a simple TextMate grammar.
 2. Semantic highlighting via `rzk tokenize` (you must have `rzk` in your PATH, with version v0.5 or above).
-3. Prompts for installing/updating `rzk` binaries from GitHub Releases automatically.
+3. Prompts for installing/updating `rzk` binaries from GitHub Releases automatically (usable from local Terminal).
 4. Markdown Preview button for `*.rzk.md` files.
 
 See [Changelog](CHANGELOG.md) for recent updated and changes.
