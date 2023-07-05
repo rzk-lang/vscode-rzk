@@ -12,6 +12,9 @@ import {
 } from './githubReleases';
 import { extract } from 'tar';
 
+const binExtension = process.platform === 'win32' ? '.exe' : '';
+const binName = 'rzk' + binExtension;
+
 /**
  * Finds the path to rzk on the user's system
  */
@@ -59,10 +62,9 @@ export async function installRzkIfNotExists({
       return isCompatibleVersion(name);
     });
   */
-  const binExtension = process.platform === 'win32' ? '.exe' : '';
   const localBin = listing
     .filter(([_name, type]) => type === vscode.FileType.File)
-    .find(([name, _type]) => name === `rzk${binExtension}`);
+    .find(([name, _type]) => name === binName);
   if (localBin) {
     const path = join(binFolder.fsPath, localBin[0]);
     output.appendLine('Found local installation of rzk: ' + path);
@@ -169,6 +171,22 @@ async function checkForUpdates(binPath: string, binFolder: vscode.Uri) {
           },
           (progress) => installLatestRzk(binFolder)
         );
+      }
+    });
+}
+
+export function clearLocalInstallations(binFolder: vscode.Uri) {
+  vscode.workspace.fs
+    .delete(vscode.Uri.joinPath(binFolder, binName))
+    .then(() =>
+      vscode.window.showInformationMessage(
+        'Rzk successfully removed from VS Code. Please reload the window',
+        'Reload'
+      )
+    )
+    .then((value) => {
+      if (value === 'Reload') {
+        vscode.commands.executeCommand('workbench.action.reloadWindow');
       }
     });
 }

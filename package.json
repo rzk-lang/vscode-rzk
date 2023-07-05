@@ -159,7 +159,14 @@
           "group": "navigation"
         }
       ]
-    }
+    },
+    "commands": [
+      {
+        "command": "rzk.clearLocalInstallations",
+        "title": "Rzk [Debug]: Clear local Rzk installation",
+        "when": "inDebugMode"
+      }
+    ]
   },
   "devDependencies": {
     "@types/node": "^20.3.1",

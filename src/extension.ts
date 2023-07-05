@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { spawnSync } from 'node:child_process';
 import { output } from './logging';
 import { legend, DocumentSemanticTokensProvider } from './semanticTokens';
-import { installRzkIfNotExists } from './installRzk';
+import { clearLocalInstallations, installRzkIfNotExists } from './installRzk';
 
 function locateRzk(context: vscode.ExtensionContext) {
   let path =
@@ -58,4 +58,8 @@ export function activate(context: vscode.ExtensionContext) {
   const binFolder = vscode.Uri.joinPath(context.globalStorageUri, 'bin');
 
   installRzkIfNotExists({ binFolder });
+
+  vscode.commands.registerCommand('rzk.clearLocalInstallations', () => {
+    clearLocalInstallations(binFolder);
+  });
 }
