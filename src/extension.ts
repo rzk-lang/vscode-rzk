@@ -1,73 +1,65 @@
 import * as vscode from 'vscode';
 import { spawnSync } from 'node:child_process';
-import { type TokenModifier, type TokenType, legend } from './semanticTokens';
+import { output } from './logging';
+import { legend, DocumentSemanticTokensProvider } from './semanticTokens';
+import { clearLocalInstallations, installRzkIfNotExists } from './installRzk';
 
-// Inspired by https://github.com/microsoft/vscode-extension-samples/tree/main/semantic-tokens-sample
+function locateRzk(context: vscode.ExtensionContext) {
+  let path =
+    vscode.workspace.getConfiguration().get<string | null>('rzk.path') ?? null;
+  // Probe 1 - extension settings
+  if (path) {
+    const result = spawnSync(path, ['version']);
+    if (result.status === 0) {
+      return path;
+    } else {
+      output.appendLine(
+        'The configured `rzk.path` option does not point to a valid rzk executable'
+      );
+    }
+  }
+  // Probe 2 - global PATH
+  const binExtension = process.platform === 'win32' ? '.exe' : '';
+  path = 'rzk' + binExtension;
+  let result = spawnSync(path, ['version']);
+  if (result.status === 0) {
+    return path;
+  } else {
+    output.appendLine('Cannot find rzk globally');
+  }
 
-let output = vscode.window.createOutputChannel('Rzk');
+  // Probe 3 - extension storage bin folder
+  path = context.globalStorageUri.with({
+    path: context.globalStorageUri.path + '/bin/rzk' + binExtension,
+  }).path;
+  result = spawnSync(path, ['version']);
+  if (result.status === 0) {
+    return path;
+  }
+
+  return null;
+}
+
 export function activate(context: vscode.ExtensionContext) {
   output.appendLine('Rzk extension activated.');
-  context.subscriptions.push(
-    vscode.languages.registerDocumentSemanticTokensProvider(
-      ['rzk', 'literate rzk markdown'],
-      new DocumentSemanticTokensProvider(),
-      legend
-    )
-  );
-}
 
-interface ParsedToken {
-  line: number;
-  startCharacter: number;
-  length: number;
-  tokenType: TokenType;
-  tokenModifiers: TokenModifier[];
-}
+  const rzkPath = locateRzk(context);
 
-class DocumentSemanticTokensProvider
-  implements vscode.DocumentSemanticTokensProvider
-{
-  async provideDocumentSemanticTokens(
-    document: vscode.TextDocument,
-    token: vscode.CancellationToken
-  ): Promise<vscode.SemanticTokens> {
-    // output.appendLine(`Parsing file "${document.uri}"`);
-    const allTokens: ParsedToken[] = this._parseText(document.getText());
-    const builder = new vscode.SemanticTokensBuilder(legend);
-    allTokens.forEach((token) => {
-      builder.push(
-        new vscode.Range(
-          new vscode.Position(token.line, token.startCharacter),
-          new vscode.Position(token.line, token.startCharacter + token.length)
-        ),
-        token.tokenType,
-        token.tokenModifiers
-      );
-    });
-    return builder.build();
+  if (rzkPath) {
+    context.subscriptions.push(
+      vscode.languages.registerDocumentSemanticTokensProvider(
+        ['rzk', 'literate rzk markdown'],
+        new DocumentSemanticTokensProvider(rzkPath),
+        legend
+      )
+    );
   }
 
-  private _parseText(doc: string): ParsedToken[] {
-    const path =
-      vscode.workspace.getConfiguration().get<string | null>('rzk.path') ??
-      'rzk';
-    const processResult = spawnSync(path, ['tokenize'], { input: doc });
-    if (processResult.error) {
-      const { message, stack } = processResult.error;
-      output.appendLine('Error running rzk:' + message + '\n' + stack);
-      return [];
-    }
-    if (processResult.stderr.length) {
-      output.appendLine(
-        'Error tokenizing:\n' + processResult.stderr.toString()
-      );
-      return [];
-    }
-    const stdout = processResult.stdout.toString();
-    try {
-      return JSON.parse(stdout);
-    } catch {
-      return [];
-    }
-  }
+  const binFolder = vscode.Uri.joinPath(context.globalStorageUri, 'bin');
+
+  installRzkIfNotExists({ binFolder });
+
+  vscode.commands.registerCommand('rzk.clearLocalInstallations', () => {
+    clearLocalInstallations(binFolder);
+  });
 }
