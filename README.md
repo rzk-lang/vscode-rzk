@@ -1,4 +1,4 @@
-# rzk-1-experimental-highlighting README
+# Supporting Rzk in VSCode (`rzk-1-experimental-highlighting`)
 
 Syntax highlighting for [`rzk`](https://fizruk.github.io/rzk/), an experimental proof assistant for synthetic ∞-categories.
 
@@ -8,7 +8,8 @@ Features:
 
 1. Basic syntax highlighting with a simple TextMate grammar.
 2. Semantic highlighting via `rzk tokenize` (you must have `rzk` in your PATH, with version v0.5 or above).
-3. Markdown Preview button for `*.rzk.md` files.
+3. Prompts for installing/updating `rzk` binaries from GitHub Releases automatically.
+4. Markdown Preview button for `*.rzk.md` files.
 
 See [Changelog](CHANGELOG.md) for recent updated and changes.
 
@@ -22,6 +23,6 @@ Extension settings can be configured by going to the settings page (using the me
 
 The currently available settings are:
 
-| Name       | Type             | Default value | Description |
-| ---------- | ---------------- | ------------- | ----------- |
+| Name       | Type             | Default value | Description                                                                                                                                     |
+| ---------- | ---------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | `rzk.path` | `string \| null` | `null`        | The path to the `rzk` executable to use for the language server. `null` (default) means that `rzk` executable available in `PATH` will be used. |

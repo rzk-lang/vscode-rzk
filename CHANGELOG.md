@@ -4,6 +4,12 @@ All notable changes to the "rzk-1-experimental-highlighting" extension will be d
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+### v0.3.2 — 2022-07-05
+
+1. Prompt installing/updating `rzk` binary from GitHub Releases!
+2. Add configuration option to specify preferred path to `rzk` (use the one found in `PATH` by default).
+3. Update highlighting via TextMate for some Unicode syntax introduced in `rzk-0.5.2`.
+
 ### v0.3.1 — 2022-06-21
 
 1. Add `rzk.path` configuration option (see [#22](https://github.com/fizruk/vscode-rzk/pull/22)).
