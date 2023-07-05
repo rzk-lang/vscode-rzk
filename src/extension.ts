@@ -55,9 +55,7 @@ export function activate(context: vscode.ExtensionContext) {
     );
   }
 
-  const binFolder = context.globalStorageUri.with({
-    path: context.globalStorageUri.path + '/bin',
-  });
+  const binFolder = vscode.Uri.joinPath(context.globalStorageUri, 'bin');
 
   installRzkIfNotExists({ binFolder });
 }
