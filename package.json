@@ -3,7 +3,7 @@
   "displayName": "rzk syntax highlighting",
   "description": "Syntax Highlighting for rzk, an experimental proof assistant for synthetic ∞-categories",
   "icon": "images/icon.png",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "repository": "https://github.com/fizruk/vscode-rzk",
   "publisher": "NikolaiKudasovfizruk",
   "main": "./out/extension.js",

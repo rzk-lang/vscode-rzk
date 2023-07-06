@@ -4,6 +4,13 @@ All notable changes to the "rzk-1-experimental-highlighting" extension will be d
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+### v0.3.4 — 2022-07-06
+
+Minor improvements:
+
+- Suggest updating globally installed `rzk` version if a new version is available on GitHub Releases (see [#32](https://github.com/fizruk/vscode-rzk/pull/32));
+- Automatically compile TypeScript when debugging (see [#31](https://github.com/fizruk/vscode-rzk/pull/31));
+
 ### v0.3.3 — 2022-07-06
 
 - Add VS Code's local bin folder to PATH in local Terminal so that local installation of `rzk` is available there (see [#30](https://github.com/fizruk/vscode-rzk/pull/30)).
