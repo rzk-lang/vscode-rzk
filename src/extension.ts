@@ -6,8 +6,7 @@ import { legend, DocumentSemanticTokensProvider } from './semanticTokens';
 import { clearLocalInstallations, installRzkIfNotExists } from './installRzk';
 
 function locateRzk(context: vscode.ExtensionContext) {
-  let path =
-    vscode.workspace.getConfiguration().get<string | null>('rzk.path') ?? null;
+  let path = vscode.workspace.getConfiguration().get<string>('rzk.path') ?? '';
   // Probe 1 - extension settings
   if (path) {
     const result = spawnSync(path, ['version']);
@@ -30,9 +29,11 @@ function locateRzk(context: vscode.ExtensionContext) {
   }
 
   // Probe 3 - extension storage bin folder
-  path = context.globalStorageUri.with({
-    path: context.globalStorageUri.path + '/bin/rzk' + binExtension,
-  }).path;
+  path = vscode.Uri.joinPath(
+    context.globalStorageUri,
+    'bin',
+    'rzk' + binExtension
+  ).fsPath;
   result = spawnSync(path, ['version']);
   if (result.status === 0) {
     return path;
