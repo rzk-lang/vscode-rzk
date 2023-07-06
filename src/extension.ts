@@ -29,9 +29,11 @@ function locateRzk(context: vscode.ExtensionContext) {
   }
 
   // Probe 3 - extension storage bin folder
-  path = context.globalStorageUri.with({
-    path: context.globalStorageUri.path + '/bin/rzk' + binExtension,
-  }).path;
+  path = vscode.Uri.joinPath(
+    context.globalStorageUri,
+    'bin',
+    'rzk' + binExtension
+  ).fsPath;
   result = spawnSync(path, ['version']);
   if (result.status === 0) {
     return path;
