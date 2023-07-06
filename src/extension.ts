@@ -6,8 +6,7 @@ import { legend, DocumentSemanticTokensProvider } from './semanticTokens';
 import { clearLocalInstallations, installRzkIfNotExists } from './installRzk';
 
 function locateRzk(context: vscode.ExtensionContext) {
-  let path =
-    vscode.workspace.getConfiguration().get<string | null>('rzk.path') ?? null;
+  let path = vscode.workspace.getConfiguration().get<string>('rzk.path') ?? '';
   // Probe 1 - extension settings
   if (path) {
     const result = spawnSync(path, ['version']);

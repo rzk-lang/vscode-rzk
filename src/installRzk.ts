@@ -21,7 +21,8 @@ const binName = 'rzk' + binExtension;
 function getUserRzkPath() {
   // Check the config variable first, then the PATH
   const path =
-    vscode.workspace.getConfiguration().get<string | null>('rzk.path') ?? 'rzk';
+    // Using `||` and not `??` to handle empty string (the default value) as well
+    vscode.workspace.getConfiguration().get<string>('rzk.path') || 'rzk';
   // TODO: handle reporting errors for the config being set but not pointing to a valid executable
   const result = spawnSync(path, ['version']);
   if (result.status === 0) {

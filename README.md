@@ -23,6 +23,6 @@ Extension settings can be configured by going to the settings page (using the me
 
 The currently available settings are:
 
-| Name       | Type             | Default value | Description                                                                                                                                     |
-| ---------- | ---------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `rzk.path` | `string \| null` | `null`        | The path to the `rzk` executable to use for the language server. `null` (default) means that `rzk` executable available in `PATH` will be used. |
+| Name       | Type     | Default value | Description                                                                                                                                   |
+| ---------- | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `rzk.path` | `string` | `""`          | The path to the `rzk` executable to use for the language server. `""` (default) means that `rzk` executable available in `PATH` will be used. |

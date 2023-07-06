@@ -140,11 +140,8 @@
       "title": "Rzk",
       "properties": {
         "rzk.path": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "default": null,
+          "type": "string",
+          "default": "",
           "description": "The path and file name of the Rzk executable to use. If not set, will default to using `rzk` from the system PATH",
           "scope": "machine-overridable"
         }
