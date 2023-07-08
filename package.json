@@ -9,8 +9,8 @@
   "main": "./out/extension.js",
   "activationEvents": [],
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "esbuild src/extension.ts --bundle --platform=node --external:vscode --outdir=out --minify",
+    "vscode:prepublish": "npm run build",
+    "build": "esbuild src/extension.ts --bundle --platform=node --external:vscode --outdir=out --minify",
     "watch": "esbuild src/extension.ts --bundle --platform=node --external:vscode --outdir=out --watch"
   },
   "engines": {
