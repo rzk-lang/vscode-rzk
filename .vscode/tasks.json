@@ -6,7 +6,7 @@
     {
       "label": "Compile TypeScript",
       "type": "npm",
-      "script": "compile"
+      "script": "build"
     },
     {
       "label": "Convert YAML TextMate Grammars to JSON",
