@@ -6,18 +6,18 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### v0.3.5 — 2022-07-09
 
-- Add a bundler to prevent shipping node_modules folder (see [#33](https://github.com/fizruk/vscode-rzk/pull/33))
+- Add a bundler to prevent shipping node_modules folder (see [#33](https://github.com/rzk-lang/vscode-rzk/pull/33))
 
 ### v0.3.4 — 2022-07-06
 
 Minor improvements:
 
-- Suggest updating globally installed `rzk` version if a new version is available on GitHub Releases (see [#32](https://github.com/fizruk/vscode-rzk/pull/32));
-- Automatically compile TypeScript when debugging (see [#31](https://github.com/fizruk/vscode-rzk/pull/31));
+- Suggest updating globally installed `rzk` version if a new version is available on GitHub Releases (see [#32](https://github.com/rzk-lang/vscode-rzk/pull/32));
+- Automatically compile TypeScript when debugging (see [#31](https://github.com/rzk-lang/vscode-rzk/pull/31));
 
 ### v0.3.3 — 2022-07-06
 
-- Add VS Code's local bin folder to PATH in local Terminal so that local installation of `rzk` is available there (see [#30](https://github.com/fizruk/vscode-rzk/pull/30)).
+- Add VS Code's local bin folder to PATH in local Terminal so that local installation of `rzk` is available there (see [#30](https://github.com/rzk-lang/vscode-rzk/pull/30)).
 
 ### v0.3.2 — 2022-07-05
 
@@ -27,27 +27,27 @@ Minor improvements:
 
 ### v0.3.1 — 2022-06-21
 
-1. Add `rzk.path` configuration option (see [#22](https://github.com/fizruk/vscode-rzk/pull/22)).
-2. Add GitHub Action to compile/check the extension (see [#23](https://github.com/fizruk/vscode-rzk/pull/23)).
+1. Add `rzk.path` configuration option (see [#22](https://github.com/rzk-lang/vscode-rzk/pull/22)).
+2. Add GitHub Action to compile/check the extension (see [#23](https://github.com/rzk-lang/vscode-rzk/pull/23)).
 
 ### v0.3.0 — 2022-06-20
 
 This version introduces improvements to the highlighting:
 
-1. Add semantic highlighting via `rzk tokenize` feature in rzk (v0.5 and higher, see https://github.com/fizruk/rzk/pull/53) (see [#15](https://github.com/fizruk/vscode-rzk/pull/15)).
-2. Fix a few issues with TextMate highlighting (see [#14](https://github.com/fizruk/vscode-rzk/pull/14)).
+1. Add semantic highlighting via `rzk tokenize` feature in rzk (v0.5 and higher, see https://github.com/rzk-lang/rzk/pull/53) (see [#15](https://github.com/rzk-lang/vscode-rzk/pull/15)).
+2. Fix a few issues with TextMate highlighting (see [#14](https://github.com/rzk-lang/vscode-rzk/pull/14)).
 
 ### v0.2.6 — 2022-06-16
 
-Add Markdown Preview button for Literate Rzk (see [#16](https://github.com/fizruk/vscode-rzk/pull/16)).
+Add Markdown Preview button for Literate Rzk (see [#16](https://github.com/rzk-lang/vscode-rzk/pull/16)).
 
 ### v0.2.5 — 2022-06-11
 
-1. Support syntax highlighting for `*.rzk.tex` files (see [#5](https://github.com/fizruk/vscode-rzk/pull/5)).
-2. Add icons for literate Rzk files (both Markdown and TeX, see [#13](https://github.com/fizruk/vscode-rzk/pull/13)).
+1. Support syntax highlighting for `*.rzk.tex` files (see [#5](https://github.com/rzk-lang/vscode-rzk/pull/5)).
+2. Add icons for literate Rzk files (both Markdown and TeX, see [#13](https://github.com/rzk-lang/vscode-rzk/pull/13)).
 3. Some minor fixes (restoring rainbow-parentheses and keybinding for code commenting).
-4. Using YAML for the language grammar (see [#6](https://github.com/fizruk/vscode-rzk/pull/6)).
-5. Add `launch.json` and prettify (see [#1](https://github.com/fizruk/vscode-rzk/pull/1)).
+4. Using YAML for the language grammar (see [#6](https://github.com/rzk-lang/vscode-rzk/pull/6)).
+5. Add `launch.json` and prettify (see [#1](https://github.com/rzk-lang/vscode-rzk/pull/1)).
 
 ### v0.2.4 — 2022-05-27
 
