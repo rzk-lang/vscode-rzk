@@ -1,6 +1,6 @@
 # Supporting Rzk in VSCode (`rzk-1-experimental-highlighting`)
 
-Syntax highlighting for [`rzk`](https://fizruk.github.io/rzk/), an experimental proof assistant for synthetic ∞-categories.
+Syntax highlighting for [`rzk`](https://rzk-lang.github.io/rzk/), an experimental proof assistant for synthetic ∞-categories.
 
 ![Syntax highlighting example.](images/example-unfolding-square.png)
 

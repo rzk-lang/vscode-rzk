@@ -42,7 +42,7 @@ export async function fetchLatestCompatibleRelease(): Promise<
 > {
   // TODO: implement pagination in case no release matches the criteria in the default page size
   const { data: releases } = await octokit.rest.repos.listReleases({
-    owner: 'fizruk',
+    owner: 'rzk-lang',
     repo: 'rzk',
   });
   // Find the latest release that satisfies the version range the extension supports
@@ -73,7 +73,7 @@ export async function fetchReleaseBinary(release: Release) {
     return undefined;
   }
   const { data } = await octokit.rest.repos.getReleaseAsset({
-    owner: 'fizruk',
+    owner: 'rzk-lang',
     repo: 'rzk',
     asset_id: asset.id,
     headers: {

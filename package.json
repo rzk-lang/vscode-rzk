@@ -4,7 +4,7 @@
   "description": "Syntax Highlighting for rzk, an experimental proof assistant for synthetic ∞-categories",
   "icon": "images/icon.png",
   "version": "0.3.5",
-  "repository": "https://github.com/fizruk/vscode-rzk",
+  "repository": "https://github.com/rzk-lang/vscode-rzk",
   "publisher": "NikolaiKudasovfizruk",
   "main": "./out/extension.js",
   "activationEvents": [],
