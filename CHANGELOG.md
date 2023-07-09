@@ -4,6 +4,10 @@ All notable changes to the "rzk-1-experimental-highlighting" extension will be d
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+### v0.3.5 — 2022-07-09
+
+- Add a bundler to prevent shipping node_modules folder (see [#33](https://github.com/fizruk/vscode-rzk/pull/33))
+
 ### v0.3.4 — 2022-07-06
 
 Minor improvements:
