@@ -4,6 +4,10 @@ All notable changes to the "rzk-1-experimental-highlighting" extension will be d
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+### v0.3.7 — 2022-07-10
+
+- Add option to download pre-releases (do not by default) (see [#35](https://github.com/rzk-lang/vscode-rzk/pull/35))
+
 ### v0.3.6 — 2022-07-10
 
 - Move to [rzk-lang/vscode-rzk](https://github.com/rzk-lang/vscode-rzk/) (see [#34](https://github.com/rzk-lang/vscode-rzk/pull/34))
