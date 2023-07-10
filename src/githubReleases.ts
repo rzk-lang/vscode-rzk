@@ -1,3 +1,4 @@
+import * as vscode from 'vscode';
 import semver from 'semver';
 import { Octokit, type RestEndpointMethodTypes } from '@octokit/rest';
 import { output } from './logging';
@@ -45,11 +46,16 @@ export async function fetchLatestCompatibleRelease(): Promise<
     owner: 'rzk-lang',
     repo: 'rzk',
   });
+
+  const fetchPrereleases =
+    vscode.workspace.getConfiguration().get<boolean>('rzk.fetchPrereleases') ??
+    false;
   // Find the latest release that satisfies the version range the extension supports
   //   and has an asset for the current platform
   const latestRelease = releases.find(
     (release) =>
       isCompatibleVersion(release.tag_name) &&
+      (fetchPrereleases || !release.prerelease) &&
       release.assets.find(
         (asset) => asset.name === getReleaseAssetName(release)
       )
