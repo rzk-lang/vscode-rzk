@@ -50,6 +50,7 @@ export async function fetchLatestCompatibleRelease(): Promise<
   const latestRelease = releases.find(
     (release) =>
       isCompatibleVersion(release.tag_name) &&
+      !release.prerelease &&
       release.assets.find(
         (asset) => asset.name === getReleaseAssetName(release)
       )
