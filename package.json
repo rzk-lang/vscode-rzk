@@ -144,6 +144,11 @@
           "default": "",
           "description": "The path and file name of the Rzk executable to use. If not set, will default to using `rzk` from the system PATH",
           "scope": "machine-overridable"
+        },
+        "rzk.fetchPrereleases": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, will include releases marked as \"pre-release\" on GitHub when fetching the latest binaries"
         }
       }
     },
