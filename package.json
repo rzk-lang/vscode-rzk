@@ -167,6 +167,45 @@
         "command": "rzk.clearLocalInstallations",
         "title": "Rzk [Debug]: Clear local Rzk installation",
         "when": "inDebugMode"
+      },
+      {
+        "command": "_markdown.copyImage",
+      },
+      {
+        "key": "shift+cmd+v",
+        "command": "markdown.showPreview",
+        "when": "!notebookEditorFocused && editorLangId == 'literate rzk markdown'"
+      },
+      {
+        "key": "cmd+k v",
+        "command": "markdown.showPreviewToSide",
+        "when": "!notebookEditorFocused && editorLangId == 'literate rzk markdown'"
+      },
+      {
+        "command": "markdown.showLockedPreviewToSide",
+      },
+      {
+        "command": "markdown.showSource",
+      },
+      {
+        "command": "markdown.showPreviewSecuritySelector",
+      },
+      {
+        "command": "markdown.preview.refresh",
+      },
+      {
+        "command": "markdown.preview.toggleLock",
+      },
+      {
+        "command": "markdown.findAllFileReferences",
+      },
+      {
+        "command": "markdown.editor.insertLinkFromWorkspace",
+        "enablement": "editorLangId == markdown && !activeEditorIsReadonly"
+      },
+      {
+        "command": "markdown.editor.insertImageFromWorkspace",
+        "enablement": "editorLangId == markdown && !activeEditorIsReadonly"
       }
     ]
   },
