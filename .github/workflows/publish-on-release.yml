@@ -61,7 +61,7 @@ jobs:
       - name: Publish to Visual Studio Marketplace
         uses: HaaLeo/publish-vscode-extension@v1
         with:
-          pat: ${{ secrets.VS_MARKETPLACE_TOKEN }}
+          pat: ${{ secrets.VSCODE_MARKETPLACE_ACCESS_TOKEN }}
           extensionFile: ${{ needs.build.outputs.vsixPath }}
           registryUrl: https://marketplace.visualstudio.com
 
@@ -75,6 +75,6 @@ jobs:
       - name: Publish to Open VSX Registry
         uses: HaaLeo/publish-vscode-extension@v1
         with:
-          pat: ${{ secrets.OPEN_VSX_TOKEN }}
+          pat: ${{ secrets.OPEN_VSX_ACCESS_TOKEN  }}
           extensionFile: ${{ needs.build.outputs.vsixPath }}
           registryUrl: https://open-vsx.org
