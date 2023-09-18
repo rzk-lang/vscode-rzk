@@ -1,0 +1,80 @@
+# Inspired by https://github.com/HaaLeo/vscode-timing/blob/master/.github/workflows/cicd.yml
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      vsixPath: ${{ steps.packageExtension.outputs.vsixPath }}
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Set up Node 18 📦
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: npm
+
+      - name: Install dependencies 🧰
+        run: |
+          npm ci
+          npm install -g @vscode/vsce
+
+
+      - name: Package the extension 🔧
+        id: packageExtension
+        uses: HaaLeo/publish-vscode-extension@v1
+        with:
+          pat: stub
+          dryRun: true
+
+      - name: Upload Extension Package as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: ${{ steps.packageExtension.outputs.vsixPath }}
+          if-no-files-found: error
+
+  publish-release-vsix:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download VSIX package 📥
+        uses: actions/download-artifact@v3
+
+      - name: Attach the VSIX to the release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ needs.build.outputs.vsixPath }}
+
+  publish-vscode:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download VSIX package 📥
+        uses: actions/download-artifact@v3
+
+      - name: Publish to Visual Studio Marketplace
+        uses: HaaLeo/publish-vscode-extension@v1
+        with:
+          pat: ${{ secrets.VSCODE_MARKETPLACE_ACCESS_TOKEN }}
+          extensionFile: ${{ needs.build.outputs.vsixPath }}
+          registryUrl: https://marketplace.visualstudio.com
+
+  publish-open-vsx:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download VSIX package 📥
+        uses: actions/download-artifact@v3
+
+      - name: Publish to Open VSX Registry
+        uses: HaaLeo/publish-vscode-extension@v1
+        with:
+          pat: ${{ secrets.OPEN_VSX_ACCESS_TOKEN  }}
+          extensionFile: ${{ needs.build.outputs.vsixPath }}
+          registryUrl: https://open-vsx.org
