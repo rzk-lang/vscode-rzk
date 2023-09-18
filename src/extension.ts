@@ -2,7 +2,6 @@ import * as vscode from 'vscode';
 import { spawnSync } from 'node:child_process';
 import { delimiter } from 'node:path';
 import { output } from './logging';
-// import { legend, DocumentSemanticTokensProvider } from './semanticTokens';
 import { clearLocalInstallations, installRzkIfNotExists } from './installRzk';
 import {
   LanguageClient,
@@ -51,16 +50,6 @@ export function activate(context: vscode.ExtensionContext) {
   output.appendLine('Rzk extension activated.');
 
   const rzkPath = locateRzk(context);
-
-  if (rzkPath) {
-    // context.subscriptions.push(
-    //   vscode.languages.registerDocumentSemanticTokensProvider(
-    //     ['rzk', 'literate rzk markdown'],
-    //     new DocumentSemanticTokensProvider(rzkPath),
-    //     legend
-    //   )
-    // );
-  }
 
   const binFolder = vscode.Uri.joinPath(context.globalStorageUri, 'bin');
 
