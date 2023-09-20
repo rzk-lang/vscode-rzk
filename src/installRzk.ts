@@ -98,7 +98,7 @@ export async function installRzkIfNotExists({
         );
       } else if (value === 'Build from source') {
         const choice = await vscode.window.showQuickPick(
-          ['stack', 'cabal', 'nix'],
+          ['stack', 'cabal'],
           {
             title: 'This will install rzk globally on your system',
             ignoreFocusOut: true,
@@ -106,12 +106,6 @@ export async function installRzkIfNotExists({
           }
         );
         if (choice === undefined) return;
-        if (choice === 'nix') {
-          vscode.window.showWarningMessage(
-            'Sorry, Nix installation is not supported yet :('
-          );
-          return;
-        }
         output.appendLine('Building from source using ' + choice);
         await vscode.window.withProgress(
           {
