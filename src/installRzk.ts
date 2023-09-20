@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import semver from 'semver';
-import { spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { join } from 'node:path';
 import { Readable } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
@@ -79,6 +79,7 @@ export async function installRzkIfNotExists({
     .showWarningMessage(
       "Cannot find 'rzk' in PATH. Install latest version of rzk from GitHub releases?",
       'Yes',
+      'Build from source',
       'Ignore'
     )
     .then(async (value) => {
@@ -93,6 +94,35 @@ export async function installRzkIfNotExists({
               message: `Installing rzk...`,
             });
             return installLatestRzk(binFolder, progress);
+          }
+        );
+      } else if (value === 'Build from source') {
+        const choice = await vscode.window.showQuickPick(
+          ['stack', 'cabal', 'nix'],
+          {
+            title: 'This will install rzk globally on your system',
+            ignoreFocusOut: true,
+            placeHolder: 'Install using:',
+          }
+        );
+        if (choice === undefined) return;
+        if (choice === 'nix') {
+          vscode.window.showWarningMessage(
+            'Sorry, Nix installation is not supported yet :('
+          );
+          return;
+        }
+        output.appendLine('Building from source using ' + choice);
+        await vscode.window.withProgress(
+          {
+            location: vscode.ProgressLocation.Notification,
+            cancellable: true,
+          },
+          (progress, cancellationToken) => {
+            progress.report({
+              message: `Installing rzk using ${choice}...`,
+            });
+            return buildRzkWithPackageManager(choice, cancellationToken);
           }
         );
       }
@@ -137,6 +167,41 @@ async function installLatestRzk(binFolder: vscode.Uri, progress?: Progress) {
         vscode.commands.executeCommand('workbench.action.reloadWindow');
       }
     });
+}
+
+function buildRzkWithPackageManager(
+  manager: string,
+  cancellationToken: vscode.CancellationToken
+) {
+  return new Promise<void>((resolve, reject) => {
+    if (!['stack', 'cabal'].includes(manager)) return;
+    const childProcess = spawn(manager, ['install', 'rzk']);
+    cancellationToken.onCancellationRequested(() =>
+      childProcess.kill('SIGTERM')
+    );
+    childProcess.on('error', (err) => {
+      vscode.window.showErrorMessage(
+        'Installation failed ☹️. Error: ' + err.message
+      );
+      output.appendLine(`Error installing with ${manager}:`);
+      output.appendLine('\t' + err.stack);
+      reject();
+    });
+    childProcess.on('exit', (code) => {
+      output.appendLine('Installation finished with return code: ' + code);
+      vscode.window
+        .showInformationMessage(
+          'Installation successful 🎉! Please reload your window for the changes to take effect',
+          'Reload'
+        )
+        .then((value) => {
+          if (value === 'Reload') {
+            vscode.commands.executeCommand('workbench.action.reloadWindow');
+          }
+        });
+      resolve();
+    });
+  });
 }
 
 async function checkForUpdates(binPath: string, binFolder?: vscode.Uri) {
