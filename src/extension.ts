@@ -76,13 +76,21 @@ export function activate(context: vscode.ExtensionContext) {
       },
     };
 
+    let configFileWatcher: vscode.FileSystemWatcher | undefined;
+    if (vscode.workspace.workspaceFolders?.length) {
+      // Only single-folder workspaces are supported for now
+      const pattern = new vscode.RelativePattern(
+        vscode.workspace.workspaceFolders[0],
+        'rzk.yaml'
+      );
+      configFileWatcher = vscode.workspace.createFileSystemWatcher(pattern);
+    }
     // Options to control the language client
     let clientOptions: LanguageClientOptions = {
-      // Register the server for plain text documents
       documentSelector: ['rzk', 'literate rzk markdown'],
-      // synchronize: {
-      //   fileEvents: vscode.workspace.createFileSystemWatcher('**/*.rzk'),
-      // },
+      synchronize: {
+        fileEvents: configFileWatcher,
+      },
     };
 
     // Create the language client and start the client.
