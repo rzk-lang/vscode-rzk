@@ -7,7 +7,7 @@ import { output } from './logging';
 const octokit = new Octokit();
 
 /** In semver range format */
-const supportedRzkVersions = '>=0.4.1 <1.0.0';
+const supportedRzkVersions = '>=0.6.0 <1.0.0';
 
 type Release =
   RestEndpointMethodTypes['repos']['listReleases']['response']['data'][number];
