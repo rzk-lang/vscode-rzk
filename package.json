@@ -1,7 +1,7 @@
 {
   "name": "rzk-1-experimental-highlighting",
-  "displayName": "rzk syntax highlighting",
-  "description": "Syntax Highlighting for rzk, an experimental proof assistant for synthetic ∞-categories",
+  "displayName": "Rzk language server",
+  "description": "Interactive theorem proving support in VS Code for Rzk, a proof assistant for synthetic ∞-categories",
   "icon": "images/icon.png",
   "version": "0.3.7",
   "repository": "https://github.com/rzk-lang/vscode-rzk",
