@@ -1,21 +1,37 @@
 # Supporting Rzk in VSCode (`rzk-1-experimental-highlighting`)
 
-Syntax highlighting for [`rzk`](https://rzk-lang.github.io/rzk/), an experimental proof assistant for synthetic ∞-categories.
+Syntax and semantic highlighting for [`rzk`](https://rzk-lang.github.io/rzk/), an experimental proof assistant for synthetic ∞-categories, as well as automatic typechecking.
 
 ![Syntax highlighting example.](images/example-unfolding-square.png)
 
 Features:
 
 1. Basic syntax highlighting with a simple TextMate grammar.
-2. Semantic highlighting via `rzk tokenize` (you must have `rzk` in your PATH, with version v0.5 or above).
+2. Semantic highlighting via LSP (you must have `rzk` version v0.6 or above).
 3. Prompts for installing/updating `rzk` binaries from GitHub Releases automatically (usable from local Terminal).
 4. Markdown Preview button for `*.rzk.md` files.
+5. Automatic typechecking for all files listed in `rzk.yaml`
 
 See [Changelog](CHANGELOG.md) for recent updated and changes.
 
 More examples:
 
 ![Syntax highlighting example.](images/example-relfunext2.png)
+
+## Typechecking
+
+The extension typechecks files in the open project automatically and reports all errors as diagnostic messages.
+To define a Rzk project, simply create a file called `rzk.yaml` (**not** `.yml`!) that lists all the files to be typechecked under the `include` field. All paths are relative to the project root and support wildcards (for supported operators, see [glob](https://hackage.haskell.org/package/Glob-0.10.2/docs/System-FilePath-Glob.html#v:compile)).
+
+For example, a typcial `rzk.yaml` would look like so:
+
+```yaml
+include:
+  - 'src/**/*.rzk'
+  - 'src/**/*.rzk.md'
+```
+
+Typechecking takes place automatically once the project is first opened and upon _saving_ changes to any of the source files or the configuration file.
 
 ## Configuration
 
