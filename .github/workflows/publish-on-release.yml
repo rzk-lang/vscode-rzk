@@ -48,7 +48,6 @@ jobs:
       - name: Download VSIX package 📥
         uses: actions/download-artifact@v3
         with:
-          path: ${{ needs.build.outputs.vsixPath }}
           name: ${{ needs.build.outputs.vsixPath }}
 
       - name: Attach the VSIX to the release
@@ -64,7 +63,6 @@ jobs:
       - name: Download VSIX package 📥
         uses: actions/download-artifact@v3
         with:
-          path: ${{ needs.build.outputs.vsixPath }}
           name: ${{ needs.build.outputs.vsixPath }}
 
       - name: Publish to Visual Studio Marketplace
@@ -81,7 +79,6 @@ jobs:
       - name: Download VSIX package 📥
         uses: actions/download-artifact@v3
         with:
-          path: ${{ needs.build.outputs.vsixPath }}
           name: ${{ needs.build.outputs.vsixPath }}
 
       - name: Publish to Open VSX Registry
