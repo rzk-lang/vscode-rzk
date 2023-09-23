@@ -42,6 +42,8 @@ jobs:
   publish-release-vsix:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Download VSIX package 📥
         uses: actions/download-artifact@v3
