@@ -7,7 +7,9 @@
   "repository": "https://github.com/rzk-lang/vscode-rzk",
   "publisher": "NikolaiKudasovfizruk",
   "main": "./out/extension.js",
-  "activationEvents": [],
+  "activationEvents": [
+    "workspaceContains:rzk.yaml"
+  ],
   "scripts": {
     "vscode:prepublish": "npm run build",
     "build": "esbuild src/extension.ts --bundle --platform=node --external:vscode --outdir=out --minify",
@@ -168,6 +170,12 @@
         "title": "Rzk [Debug]: Clear local Rzk installation",
         "when": "inDebugMode"
       }
+    ],
+    "yamlValidation": [
+      {
+        "fileMatch": "rzk.yaml",
+        "url": "./rzk-config-schema.json"
+      }
     ]
   },
   "devDependencies": {
@@ -182,6 +190,7 @@
   "dependencies": {
     "@octokit/rest": "^19.0.13",
     "semver": "^7.5.3",
-    "tar": "^6.1.15"
+    "tar": "^6.1.15",
+    "vscode-languageclient": "^8.1.0"
   }
 }

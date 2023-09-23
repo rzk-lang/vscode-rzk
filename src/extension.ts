@@ -2,8 +2,12 @@ import * as vscode from 'vscode';
 import { spawnSync } from 'node:child_process';
 import { delimiter } from 'node:path';
 import { output } from './logging';
-import { legend, DocumentSemanticTokensProvider } from './semanticTokens';
 import { clearLocalInstallations, installRzkIfNotExists } from './installRzk';
+import {
+  LanguageClient,
+  LanguageClientOptions,
+  ServerOptions,
+} from 'vscode-languageclient/node';
 
 function locateRzk(context: vscode.ExtensionContext) {
   let path = vscode.workspace.getConfiguration().get<string>('rzk.path') ?? '';
@@ -47,16 +51,6 @@ export function activate(context: vscode.ExtensionContext) {
 
   const rzkPath = locateRzk(context);
 
-  if (rzkPath) {
-    context.subscriptions.push(
-      vscode.languages.registerDocumentSemanticTokensProvider(
-        ['rzk', 'literate rzk markdown'],
-        new DocumentSemanticTokensProvider(rzkPath),
-        legend
-      )
-    );
-  }
-
   const binFolder = vscode.Uri.joinPath(context.globalStorageUri, 'bin');
 
   installRzkIfNotExists({ binFolder });
@@ -69,4 +63,60 @@ export function activate(context: vscode.ExtensionContext) {
   vscode.commands.registerCommand('rzk.clearLocalInstallations', () => {
     clearLocalInstallations(binFolder);
   });
+
+  if (rzkPath) {
+    let serverOptions: ServerOptions = {
+      run: {
+        command: rzkPath,
+        args: ['lsp'],
+      },
+      debug: {
+        command: rzkPath,
+        args: ['lsp'],
+      },
+    };
+
+    const fileEvents: vscode.FileSystemWatcher[] = [];
+    if (vscode.workspace.workspaceFolders?.length) {
+      // Only single-folder workspaces are supported for now
+      const pattern = new vscode.RelativePattern(
+        vscode.workspace.workspaceFolders[0],
+        'rzk.yaml'
+      );
+      const configFileWatcher =
+        vscode.workspace.createFileSystemWatcher(pattern);
+      fileEvents.push(configFileWatcher);
+    }
+    fileEvents.push(
+      vscode.workspace.createFileSystemWatcher('**/*.rzk'),
+      vscode.workspace.createFileSystemWatcher('**/*.rzk.md')
+    );
+    // Options to control the language client
+    let clientOptions: LanguageClientOptions = {
+      documentSelector: ['rzk', 'literate rzk markdown'],
+      synchronize: {
+        fileEvents,
+      },
+    };
+
+    // Create the language client and start the client.
+    const client = new LanguageClient(
+      'rzk-language-server',
+      'Rzk Language Server',
+      serverOptions,
+      clientOptions
+    );
+
+    // Start the client. This will also launch the server
+    client
+      .start()
+      .then(() => {
+        output.appendLine('Language server started ' + client.isRunning());
+      })
+      .catch((e) => {
+        output.appendLine('Language server error: ' + JSON.stringify(e));
+      });
+
+    context.subscriptions.push(client);
+  }
 }
