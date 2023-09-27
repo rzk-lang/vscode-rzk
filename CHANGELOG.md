@@ -4,6 +4,20 @@ All notable changes to the "rzk-1-experimental-highlighting" extension will be d
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## v0.4.1 - 2023-09-27
+
+### Added
+
+- The extension now provides the option to build `rzk` via [stack](https://docs.haskellstack.org/en/stable/) or [cabal](https://www.haskell.org/cabal/).
+
+### Changed
+
+- Updated extension name and description to reflect the newly added features (with LSP).
+
+### Fixed
+
+- Defined `wordPattern` to help VS Code recognize how an identifier looks like in Rzk. This should fix IntelliSense completion for identifiers with non-alpha characters.
+
 ## v0.4.0 - 2023-09-23
 
 ### Added
