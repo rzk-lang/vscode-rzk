@@ -79,7 +79,7 @@ export async function installRzkIfNotExists({
     .showWarningMessage(
       "Cannot find 'rzk' in PATH. Install latest version of rzk from GitHub releases?",
       'Yes',
-      'Build from source',
+      'Build via...',
       'Ignore'
     )
     .then(async (value) => {
@@ -96,7 +96,7 @@ export async function installRzkIfNotExists({
             return installLatestRzk(binFolder, progress);
           }
         );
-      } else if (value === 'Build from source') {
+      } else if (value === 'Build via...') {
         const choice = await vscode.window.showQuickPick(
           ['stack', 'cabal'],
           {
@@ -106,7 +106,7 @@ export async function installRzkIfNotExists({
           }
         );
         if (choice === undefined) return;
-        output.appendLine('Building from source using ' + choice);
+        output.appendLine('Building via ' + choice);
         await vscode.window.withProgress(
           {
             location: vscode.ProgressLocation.Notification,
