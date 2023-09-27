@@ -1,6 +1,6 @@
 {
   "name": "rzk-1-experimental-highlighting",
-  "displayName": "Rzk language server",
+  "displayName": "Rzk",
   "description": "Interactive theorem proving support in VS Code for Rzk, a proof assistant for synthetic ∞-categories",
   "icon": "images/icon.png",
   "version": "0.3.7",
