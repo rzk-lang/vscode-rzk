@@ -44,6 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    if: ${{ github.event_name == 'release' }}
     steps:
       - name: Download VSIX package 📥
         uses: actions/download-artifact@v3
