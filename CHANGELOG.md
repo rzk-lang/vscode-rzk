@@ -4,32 +4,20 @@ All notable changes to the "rzk-1-experimental-highlighting" extension will be d
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## v0.4.2 — 2023-09-28
+
+- Fix the word pattern to allow triggering latex-input extension on `\` (see [#51](https://github.com/rzk-lang/vscode-rzk/pull/51))
+
 ## v0.4.1 - 2023-09-27
 
-### Added
-
-- The extension now provides the option to build `rzk` via [stack](https://docs.haskellstack.org/en/stable/) or [cabal](https://www.haskell.org/cabal/).
-
-### Changed
-
-- Updated extension name and description to reflect the newly added features (with LSP).
-
-### Fixed
-
-- Defined `wordPattern` to help VS Code recognize how an identifier looks like in Rzk. This should fix IntelliSense completion for identifiers with non-alpha characters.
+- Provide the option to build `rzk` via [stack](https://docs.haskellstack.org/en/stable/) or [cabal](https://www.haskell.org/cabal/).
+- Update extension name and description to reflect the newly added features (with LSP).
+- Define `wordPattern` to help VS Code recognize how an identifier looks like in Rzk. This should fix IntelliSense completion for identifiers with non-alpha characters.
 
 ## v0.4.0 - 2023-09-23
 
-### Added
-
 - IntelliSense support for `rzk.yaml` (requires the [YAML extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml))
-
-### Changed
-
-- Replaced the custom tokenizer with LSP support (available starting Rzk `v0.6.0`) (see [#36](https://github.com/rzk-lang/vscode-rzk/pull/36))
-
-## v0.3.7 — 2023-07-10
-
+- Replace the custom tokenizer with LSP support (available starting Rzk `v0.6.0`) (see [#36](https://github.com/rzk-lang/vscode-rzk/pull/36))
 - Add option to download pre-releases (do not by default) (see [#35](https://github.com/rzk-lang/vscode-rzk/pull/35))
 
 ## v0.3.6 — 2023-07-10
