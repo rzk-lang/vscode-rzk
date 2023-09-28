@@ -3,7 +3,7 @@
   "displayName": "Rzk",
   "description": "Interactive theorem proving support in VS Code for Rzk, a proof assistant for synthetic ∞-categories",
   "icon": "images/icon.png",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "repository": "https://github.com/rzk-lang/vscode-rzk",
   "publisher": "NikolaiKudasovfizruk",
   "main": "./out/extension.js",
