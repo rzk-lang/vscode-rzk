@@ -71,6 +71,9 @@ export async function installRzkIfNotExists({
     const path = join(binFolder.fsPath, localBin[0]);
     output.appendLine('Found local installation of rzk: ' + path);
     await checkForUpdates(path, binFolder);
+    // Repeat the check for updates every hour
+    // TODO: make the check period configurable by the user
+    setInterval(() => checkForUpdates(path, binFolder), 1000 * 60 * 60);
     return;
   }
 
@@ -97,14 +100,11 @@ export async function installRzkIfNotExists({
           }
         );
       } else if (value === 'Build via...') {
-        const choice = await vscode.window.showQuickPick(
-          ['stack', 'cabal'],
-          {
-            title: 'This will install rzk globally on your system',
-            ignoreFocusOut: true,
-            placeHolder: 'Install using:',
-          }
-        );
+        const choice = await vscode.window.showQuickPick(['stack', 'cabal'], {
+          title: 'This will install rzk globally on your system',
+          ignoreFocusOut: true,
+          placeHolder: 'Install using:',
+        });
         if (choice === undefined) return;
         output.appendLine('Building via ' + choice);
         await vscode.window.withProgress(
