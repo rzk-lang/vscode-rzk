@@ -129,6 +129,17 @@ export function activate(context: vscode.ExtensionContext) {
       }
     });
 
+    vscode.commands.registerCommand('rzk.restartLspServer', async () => {
+      try {
+        await client.restart();
+        output.appendLine('Language server restarted successfully');
+      } catch (e) {
+        output.appendLine(
+          'Error restarting language server: ' + JSON.stringify(e)
+        );
+      }
+    });
+
     context.subscriptions.push(client);
   }
 }
