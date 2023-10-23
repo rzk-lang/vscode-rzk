@@ -117,6 +117,18 @@ export function activate(context: vscode.ExtensionContext) {
         output.appendLine('Language server error: ' + JSON.stringify(e));
       });
 
+    // For internal use. I don't see a good reason to expose to the client
+    vscode.commands.registerCommand('rzk.stopLspServer', async () => {
+      try {
+        await client.stop();
+        output.appendLine('Language server stopped successfully');
+      } catch (e) {
+        output.appendLine(
+          'Error stopping language server: ' + JSON.stringify(e)
+        );
+      }
+    });
+
     context.subscriptions.push(client);
   }
 }

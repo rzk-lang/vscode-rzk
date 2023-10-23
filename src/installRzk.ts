@@ -146,6 +146,9 @@ async function installLatestRzk(binFolder: vscode.Uri, progress?: Progress) {
 
   output.appendLine(`Extracting to "${binFolder.path}"`);
   const assetStream = Readable.from(Buffer.from(assetBuffer));
+  // Stop the server to avoid any possible permission denied errors
+  await vscode.commands.executeCommand('rzk.stopLspServer');
+  await vscode.commands.executeCommand('rzk.clearLocalInstallations'); // Just to be extra sure
   const tarInputStream = extract({
     cwd: binFolder.fsPath,
   });
