@@ -246,15 +246,16 @@ async function checkForUpdates(binPath: string, binFolder?: vscode.Uri) {
   }
 }
 
-export function clearLocalInstallations(binFolder: vscode.Uri) {
+export function clearLocalInstallations(binFolder: vscode.Uri, silent = false) {
   vscode.workspace.fs
     .delete(vscode.Uri.joinPath(binFolder, binName))
-    .then(() =>
-      vscode.window.showInformationMessage(
+    .then(() => {
+      if (silent) return;
+      return vscode.window.showInformationMessage(
         'Rzk successfully removed from VS Code. Please reload the window',
         'Reload'
-      )
-    )
+      );
+    })
     .then((value) => {
       if (value === 'Reload') {
         vscode.commands.executeCommand('workbench.action.reloadWindow');

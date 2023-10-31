@@ -60,9 +60,12 @@ export function activate(context: vscode.ExtensionContext) {
     delimiter + binFolder.fsPath
   );
 
-  vscode.commands.registerCommand('rzk.clearLocalInstallations', () => {
-    clearLocalInstallations(binFolder);
-  });
+  vscode.commands.registerCommand(
+    'rzk.clearLocalInstallations',
+    (silent = false) => {
+      clearLocalInstallations(binFolder, silent);
+    }
+  );
 
   if (rzkPath) {
     let serverOptions: ServerOptions = {
