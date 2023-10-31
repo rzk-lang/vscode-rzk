@@ -148,11 +148,33 @@ async function installLatestRzk(binFolder: vscode.Uri, progress?: Progress) {
   const assetStream = Readable.from(Buffer.from(assetBuffer));
   // Stop the server to avoid any possible permission denied errors
   await vscode.commands.executeCommand('rzk.stopLspServer');
-  await vscode.commands.executeCommand('rzk.clearLocalInstallations'); // Just to be extra sure
+  // Silently clear the existing installation. Apparently, stopping the server is not enough
+  await vscode.commands.executeCommand('rzk.clearLocalInstallations', true);
+  let error = false;
   const tarInputStream = extract({
     cwd: binFolder.fsPath,
+    onwarn(code, message, data) {
+      // Note: throwing here causes it to fail silently. It cannot be caught
+      error = true;
+      output.appendLine(
+        `Error ${code} occurred while extracting: "${message}"`
+      );
+      vscode.window
+        .showWarningMessage(
+          `An error occurred during extraction (${code}).
+Please file an issue on [GitHub](https://github.com/rzk-lang/vscode-rzk/issues).
+Don't forget to include the logs from the output panel.`,
+          'Open output panel'
+        )
+        .then((action) => {
+          if (action === 'Open output panel') {
+            output.show();
+          }
+        });
+    },
   });
   await pipeline(assetStream, tarInputStream);
+  if (error) return;
   output.appendLine('File extracted successfully');
   vscode.window
     .showInformationMessage(
