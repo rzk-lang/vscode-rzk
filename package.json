@@ -167,8 +167,11 @@
     "commands": [
       {
         "command": "rzk.clearLocalInstallations",
-        "title": "Rzk [Debug]: Clear local Rzk installation",
-        "when": "inDebugMode"
+        "title": "Rzk: Clear local Rzk installation"
+      },
+      {
+        "command": "rzk.restartLspServer",
+        "title": "Rzk: Restart LSP server"
       }
     ],
     "yamlValidation": [

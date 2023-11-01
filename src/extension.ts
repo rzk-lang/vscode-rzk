@@ -60,9 +60,12 @@ export function activate(context: vscode.ExtensionContext) {
     delimiter + binFolder.fsPath
   );
 
-  vscode.commands.registerCommand('rzk.clearLocalInstallations', () => {
-    clearLocalInstallations(binFolder);
-  });
+  vscode.commands.registerCommand(
+    'rzk.clearLocalInstallations',
+    (silent = false) => {
+      clearLocalInstallations(binFolder, silent);
+    }
+  );
 
   if (rzkPath) {
     let serverOptions: ServerOptions = {
@@ -116,6 +119,29 @@ export function activate(context: vscode.ExtensionContext) {
       .catch((e) => {
         output.appendLine('Language server error: ' + JSON.stringify(e));
       });
+
+    // For internal use. I don't see a good reason to expose to the client
+    vscode.commands.registerCommand('rzk.stopLspServer', async () => {
+      try {
+        await client.stop();
+        output.appendLine('Language server stopped successfully');
+      } catch (e) {
+        output.appendLine(
+          'Error stopping language server: ' + JSON.stringify(e)
+        );
+      }
+    });
+
+    vscode.commands.registerCommand('rzk.restartLspServer', async () => {
+      try {
+        await client.restart();
+        output.appendLine('Language server restarted successfully');
+      } catch (e) {
+        output.appendLine(
+          'Error restarting language server: ' + JSON.stringify(e)
+        );
+      }
+    });
 
     context.subscriptions.push(client);
   }
