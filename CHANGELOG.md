@@ -4,6 +4,12 @@ All notable changes to the "rzk-1-experimental-highlighting" extension will be d
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## v0.4.3 - 2023-11-01
+
+- Check for updates to Rzk periodically (hourly for now) instead of just on launch ([#53](https://github.com/rzk-lang/vscode-rzk/pull/53)).
+- Fix the word pattern once more to detect Rzk identifiers properly without interfering with the latex-input extension ([#61](https://github.com/rzk-lang/vscode-rzk/pull/61)).
+- Fix updating Rzk installation on Ubuntu ([#63](https://github.com/rzk-lang/vscode-rzk/pull/63))
+
 ## v0.4.2 — 2023-09-28
 
 - Fix the word pattern to allow triggering latex-input extension on `\` (see [#51](https://github.com/rzk-lang/vscode-rzk/pull/51))
