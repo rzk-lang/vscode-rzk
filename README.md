@@ -1,5 +1,9 @@
 # Supporting Rzk in VSCode (`rzk-1-experimental-highlighting`)
 
+[![Visual Studio Marketplace Version (including pre-releases)](https://img.shields.io/visual-studio-marketplace/v/NikolaiKudasovfizruk.rzk-1-experimental-highlighting)](https://marketplace.visualstudio.com/items?itemName=NikolaiKudasovfizruk.rzk-1-experimental-highlighting)
+![Open VSX Version](https://img.shields.io/open-vsx/v/NikolaiKudasovfizruk/rzk-1-experimental-highlighting)
+
+
 Syntax and semantic highlighting for [`rzk`](https://rzk-lang.github.io/rzk/), an experimental proof assistant for synthetic ∞-categories, as well as automatic typechecking.
 
 ![Syntax highlighting example.](images/example-unfolding-square.png)
