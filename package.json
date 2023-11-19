@@ -154,6 +154,18 @@
         }
       }
     },
+    "configurationDefaults": {
+      "[rzk][literate rzk markdown]": {
+        "editor.defaultFormatter": "NikolaiKudasovfizruk.rzk-1-experimental-highlighting",
+        "editor.rulers": [
+          80
+        ],
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true
+      }
+    },
     "menus": {
       "editor/title": [
         {
