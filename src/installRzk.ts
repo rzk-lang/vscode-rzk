@@ -147,9 +147,19 @@ async function installLatestRzk(binFolder: vscode.Uri, progress?: Progress) {
   output.appendLine(`Extracting to "${binFolder.path}"`);
   const assetStream = Readable.from(Buffer.from(assetBuffer));
   // Stop the server to avoid any possible permission denied errors
-  await vscode.commands.executeCommand('rzk.stopLspServer');
+  await vscode.commands
+    .executeCommand('rzk.stopLspServer')
+    .then(undefined, (err) => {
+      output.appendLine(
+        `Error stopping the LSP server (${err}). Perhaps the server wasn't running? `
+      );
+    });
   // Silently clear the existing installation. Apparently, stopping the server is not enough
-  await vscode.commands.executeCommand('rzk.clearLocalInstallations', true);
+  await vscode.commands
+    .executeCommand('rzk.clearLocalInstallations', true)
+    .then(undefined, (err) => {
+      output.appendLine('Error clearing local installations.');
+    });
   let error = false;
   const tarInputStream = extract({
     cwd: binFolder.fsPath,
