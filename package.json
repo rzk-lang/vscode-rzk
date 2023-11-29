@@ -141,6 +141,11 @@
     "configuration": {
       "title": "Rzk",
       "properties": {
+        "rzk.format.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable the Rzk formatter"
+        },
         "rzk.path": {
           "type": "string",
           "default": "",
