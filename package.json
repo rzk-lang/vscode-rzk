@@ -141,6 +141,11 @@
     "configuration": {
       "title": "Rzk",
       "properties": {
+        "rzk.format.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable the Rzk formatter"
+        },
         "rzk.path": {
           "type": "string",
           "default": "",
@@ -152,6 +157,20 @@
           "default": false,
           "description": "If true, will include releases marked as \"pre-release\" on GitHub when fetching the latest binaries"
         }
+      }
+    },
+    "configurationDefaults": {
+      "[rzk][literate rzk markdown]": {
+        "editor.defaultFormatter": "NikolaiKudasovfizruk.rzk-1-experimental-highlighting",
+        "editor.rulers": [
+          80
+        ],
+        "editor.detectIndentation": false,
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true,
+        "editor.insertSpaces": true,
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true
       }
     },
     "menus": {
