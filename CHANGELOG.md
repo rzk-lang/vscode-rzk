@@ -4,6 +4,10 @@ All notable changes to the "rzk-1-experimental-highlighting" extension will be d
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## v0.4.5 - 2023-12-08
+
+- Added some sensible default settings for Rzk files formatting and a message upon formatting for the first time ([#66](https://github.com/rzk-lang/vscode-rzk/pull/66))
+
 ## v0.4.4 - 2023-12-06
 
 - Fixed a regression that caused first-time installations to fail
