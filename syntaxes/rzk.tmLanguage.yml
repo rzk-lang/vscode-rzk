@@ -76,14 +76,15 @@ repository:
               - include: "#builtins"
   ext-type-topes:
     patterns:
-      - match: ([^|]*)(\|->|↦)
-        captures:
-          "1":
-            name: string.interpolated.rzk
-            patterns:
-              - include: "#builtins"
-          "2":
-            name: keyword.operator.mapsto.rzk
+      []
+      # - match: ([^|]*)(\|->|↦)
+      #   captures:
+      #     "1":
+      #       name: string.interpolated.rzk
+      #       patterns:
+      #         - include: "#builtins"
+      #     "2":
+      #       name: keyword.operator.mapsto.rzk
   ext-types:
     patterns:
       - begin: \[

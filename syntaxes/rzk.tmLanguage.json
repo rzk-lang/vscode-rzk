@@ -151,24 +151,7 @@
       ]
     },
     "ext-type-topes": {
-      "patterns": [
-        {
-          "match": "([^|]*)(\\|->|↦)",
-          "captures": {
-            "1": {
-              "name": "string.interpolated.rzk",
-              "patterns": [
-                {
-                  "include": "#builtins"
-                }
-              ]
-            },
-            "2": {
-              "name": "keyword.operator.mapsto.rzk"
-            }
-          }
-        }
-      ]
+      "patterns": []
     },
     "ext-types": {
       "patterns": [
