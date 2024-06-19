@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import { output } from "./logging";
 import {
   Middleware,
   ProvideDocumentFormattingEditsSignature,
@@ -13,6 +14,7 @@ export default class Middlewares implements Middleware {
     token: vscode.CancellationToken,
     next: ProvideDocumentFormattingEditsSignature
   ) {
+    output.appendLine("Formatting document with Rzk language server.");
     const lspResults = await next(document, options, token);
     const previouslyPrompted = this.context.globalState.get<boolean>(
       "formattingPromptDisplayed",
@@ -36,6 +38,31 @@ export default class Middlewares implements Middleware {
           }
         });
     }
+    output.appendLine(
+      `Formatting complete. Applying ${lspResults?.length} edits.`
+    );
+
+    // Temporary hack to run Prettier on Literate Rzk files after our formatter
+    const isPrettierEnabled = vscode.workspace
+      .getConfiguration("prettier")
+      .get<boolean>("enable");
+    if (isPrettierEnabled && document.languageId === "literate rzk markdown") {
+      // The command is ran after a timeout to allow the text edits from LSP to
+      // be applied first, since otherwise the document would be modified first
+      // and the request will be cancelled.
+      setTimeout(() => {
+        output.appendLine("Formatting document with Prettier");
+        vscode.commands.executeCommand("prettier.forceFormatDocument").then(
+          () => {
+            output.appendLine("Applied Prettier formatting");
+          },
+          (err) => {
+            output.appendLine("Prettier formatting failed: " + err);
+          }
+        );
+      }, 100);
+    }
+
     return lspResults;
   }
 }
