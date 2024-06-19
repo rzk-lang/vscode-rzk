@@ -3,6 +3,7 @@ import { spawnSync } from 'node:child_process';
 import { delimiter } from 'node:path';
 import { output } from './logging';
 import { clearLocalInstallations, installRzkIfNotExists } from './installRzk';
+import Middlewares from './middlewares';
 import {
   LanguageClient,
   LanguageClientOptions,
@@ -103,34 +104,7 @@ export function activate(context: vscode.ExtensionContext) {
         configurationSection: 'rzk',
         fileEvents,
       },
-      middleware: {
-        async provideDocumentFormattingEdits(document, options, token, next) {
-          const lspResults = await next(document, options, token);
-          const previouslyPrompted = context.globalState.get<boolean>(
-            'formattingPromptDisplayed',
-            false
-          );
-          if (lspResults?.length && !previouslyPrompted) {
-            vscode.window
-              .showInformationMessage(
-                'Your document has just been formatted by Rzk! You can disable this in the extension settings.',
-                'Keep it enabled',
-                'Disable autoformatting'
-              )
-              .then((choice) => {
-                if (choice === 'Disable autoformatting') {
-                  vscode.workspace
-                    .getConfiguration('rzk')
-                    .update('format.enable', false);
-                }
-                if (choice) {
-                  context.globalState.update('formattingPromptDisplayed', true);
-                }
-              });
-          }
-          return lspResults;
-        },
-      },
+      middleware: new Middlewares(context),
     };
 
     // Create the language client and start the client.
