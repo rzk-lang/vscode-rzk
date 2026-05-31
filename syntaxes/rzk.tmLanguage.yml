@@ -76,8 +76,12 @@ repository:
       - name: entity.name.tag.rzk
         match: (♭|ᵒᵖ|♯|_b|_op|_#|_id)
   param-identifiers:
+    # Match one identifier at a time. The previous form
+    #   ((?![-?!.])[^…]*)(\s*(?![-?!.])[^…]*)*
+    # could match a zero-length span, which collapses any enclosing begin/end
+    # region (e.g. lambda-abstractions); see #74.
     patterns:
-      - match: ((?![-?!.])[^.\\;,#"\]\[)(}{><|\s]*)(\s*(?![-?!.])[^.\\;,#"\]\[)(}{><|\s]*)*
+      - match: (?![-?!.])[^.\\;,#"\]\[)(}{><|\s]+
         name: variable.parameter.rzk
   param-topes:
     patterns:
@@ -145,7 +149,7 @@ repository:
           - include: "#terms"
   lambda-abstractions:
     patterns:
-      - begin: \b(\\)(?=$|[.\\;,#"\]\[)(}{><|\s])
+      - begin: (?<=^|[.\\;,#"\]\[)(}{><|\s])(\\)(?=$|[.\\;,#"\]\[)(}{><|\s])
         beginCaptures:
           "1":
             name: keyword.operator.lambda.slash.rzk
