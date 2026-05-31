@@ -1,0 +1,99 @@
+>-- Block-comment containment regression fixture.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.line.rzk
+>--
+#^^ source.rzk comment.line.rzk
+>-- Every {- ... -} block below contains text that LOOKS like real Rzk tokens
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.line.rzk
+>-- (directives, keywords, modalities, operators, builtins, ...). None of them
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.line.rzk
+>-- must be tokenised as their usual token type — the block-comment state must
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.line.rzk
+>-- swallow the whole interior into Comment.Multiline. The single real piece
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.line.rzk
+>-- of code at the bottom is the positive control.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.line.rzk
+>
+>{- single-line block comment: pretends to be #define foo : U := bar -}
+#^ source.rzk
+# ^^ source.rzk
+#   ^^^^^^^^^^^ source.rzk variable.parameter.rzk
+#              ^ source.rzk
+#               ^^^^^ source.rzk variable.parameter.rzk
+#                    ^ source.rzk
+#                     ^^^^^^^ source.rzk variable.parameter.rzk
+#                            ^ source.rzk keyword.operator.colon.params.rzk
+#                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk
+#                                                         ^ source.rzk keyword.operator.rzk
+#                                                          ^ source.rzk
+#                                                           ^ source.rzk support.type.rzk
+#                                                            ^ source.rzk
+#                                                             ^^ source.rzk keyword.operator.rzk
+#                                                               ^^^^^^ source.rzk
+#                                                                     ^ source.rzk
+>
+>{-
+#^^ source.rzk comment.block.rzk
+>Multi-line block comment containing tokens that should all stay inside:
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.block.rzk
+>
+>  #lang rzk-1
+#^^^^^^^^^^^^^^ source.rzk comment.block.rzk
+>  #define would-be-function uses (A x) : U := refl
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.block.rzk
+>  #section fake
+#^^^^^^^^^^^^^^^^ source.rzk comment.block.rzk
+>  #end fake
+#^^^^^^^^^^^^ source.rzk comment.block.rzk
+>  #check x : U
+#^^^^^^^^^^^^^^^ source.rzk comment.block.rzk
+>
+>  mod ♭ x
+#^^^^^^^^^^ source.rzk comment.block.rzk
+>  let mod ♭ y := z in y
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.block.rzk
+>  <| ♭ | A |>
+#^^^^^^^^^^^^^^ source.rzk comment.block.rzk
+>  $extract$ ♭ x
+#^^^^^^^^^^^^^^^^ source.rzk comment.block.rzk
+>
+>  CUBE TOPE U Unit 𝒰
+#^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.block.rzk
+>  Sigma ∑ Σ
+#^^^^^^^^^^^^ source.rzk comment.block.rzk
+>  ⊤ ⊥ *_1 *₁ ⋆ 0_2 0₂ 1_2 1₂ TOP BOT
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.block.rzk
+>  recOR recBOT idJ first second π₁ π₂ unit
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.block.rzk
+>  invᵒᵖ uninvᵒᵖ flipᵒᵖ unflipᵒᵖ
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.block.rzk
+>  inv_op uninv_op flip_op unflip_op
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.block.rzk
+>  ♭ ♯ ᵒᵖ _b _# _op _id
+#^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.block.rzk
+>  === ≡ <= ≤ \/ ∨ /\ ∧
+#^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.block.rzk
+>  as
+#^^^^^ source.rzk comment.block.rzk
+>  ?
+#^^^^ source.rzk comment.block.rzk
+>  "string literal inside a comment"
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.block.rzk
+>-}
+#^^ source.rzk comment.block.rzk
+>
+>-- Positive control: real code that must still be tokenised normally.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.line.rzk
+>
+>#define real-define : U := refl
+#^^^^^^^ source.rzk meta.preprocessor.rzk
+#       ^ source.rzk
+#        ^^^^^^^^^^^ source.rzk entity.name.function.rzk
+#                   ^ source.rzk
+#                    ^ source.rzk keyword.operator.rzk
+#                     ^ source.rzk
+#                      ^ source.rzk support.type.rzk
+#                       ^ source.rzk
+#                        ^^ source.rzk keyword.operator.rzk
+#                          ^ source.rzk
+#                           ^^^^ source.rzk support.function.rzk
+>

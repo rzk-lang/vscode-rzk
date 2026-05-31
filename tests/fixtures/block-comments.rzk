@@ -1,0 +1,40 @@
+-- Block-comment containment regression fixture.
+--
+-- Every {- ... -} block below contains text that LOOKS like real Rzk tokens
+-- (directives, keywords, modalities, operators, builtins, ...). None of them
+-- must be tokenised as their usual token type — the block-comment state must
+-- swallow the whole interior into Comment.Multiline. The single real piece
+-- of code at the bottom is the positive control.
+
+{- single-line block comment: pretends to be #define foo : U := bar -}
+
+{-
+Multi-line block comment containing tokens that should all stay inside:
+
+  #lang rzk-1
+  #define would-be-function uses (A x) : U := refl
+  #section fake
+  #end fake
+  #check x : U
+
+  mod ♭ x
+  let mod ♭ y := z in y
+  <| ♭ | A |>
+  $extract$ ♭ x
+
+  CUBE TOPE U Unit 𝒰
+  Sigma ∑ Σ
+  ⊤ ⊥ *_1 *₁ ⋆ 0_2 0₂ 1_2 1₂ TOP BOT
+  recOR recBOT idJ first second π₁ π₂ unit
+  invᵒᵖ uninvᵒᵖ flipᵒᵖ unflipᵒᵖ
+  inv_op uninv_op flip_op unflip_op
+  ♭ ♯ ᵒᵖ _b _# _op _id
+  === ≡ <= ≤ \/ ∨ /\ ∧
+  as
+  ?
+  "string literal inside a comment"
+-}
+
+-- Positive control: real code that must still be tokenised normally.
+
+#define real-define : U := refl

@@ -1,0 +1,74 @@
+-- Extracted from sHoTT (rzk-lang/sHoTT @ main, src/hott/00-common.rzk.md)
+
+#lang rzk-1
+
+#def product
+  ( A B : U)
+  : U
+  := Σ (x : A) , B
+
+#def diagonal
+  ( A : U)
+  ( a : A)
+  : product A A
+  := (a , a)
+
+#def iff
+  ( A B : U)
+  : U
+  := product (A → B) (B → A)
+
+#section basic-functions
+
+#variables A B C D E : U
+
+#def comp
+  ( g : B → C)
+  ( f : A → B)
+  : A → C
+  := \ z → g (f z)
+
+#def triple-comp
+  ( h : C → D)
+  ( g : B → C)
+  ( f : A → B)
+  : A → D
+  := \ z → h (g (f z))
+
+#def quadruple-comp
+  ( k : D → E)
+  ( h : C → D)
+  ( g : B → C)
+  ( f : A → B)
+  : A → E
+  := \ z → k (h (g (f z)))
+
+#def identity
+  : A → A
+  := \ a → a
+
+#def constant
+  ( b : B)
+  : A → B
+  := \ a → b
+
+#end basic-functions
+
+#def Map
+  : U
+  := Σ ((A' , A) : product U U) , (A' → A)
+
+#def the-map-Map
+  ( ( ( A' , A) , α) : Map)
+  : A' → A
+  := α
+
+#def the-domain-Map
+  ( ( ( A' , _) , _) : Map)
+  : U
+  := A'
+
+#def the-codomain-Map
+  ( ( ( _ , A) , _) : Map)
+  : U
+  := A

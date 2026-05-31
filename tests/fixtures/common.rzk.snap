@@ -1,0 +1,440 @@
+>-- Extracted from sHoTT (rzk-lang/sHoTT @ main, src/hott/00-common.rzk.md)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.line.rzk
+>
+>#lang rzk-1
+#^^^^^ source.rzk keyword.control.lang.rzk
+#     ^ source.rzk
+#      ^^^^^ source.rzk entity.name.label.rzk
+>
+>#def product
+#^^^^ source.rzk meta.preprocessor.rzk
+#    ^ source.rzk
+#     ^^^^^^^ source.rzk entity.name.function.rzk
+>  ( A B : U)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk variable.parameter.rzk
+#       ^ source.rzk
+#        ^ source.rzk keyword.operator.colon.params.rzk
+#         ^ source.rzk
+#          ^ source.rzk support.type.rzk
+#           ^ source.rzk
+>  : U
+#^^ source.rzk
+#  ^ source.rzk keyword.operator.rzk
+#   ^ source.rzk
+#    ^ source.rzk support.type.rzk
+>  := Σ (x : A) , B
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^ source.rzk
+#     ^ source.rzk entity.name.type.rzk
+#      ^ source.rzk
+#       ^ source.rzk
+#        ^ source.rzk variable.parameter.rzk
+#         ^ source.rzk
+#          ^ source.rzk keyword.operator.colon.params.rzk
+#           ^^ source.rzk
+#             ^ source.rzk
+#              ^ source.rzk
+#               ^ source.rzk punctuation.comma.rzk
+#                ^^^ source.rzk
+>
+>#def diagonal
+#^^^^ source.rzk meta.preprocessor.rzk
+#    ^ source.rzk
+#     ^^^^^^^^ source.rzk entity.name.function.rzk
+>  ( A : U)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk keyword.operator.colon.params.rzk
+#       ^ source.rzk
+#        ^ source.rzk support.type.rzk
+#         ^ source.rzk
+>  ( a : A)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk keyword.operator.colon.params.rzk
+#       ^^ source.rzk
+#         ^ source.rzk
+>  : product A A
+#^^ source.rzk
+#  ^ source.rzk keyword.operator.rzk
+#   ^^^^^^^^^^^^^ source.rzk
+>  := (a , a)
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^^^^ source.rzk
+#        ^ source.rzk punctuation.comma.rzk
+#         ^^^^ source.rzk
+>
+>#def iff
+#^^^^ source.rzk meta.preprocessor.rzk
+#    ^ source.rzk
+#     ^^^ source.rzk entity.name.function.rzk
+>  ( A B : U)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk variable.parameter.rzk
+#       ^ source.rzk
+#        ^ source.rzk keyword.operator.colon.params.rzk
+#         ^ source.rzk
+#          ^ source.rzk support.type.rzk
+#           ^ source.rzk
+>  : U
+#^^ source.rzk
+#  ^ source.rzk keyword.operator.rzk
+#   ^ source.rzk
+#    ^ source.rzk support.type.rzk
+>  := product (A → B) (B → A)
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^^^^^^^^^^^^ source.rzk
+#                ^ source.rzk keyword.operator.rzk
+#                 ^^^^^^^ source.rzk
+#                        ^ source.rzk keyword.operator.rzk
+#                         ^^^^ source.rzk
+>
+>#section basic-functions
+#^^^^^^^^ source.rzk keyword.control.rzk
+#        ^^^^^^^^^^^^^^^^ source.rzk support.constant.property-value.rzk
+>
+>#variables A B C D E : U
+#^^^^^^^^^^ source.rzk meta.preprocessor.rzk
+#          ^ source.rzk
+#           ^ source.rzk variable.rzk
+#            ^^^^^^^^^ source.rzk
+#                     ^ source.rzk keyword.operator.rzk
+#                      ^ source.rzk
+#                       ^ source.rzk support.type.rzk
+>
+>#def comp
+#^^^^ source.rzk meta.preprocessor.rzk
+#    ^ source.rzk
+#     ^^^^ source.rzk entity.name.function.rzk
+>  ( g : B → C)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk keyword.operator.colon.params.rzk
+#       ^^^ source.rzk
+#          ^ source.rzk keyword.operator.rzk
+#           ^^ source.rzk
+#             ^ source.rzk
+>  ( f : A → B)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk keyword.operator.colon.params.rzk
+#       ^^^ source.rzk
+#          ^ source.rzk keyword.operator.rzk
+#           ^^ source.rzk
+#             ^ source.rzk
+>  : A → C
+#^^ source.rzk
+#  ^ source.rzk keyword.operator.rzk
+#   ^^^ source.rzk
+#      ^ source.rzk keyword.operator.rzk
+#       ^^^ source.rzk
+>  := \ z → g (f z)
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^ source.rzk
+#     ^ source.rzk keyword.operator.lambda.slash.rzk
+#      ^ source.rzk
+#       ^ source.rzk variable.parameter.rzk
+#        ^ source.rzk
+#         ^ source.rzk keyword.operator.lambda.to.rzk
+#          ^^^^^^^^^ source.rzk
+>
+>#def triple-comp
+#^^^^ source.rzk meta.preprocessor.rzk
+#    ^ source.rzk
+#     ^^^^^^^^^^^ source.rzk entity.name.function.rzk
+>  ( h : C → D)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk keyword.operator.colon.params.rzk
+#       ^^^ source.rzk
+#          ^ source.rzk keyword.operator.rzk
+#           ^^ source.rzk
+#             ^ source.rzk
+>  ( g : B → C)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk keyword.operator.colon.params.rzk
+#       ^^^ source.rzk
+#          ^ source.rzk keyword.operator.rzk
+#           ^^ source.rzk
+#             ^ source.rzk
+>  ( f : A → B)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk keyword.operator.colon.params.rzk
+#       ^^^ source.rzk
+#          ^ source.rzk keyword.operator.rzk
+#           ^^ source.rzk
+#             ^ source.rzk
+>  : A → D
+#^^ source.rzk
+#  ^ source.rzk keyword.operator.rzk
+#   ^^^ source.rzk
+#      ^ source.rzk keyword.operator.rzk
+#       ^^^ source.rzk
+>  := \ z → h (g (f z))
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^ source.rzk
+#     ^ source.rzk keyword.operator.lambda.slash.rzk
+#      ^ source.rzk
+#       ^ source.rzk variable.parameter.rzk
+#        ^ source.rzk
+#         ^ source.rzk keyword.operator.lambda.to.rzk
+#          ^^^^^^^^^^^^^ source.rzk
+>
+>#def quadruple-comp
+#^^^^ source.rzk meta.preprocessor.rzk
+#    ^ source.rzk
+#     ^^^^^^^^^^^^^^ source.rzk entity.name.function.rzk
+>  ( k : D → E)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk keyword.operator.colon.params.rzk
+#       ^^^ source.rzk
+#          ^ source.rzk keyword.operator.rzk
+#           ^^ source.rzk
+#             ^ source.rzk
+>  ( h : C → D)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk keyword.operator.colon.params.rzk
+#       ^^^ source.rzk
+#          ^ source.rzk keyword.operator.rzk
+#           ^^ source.rzk
+#             ^ source.rzk
+>  ( g : B → C)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk keyword.operator.colon.params.rzk
+#       ^^^ source.rzk
+#          ^ source.rzk keyword.operator.rzk
+#           ^^ source.rzk
+#             ^ source.rzk
+>  ( f : A → B)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk keyword.operator.colon.params.rzk
+#       ^^^ source.rzk
+#          ^ source.rzk keyword.operator.rzk
+#           ^^ source.rzk
+#             ^ source.rzk
+>  : A → E
+#^^ source.rzk
+#  ^ source.rzk keyword.operator.rzk
+#   ^^^ source.rzk
+#      ^ source.rzk keyword.operator.rzk
+#       ^^^ source.rzk
+>  := \ z → k (h (g (f z)))
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^ source.rzk
+#     ^ source.rzk keyword.operator.lambda.slash.rzk
+#      ^ source.rzk
+#       ^ source.rzk variable.parameter.rzk
+#        ^ source.rzk
+#         ^ source.rzk keyword.operator.lambda.to.rzk
+#          ^^^^^^^^^^^^^^^^^ source.rzk
+>
+>#def identity
+#^^^^ source.rzk meta.preprocessor.rzk
+#    ^ source.rzk
+#     ^^^^^^^^ source.rzk entity.name.function.rzk
+>  : A → A
+#^^ source.rzk
+#  ^ source.rzk keyword.operator.rzk
+#   ^^^ source.rzk
+#      ^ source.rzk keyword.operator.rzk
+#       ^^^ source.rzk
+>  := \ a → a
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^ source.rzk
+#     ^ source.rzk keyword.operator.lambda.slash.rzk
+#      ^ source.rzk
+#       ^ source.rzk variable.parameter.rzk
+#        ^ source.rzk
+#         ^ source.rzk keyword.operator.lambda.to.rzk
+#          ^^^ source.rzk
+>
+>#def constant
+#^^^^ source.rzk meta.preprocessor.rzk
+#    ^ source.rzk
+#     ^^^^^^^^ source.rzk entity.name.function.rzk
+>  ( b : B)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk keyword.operator.colon.params.rzk
+#       ^^ source.rzk
+#         ^ source.rzk
+>  : A → B
+#^^ source.rzk
+#  ^ source.rzk keyword.operator.rzk
+#   ^^^ source.rzk
+#      ^ source.rzk keyword.operator.rzk
+#       ^^^ source.rzk
+>  := \ a → b
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^ source.rzk
+#     ^ source.rzk keyword.operator.lambda.slash.rzk
+#      ^ source.rzk
+#       ^ source.rzk variable.parameter.rzk
+#        ^ source.rzk
+#         ^ source.rzk keyword.operator.lambda.to.rzk
+#          ^^^ source.rzk
+>
+>#end basic-functions
+#^^^^ source.rzk keyword.control.rzk
+#    ^^^^^^^^^^^^^^^^ source.rzk support.constant.property-value.rzk
+>
+>#def Map
+#^^^^ source.rzk meta.preprocessor.rzk
+#    ^ source.rzk
+#     ^^^ source.rzk entity.name.function.rzk
+>  : U
+#^^ source.rzk
+#  ^ source.rzk keyword.operator.rzk
+#   ^ source.rzk
+#    ^ source.rzk support.type.rzk
+>  := Σ ((A' , A) : product U U) , (A' → A)
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^ source.rzk
+#     ^ source.rzk entity.name.type.rzk
+#      ^ source.rzk
+#       ^ source.rzk
+#        ^ source.rzk
+#         ^^ source.rzk variable.parameter.rzk
+#           ^^^ source.rzk
+#              ^ source.rzk variable.parameter.rzk
+#               ^^ source.rzk
+#                 ^ source.rzk keyword.operator.colon.params.rzk
+#                  ^^^^^^^^^ source.rzk
+#                           ^ source.rzk support.type.rzk
+#                            ^ source.rzk
+#                             ^ source.rzk support.type.rzk
+#                              ^ source.rzk
+#                               ^ source.rzk
+#                                ^ source.rzk punctuation.comma.rzk
+#                                 ^^^^^ source.rzk
+#                                      ^ source.rzk keyword.operator.rzk
+#                                       ^^^^ source.rzk
+>
+>#def the-map-Map
+#^^^^ source.rzk meta.preprocessor.rzk
+#    ^ source.rzk
+#     ^^^^^^^^^^^ source.rzk entity.name.function.rzk
+>  ( ( ( A' , A) , α) : Map)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^^^^ source.rzk
+#        ^^ source.rzk variable.parameter.rzk
+#          ^^^ source.rzk
+#             ^ source.rzk variable.parameter.rzk
+#              ^^^^ source.rzk
+#                  ^ source.rzk variable.parameter.rzk
+#                   ^^ source.rzk
+#                     ^ source.rzk keyword.operator.colon.params.rzk
+#                      ^^^^ source.rzk
+#                          ^ source.rzk
+>  : A' → A
+#^^ source.rzk
+#  ^ source.rzk keyword.operator.rzk
+#   ^^^^ source.rzk
+#       ^ source.rzk keyword.operator.rzk
+#        ^^^ source.rzk
+>  := α
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^^^ source.rzk
+>
+>#def the-domain-Map
+#^^^^ source.rzk meta.preprocessor.rzk
+#    ^ source.rzk
+#     ^^^^^^^^^^^^^^ source.rzk entity.name.function.rzk
+>  ( ( ( A' , _) , _) : Map)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^^^^ source.rzk
+#        ^^ source.rzk variable.parameter.rzk
+#          ^^^ source.rzk
+#             ^ source.rzk variable.parameter.rzk
+#              ^^^^ source.rzk
+#                  ^ source.rzk variable.parameter.rzk
+#                   ^^ source.rzk
+#                     ^ source.rzk keyword.operator.colon.params.rzk
+#                      ^^^^ source.rzk
+#                          ^ source.rzk
+>  : U
+#^^ source.rzk
+#  ^ source.rzk keyword.operator.rzk
+#   ^ source.rzk
+#    ^ source.rzk support.type.rzk
+>  := A'
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^^^^ source.rzk
+>
+>#def the-codomain-Map
+#^^^^ source.rzk meta.preprocessor.rzk
+#    ^ source.rzk
+#     ^^^^^^^^^^^^^^^^ source.rzk entity.name.function.rzk
+>  ( ( ( _ , A) , _) : Map)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^^^^ source.rzk
+#        ^ source.rzk variable.parameter.rzk
+#         ^^^ source.rzk
+#            ^ source.rzk variable.parameter.rzk
+#             ^^^^ source.rzk
+#                 ^ source.rzk variable.parameter.rzk
+#                  ^^ source.rzk
+#                    ^ source.rzk keyword.operator.colon.params.rzk
+#                     ^^^^ source.rzk
+#                         ^ source.rzk
+>  : U
+#^^ source.rzk
+#  ^ source.rzk keyword.operator.rzk
+#   ^ source.rzk
+#    ^ source.rzk support.type.rzk
+>  := A
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^^^ source.rzk
+>

@@ -14,7 +14,8 @@
     "vscode:prepublish": "npm run build",
     "build": "esbuild src/extension.ts --bundle --platform=node --external:vscode --outdir=out --minify",
     "watch": "esbuild src/extension.ts --bundle --platform=node --external:vscode --outdir=out --watch",
-    "test": "vscode-tmgrammar-test \"tests/colorize/**/*.rzk\""
+    "test": "vscode-tmgrammar-test \"tests/colorize/**/*.rzk\" && vscode-tmgrammar-snap --config package.json --scope source.rzk \"tests/fixtures/*.rzk\"",
+    "test:update-snapshots": "vscode-tmgrammar-snap --config package.json --scope source.rzk -u \"tests/fixtures/*.rzk\""
   },
   "engines": {
     "vscode": "^1.79.1"
