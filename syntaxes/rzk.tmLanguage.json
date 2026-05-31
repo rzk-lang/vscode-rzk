@@ -84,6 +84,9 @@
           "include": "#comments"
         },
         {
+          "include": "#holes"
+        },
+        {
           "include": "#ext-types"
         },
         {
@@ -102,7 +105,7 @@
         },
         {
           "name": "entity.name.type.rzk",
-          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])(1|2|Sigma|∑|Σ)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
+          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])(1|2|Unit|Sigma|∑|Σ)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
         },
         {
           "name": "string.regexp",
@@ -114,7 +117,7 @@
         },
         {
           "name": "support.function.rzk",
-          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])(recOR|recBOT|idJ|refl|first|second|π₁|π₂)((?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])|(?=_{))"
+          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])(recOR|recBOT|idJ|refl|first|second|π₁|π₂|unit|invᵒᵖ|uninvᵒᵖ|flipᵒᵖ|unflipᵒᵖ|inv_op|uninv_op|flip_op|unflip_op)((?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])|(?=_{))"
         },
         {
           "name": "keyword.control.as.rzk",
@@ -126,6 +129,10 @@
         },
         {
           "name": "keyword.control.rzk",
+          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])let(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
+        },
+        {
+          "name": "keyword.control.rzk",
           "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])in(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
         },
         {
@@ -133,8 +140,16 @@
           "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])mod(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
         },
         {
+          "name": "punctuation.definition.modtype.rzk",
+          "match": "(<\\||\\|>)"
+        },
+        {
+          "name": "invalid.rzk",
+          "match": "\\$extract\\$"
+        },
+        {
           "name": "entity.name.tag.rzk",
-          "match": "(♭|ᵒᵖ|♯|_b|_op|_#)"
+          "match": "(♭|ᵒᵖ|♯|_b|_op|_#|_id)"
         }
       ]
     },
@@ -298,8 +313,21 @@
     "comments": {
       "patterns": [
         {
+          "name": "comment.block.rzk",
+          "begin": "\\{-",
+          "end": "-\\}"
+        },
+        {
           "name": "comment.line.rzk",
           "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])--.*$"
+        }
+      ]
+    },
+    "holes": {
+      "patterns": [
+        {
+          "name": "constant.language.placeholder.rzk",
+          "match": "\\?"
         }
       ]
     },

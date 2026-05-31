@@ -43,6 +43,7 @@ repository:
       - include: "#builtins"
       - include: "#params"
       - include: "#comments"
+      - include: "#holes"
       - include: "#ext-types"
       - include: "#lambda-abstractions"
       - include: "#operators"
@@ -51,23 +52,29 @@ repository:
       - name: support.type.rzk
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(CUBE|TOPE|U|𝒰)(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: entity.name.type.rzk
-        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(1|2|Sigma|∑|Σ)(?=$|[.\\;,#"\]\[)(}{><|\s])
+        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(1|2|Unit|Sigma|∑|Σ)(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: string.regexp
         match: (===|<=|\\/|/\\|≡|≤|∨|∧)
       - name: support.constant.rzk
         match: (⊤|⊥|\*(_1|₁)|⋆)|(?<=^|[.\\;,#"\]\[)(}{><|\s])(0(_2|₂)|1(_2|₂)|TOP|BOT)(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: support.function.rzk
-        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(recOR|recBOT|idJ|refl|first|second|π₁|π₂)((?=$|[.\\;,#"\]\[)(}{><|\s])|(?=_{))
+        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(recOR|recBOT|idJ|refl|first|second|π₁|π₂|unit|invᵒᵖ|uninvᵒᵖ|flipᵒᵖ|unflipᵒᵖ|inv_op|uninv_op|flip_op|unflip_op)((?=$|[.\\;,#"\]\[)(}{><|\s])|(?=_{))
       - name: keyword.control.as.rzk
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])as(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: keyword.control.rzk
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(let)\s+(mod)(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: keyword.control.rzk
+        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])let(?=$|[.\\;,#"\]\[)(}{><|\s])
+      - name: keyword.control.rzk
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])in(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: support.function.rzk
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])mod(?=$|[.\\;,#"\]\[)(}{><|\s])
+      - name: punctuation.definition.modtype.rzk
+        match: (<\||\|>)
+      - name: invalid.rzk
+        match: \$extract\$
       - name: entity.name.tag.rzk
-        match: (♭|ᵒᵖ|♯|_b|_op|_#)
+        match: (♭|ᵒᵖ|♯|_b|_op|_#|_id)
   param-identifiers:
     patterns:
       - match: ((?![-?!.])[^.\\;,#"\]\[)(}{><|\s]*)(\s*(?![-?!.])[^.\\;,#"\]\[)(}{><|\s]*)*
@@ -152,8 +159,15 @@ repository:
           - include: "#comments"
   comments:
     patterns:
+      - name: comment.block.rzk
+        begin: \{-
+        end: -\}
       - name: comment.line.rzk
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])--.*$
+  holes:
+    patterns:
+      - name: constant.language.placeholder.rzk
+        match: \?
   strings:
     name: string.quoted.double.rzk
     begin: '"'
