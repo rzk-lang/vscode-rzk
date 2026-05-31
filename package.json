@@ -3,7 +3,7 @@
   "displayName": "Rzk",
   "description": "Interactive theorem proving support in VS Code for Rzk, a proof assistant for synthetic ∞-categories",
   "icon": "images/icon.png",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "repository": "https://github.com/rzk-lang/vscode-rzk",
   "publisher": "NikolaiKudasovfizruk",
   "main": "./out/extension.js",
@@ -158,6 +158,12 @@
           "type": "boolean",
           "default": false,
           "description": "If true, will include releases marked as \"pre-release\" on GitHub when fetching the latest binaries"
+        },
+        "rzk.updateCheckIntervalMinutes": {
+          "type": "number",
+          "default": 60,
+          "minimum": 0,
+          "description": "How often (in minutes) to check GitHub for new releases of rzk. Only applies to extension-managed installations; set to 0 to disable periodic checks (you can still trigger a check manually via the \"Rzk: Check for updates\" command)."
         }
       }
     },
@@ -196,6 +202,10 @@
       {
         "command": "rzk.restartLspServer",
         "title": "Rzk: Restart LSP server"
+      },
+      {
+        "command": "rzk.checkForUpdates",
+        "title": "Rzk: Check for updates"
       }
     ],
     "yamlValidation": [
