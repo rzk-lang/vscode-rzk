@@ -173,6 +173,9 @@
         "editor.insertSpaces": true,
         "files.trimTrailingWhitespace": true,
         "files.insertFinalNewline": true
+      },
+      "[rzk][literate rzk markdown][literate rzk latex]": {
+        "editor.colorDecorators": false
       }
     },
     "menus": {
