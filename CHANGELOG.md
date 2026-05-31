@@ -4,6 +4,51 @@ All notable changes to the "rzk-1-experimental-highlighting" extension will be d
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## v0.4.6 - 2026-05-31
+
+Syntax highlighting:
+
+- Extend the TextMate grammar to match the latest Rzk surface syntax. New
+  constructs covered: block comments (`{- ... -}`), hole identifiers (`?`),
+  modal type bracketing (`<| ... |>`), standalone `let` keyword, ASCII `_id`
+  modality, `Unit` type and `unit` term, all tope/cube inversions
+  (`invᵒᵖ`, `uninvᵒᵖ`, `flipᵒᵖ`, `unflipᵒᵖ` + ASCII variants), and the
+  internal `$extract$` keyword (rendered as `invalid` to signal it is not
+  for user code).
+- Fix lambda highlighting: `\` after a space (e.g. `:= \ x -> x`) now
+  receives the lambda scope, and `->` correctly closes the lambda region.
+  Two bugs were involved: a `\b` word-boundary in the lambda begin pattern
+  that could not match between space and `\`, and a `#param-identifiers`
+  regex that could match a zero-length span and silently collapse the
+  enclosing begin/end region.
+- Add modal-syntax highlighting contributed by
+  [Islam Talipov](https://github.com/LIshy2) ([#73](https://github.com/rzk-lang/vscode-rzk/pull/73)):
+  modal-type brackets, `mod`/`let mod`, and the three Unicode modalities
+  (`♭`, `♯`, `ᵒᵖ`) plus ASCII forms.
+
+UX:
+
+- Suppress VS Code's automatic color decorators for Rzk files, so `#def`,
+  `#abc`, etc. no longer get a colour-swatch preview from being mistaken
+  for hex colour codes.
+- Add the `Rzk: Check for updates` command for triggering an on-demand
+  update check ([#57](https://github.com/rzk-lang/vscode-rzk/issues/57)).
+- Add the `rzk.updateCheckIntervalMinutes` setting (default 60) to
+  configure how often the extension checks GitHub for new `rzk` releases;
+  set to `0` to disable the periodic check
+  ([#56](https://github.com/rzk-lang/vscode-rzk/issues/56)).
+
+Project hygiene:
+
+- Bump CI from Node 18 to Node 20 (the latest `@vscode/vsce` requires
+  Node 20+); bump `actions/setup-node`, `actions/upload-artifact`, and
+  `actions/download-artifact` from v3 to v4.
+- Add a grammar test suite (`vscode-tmgrammar-test` for inline-annotated
+  unit tests and `vscode-tmgrammar-snap` for snapshot tests over real-world
+  Rzk extracted from sHoTT). `npm test` runs both layers; CI invokes it.
+- Update the README to document `rzk.format.enable` and to mention support
+  for `*.rzk.tex` files.
+
 ## v0.4.5 - 2023-12-08
 
 - Added some sensible default settings for Rzk files formatting and a message upon formatting for the first time ([#66](https://github.com/rzk-lang/vscode-rzk/pull/66))

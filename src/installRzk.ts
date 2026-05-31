@@ -71,9 +71,16 @@ export async function installRzkIfNotExists({
     const path = join(binFolder.fsPath, localBin[0]);
     output.appendLine('Found local installation of rzk: ' + path);
     await checkForUpdates(path, binFolder);
-    // Repeat the check for updates every hour
-    // TODO: make the check period configurable by the user
-    setInterval(() => checkForUpdates(path, binFolder), 1000 * 60 * 60);
+    const intervalMinutes =
+      vscode.workspace
+        .getConfiguration()
+        .get<number>('rzk.updateCheckIntervalMinutes') ?? 60;
+    if (intervalMinutes > 0) {
+      setInterval(
+        () => checkForUpdates(path, binFolder),
+        1000 * 60 * intervalMinutes
+      );
+    }
     return;
   }
 
@@ -233,7 +240,7 @@ function buildRzkWithPackageManager(
   });
 }
 
-async function checkForUpdates(binPath: string, binFolder?: vscode.Uri) {
+export async function checkForUpdates(binPath: string, binFolder?: vscode.Uri) {
   output.appendLine('Checking if updates are available');
   const version = spawnSync(binPath, ['version']).stdout.toString();
   const latestRelease = await fetchLatestCompatibleRelease();

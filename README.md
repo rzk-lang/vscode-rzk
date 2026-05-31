@@ -10,11 +10,12 @@ Syntax and semantic highlighting for [`rzk`](https://rzk-lang.github.io/rzk/), a
 
 Features:
 
-1. Basic syntax highlighting with a simple TextMate grammar.
+1. Basic syntax highlighting with a simple TextMate grammar (for `*.rzk`, `*.rzk.md`, and `*.rzk.tex` files).
 2. Semantic highlighting via LSP (you must have `rzk` version v0.6 or above).
 3. Prompts for installing/updating `rzk` binaries from GitHub Releases automatically (usable from local Terminal).
 4. Markdown Preview button for `*.rzk.md` files.
 5. Automatic typechecking for all files listed in `rzk.yaml`
+6. Automatic code formatting on save (can be disabled via the `rzk.format.enable` setting).
 
 See [Changelog](CHANGELOG.md) for recent updated and changes.
 
@@ -43,7 +44,9 @@ Extension settings can be configured by going to the settings page (using the me
 
 The currently available settings are:
 
-| Name                   | Type      | Default value | Description                                                                                                                                   |
-| ---------------------- | --------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `rzk.path`             | `string`  | `""`          | The path to the `rzk` executable to use for the language server. `""` (default) means that `rzk` executable available in `PATH` will be used. |
-| `rzk.fetchPrereleases` | `boolean` | `false`       | If true, will include releases marked as \"pre-release\" on GitHub when fetching the latest binaries.                                         |
+| Name                             | Type      | Default value | Description                                                                                                                                                                                                                  |
+| -------------------------------- | --------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `rzk.path`                       | `string`  | `""`          | The path to the `rzk` executable to use for the language server. `""` (default) means that `rzk` executable available in `PATH` will be used.                                                                                |
+| `rzk.fetchPrereleases`           | `boolean` | `false`       | If true, will include releases marked as \"pre-release\" on GitHub when fetching the latest binaries.                                                                                                                        |
+| `rzk.format.enable`              | `boolean` | `true`        | Enable the Rzk formatter (provided via LSP). Disable to opt out of formatting on save.                                                                                                                                       |
+| `rzk.updateCheckIntervalMinutes` | `number`  | `60`          | How often (in minutes) to check GitHub for new releases of `rzk`. Only applies to extension-managed installations; set to `0` to disable periodic checks. You can always trigger a check via the `Rzk: Check for updates` command. |

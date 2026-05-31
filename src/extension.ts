@@ -2,7 +2,11 @@ import * as vscode from 'vscode';
 import { spawnSync } from 'node:child_process';
 import { delimiter } from 'node:path';
 import { output } from './logging';
-import { clearLocalInstallations, installRzkIfNotExists } from './installRzk';
+import {
+  checkForUpdates,
+  clearLocalInstallations,
+  installRzkIfNotExists,
+} from './installRzk';
 import {
   LanguageClient,
   LanguageClientOptions,
@@ -66,6 +70,24 @@ export function activate(context: vscode.ExtensionContext) {
       clearLocalInstallations(binFolder, silent);
     }
   );
+
+  vscode.commands.registerCommand('rzk.checkForUpdates', async () => {
+    const path = locateRzk(context);
+    if (!path) {
+      vscode.window.showWarningMessage(
+        'Cannot find rzk to check for updates. Configure `rzk.path` or install rzk first.'
+      );
+      return;
+    }
+    // Pass binFolder only when rzk is the extension-managed installation,
+    // so an interactive update prompt is offered (instead of just a notice).
+    const binExtension = process.platform === 'win32' ? '.exe' : '';
+    const managedPath = vscode.Uri.joinPath(
+      binFolder,
+      'rzk' + binExtension
+    ).fsPath;
+    await checkForUpdates(path, path === managedPath ? binFolder : undefined);
+  });
 
   let client: LanguageClient;
   if (rzkPath) {

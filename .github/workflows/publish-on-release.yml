@@ -57,6 +57,11 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ${{ needs.build.outputs.vsixPath }}
 
+  # The VSCODE_MARKETPLACE_ACCESS_TOKEN secret is a PAT scoped to a single
+  # Azure DevOps organization (nickolaykudasov), Marketplace > Manage scope.
+  # "All accessible organizations" PATs were deprecated on 2026-12-01;
+  # single-org PATs continue to work. Optional future improvement: switch
+  # to Entra ID federated workload identity — see CLAUDE.md.
   publish-vscode:
     needs: build
     runs-on: ubuntu-latest
