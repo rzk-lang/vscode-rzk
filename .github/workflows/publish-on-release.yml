@@ -14,10 +14,10 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
-      - name: Set up Node 18 📦
-        uses: actions/setup-node@v3
+      - name: Set up Node 20 📦
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: npm
 
       - name: Install dependencies 🧰
@@ -33,7 +33,7 @@ jobs:
           dryRun: true
 
       - name: Upload Extension Package as Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: ${{ steps.packageExtension.outputs.vsixPath }}
           name: ${{ steps.packageExtension.outputs.vsixPath }}
@@ -47,7 +47,7 @@ jobs:
     if: ${{ github.event_name == 'release' }}
     steps:
       - name: Download VSIX package 📥
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ needs.build.outputs.vsixPath }}
 
@@ -62,7 +62,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download VSIX package 📥
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ needs.build.outputs.vsixPath }}
 
@@ -78,7 +78,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download VSIX package 📥
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ needs.build.outputs.vsixPath }}
 
