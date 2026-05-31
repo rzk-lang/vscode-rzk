@@ -29,3 +29,6 @@ jobs:
           # Equivalent to a dry run of the publish command
           # Runs the prepublish script, which runs the compile script
           vsce ls
+
+      - name: Run grammar tests 🧪
+        run: npm test

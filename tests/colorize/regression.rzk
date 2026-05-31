@@ -1,0 +1,103 @@
+-- SYNTAX TEST "source.rzk" "regression coverage for pre-existing features"
+
+#lang rzk-1
+-- <-- keyword.control.lang.rzk
+
+#check
+-- <-- keyword.control.rzk
+
+#compute
+-- <-- keyword.control.rzk
+
+#compute-whnf
+-- <-- keyword.control.rzk
+
+#compute-nf
+-- <-- keyword.control.rzk
+
+#set-option
+-- <-- keyword.control.rzk
+
+#unset-option
+-- <-- keyword.control.rzk
+
+#section
+-- <-- keyword.control.rzk
+
+#end
+-- <-- keyword.control.rzk
+
+#assume
+-- <-- meta.preprocessor.rzk
+
+#variable
+-- <-- meta.preprocessor.rzk
+
+#variables
+-- <-- meta.preprocessor.rzk
+
+#def
+-- <-- meta.preprocessor.rzk
+
+#define
+-- <-- meta.preprocessor.rzk
+
+#postulate
+-- <-- meta.preprocessor.rzk
+
+-- Universes / types
+U
+-- <-- support.type.rzk
+CUBE
+-- <-- support.type.rzk
+TOPE
+-- <-- support.type.rzk
+Sigma
+-- <-- entity.name.type.rzk
+
+-- Builtin functions
+recOR
+-- <-- support.function.rzk
+recBOT
+-- <-- support.function.rzk
+idJ
+-- <-- support.function.rzk
+refl
+-- <-- support.function.rzk
+first
+-- <-- support.function.rzk
+second
+-- <-- support.function.rzk
+
+-- `as` cast keyword
+as
+-- <-- keyword.control.as.rzk
+
+-- `in` (paired with `let`)
+in
+-- <-- keyword.control.rzk
+
+-- `mod` application (Islam's PR)
+mod
+-- <-- support.function.rzk
+
+-- Lambda abstraction `\` after whitespace (regression: previously broken
+-- because the rule used `\b(\\)` which did not match between space and `\`,
+-- and because `#param-identifiers` could match a zero-length span and
+-- collapse the enclosing begin/end region)
+\ x -> x
+-- <- keyword.operator.lambda.slash.rzk
+--^ variable.parameter.rzk
+--  ^^ keyword.operator.lambda.to.rzk
+
+-- All modalities (Islam's PR — Unicode and ASCII forms)
+_b
+-- <-- entity.name.tag.rzk
+_op
+-- <-- entity.name.tag.rzk
+_#
+-- <-- entity.name.tag.rzk
+♭
+-- <-- entity.name.tag.rzk
+♯
+-- <-- entity.name.tag.rzk

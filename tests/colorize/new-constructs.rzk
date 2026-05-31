@@ -1,0 +1,68 @@
+-- SYNTAX TEST "source.rzk" "new constructs added on top of Islam's PR"
+
+-- Block comments span multiple lines and ignore inline `--` dashes
+{- block comment
+-- <-- comment.block.rzk
+   with a -- dash dash inside
+-- <-- comment.block.rzk
+   that does not end the block -}
+-- <-- comment.block.rzk
+
+-- A line comment containing {- looks like a block but stays a line comment
+-- <-- comment.line.rzk
+
+-- Hole identifier `?` is a placeholder constant
+?
+-- <-- constant.language.placeholder.rzk
+
+-- Standalone `let` (without `mod`) is a control keyword
+let
+-- <-- keyword.control.rzk
+
+-- `let mod` (combined) still matches before standalone `let`
+let mod
+-- <-- keyword.control.rzk
+--  ^ keyword.control.rzk
+--    ^ keyword.control.rzk
+
+-- ASCII `_id` modality (and Unicode/ASCII forms previously added by Islam)
+_id
+-- <-- entity.name.tag.rzk
+
+-- Modal type bracketing
+<|
+-- <-- punctuation.definition.modtype.rzk
+|>
+-- <-- punctuation.definition.modtype.rzk
+
+-- `Unit` type
+Unit
+-- <-- entity.name.type.rzk
+
+-- `unit` term
+unit
+-- <-- support.function.rzk
+
+-- Tope/cube inversions: Unicode forms
+invᵒᵖ
+-- <-- support.function.rzk
+uninvᵒᵖ
+-- <-- support.function.rzk
+flipᵒᵖ
+-- <-- support.function.rzk
+unflipᵒᵖ
+-- <-- support.function.rzk
+
+-- Tope/cube inversions: ASCII forms
+inv_op
+-- <-- support.function.rzk
+uninv_op
+-- <-- support.function.rzk
+flip_op
+-- <-- support.function.rzk
+unflip_op
+-- <-- support.function.rzk
+
+-- Internal `$extract$` keyword: rendered as invalid to signal "not for user code"
+$extract$
+-- <-- invalid.rzk
