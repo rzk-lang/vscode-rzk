@@ -84,6 +84,9 @@ export async function installRzkIfNotExists({
     return;
   }
 
+  output.appendLine(
+    "Prompting to install rzk — if you don't see a prompt, VS Code's Do Not Disturb mode is likely suppressing it."
+  );
   // Ignore the returned promise to not block the rest of the code waiting for user input
   void vscode.window
     .showWarningMessage(
@@ -256,7 +259,9 @@ export async function checkForUpdates(binPath: string, binFolder?: vscode.Uri) {
     output.appendLine('Local rzk version is already the latest available 👍');
     return;
   }
-  output.appendLine('An update is available. Prompting the user');
+  output.appendLine(
+    "An update is available. Prompting the user — if you don't see a prompt, VS Code's Do Not Disturb mode is likely suppressing it."
+  );
   if (binFolder) {
     vscode.window
       .showWarningMessage(
