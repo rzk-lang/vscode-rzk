@@ -140,10 +140,6 @@
           "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])mod(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
         },
         {
-          "name": "punctuation.definition.modtype.rzk",
-          "match": "(<\\||\\|>)"
-        },
-        {
           "name": "invalid.rzk",
           "match": "\\$extract\\$"
         },

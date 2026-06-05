@@ -19,7 +19,7 @@ Multi-line block comment containing tokens that should all stay inside:
 
   mod ♭ x
   let mod ♭ y := z in y
-  <| ♭ | A |>
+  ♭ A
   $extract$ ♭ x
 
   CUBE TOPE U Unit 𝒰

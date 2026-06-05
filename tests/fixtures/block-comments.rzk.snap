@@ -51,8 +51,8 @@
 #^^^^^^^^^^ source.rzk comment.block.rzk
 >  let mod ♭ y := z in y
 #^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.block.rzk
->  <| ♭ | A |>
-#^^^^^^^^^^^^^^ source.rzk comment.block.rzk
+>  ♭ A
+#^^^^^^ source.rzk comment.block.rzk
 >  $extract$ ♭ x
 #^^^^^^^^^^^^^^^^ source.rzk comment.block.rzk
 >
