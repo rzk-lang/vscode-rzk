@@ -57,7 +57,12 @@ export function activate(context: vscode.ExtensionContext) {
 
   const binFolder = vscode.Uri.joinPath(context.globalStorageUri, 'bin');
 
-  installRzkIfNotExists({ binFolder });
+  installRzkIfNotExists({ binFolder }).catch((e) => {
+    output.appendLine(
+      'installRzkIfNotExists failed: ' +
+        (e instanceof Error ? e.stack ?? e.message : String(e))
+    );
+  });
 
   context.environmentVariableCollection.append(
     'PATH',
