@@ -6,29 +6,17 @@
 #     ^ source.rzk
 #      ^^^^^ source.rzk entity.name.label.rzk
 >
->#def b-extract (A : ♭ U) (x : ♭ A)
+>#def b-extract (A :♭ U) (x :♭ A)
 #^^^^ source.rzk meta.preprocessor.rzk
 #    ^ source.rzk
 #     ^^^^^^^^^ source.rzk entity.name.function.rzk
-#              ^ source.rzk
-#               ^ source.rzk
-#                ^ source.rzk variable.parameter.rzk
-#                 ^ source.rzk
-#                  ^ source.rzk keyword.operator.colon.params.rzk
-#                   ^ source.rzk
-#                    ^ source.rzk entity.name.tag.rzk
-#                     ^ source.rzk
-#                      ^ source.rzk support.type.rzk
-#                       ^ source.rzk
-#                        ^ source.rzk
-#                         ^ source.rzk
-#                          ^ source.rzk variable.parameter.rzk
-#                           ^ source.rzk
-#                            ^ source.rzk keyword.operator.colon.params.rzk
-#                             ^ source.rzk
-#                              ^ source.rzk entity.name.tag.rzk
-#                               ^^ source.rzk
-#                                 ^ source.rzk
+#              ^^^^ source.rzk
+#                  ^^ source.rzk entity.name.tag.rzk
+#                    ^ source.rzk
+#                     ^ source.rzk support.type.rzk
+#                      ^^^^^ source.rzk
+#                           ^^ source.rzk entity.name.tag.rzk
+#                             ^^^^ source.rzk
 >  : A
 #^^ source.rzk
 #  ^ source.rzk keyword.operator.rzk
@@ -38,119 +26,68 @@
 #  ^^ source.rzk keyword.operator.rzk
 #    ^^^ source.rzk
 >
->#def b-map (A B : ♭ U) (f : ♭ A → B)
+>#def b-map (A B :♭ U) (f :♭ A → B)
 #^^^^ source.rzk meta.preprocessor.rzk
 #    ^ source.rzk
 #     ^^^^^ source.rzk entity.name.function.rzk
-#          ^ source.rzk
-#           ^ source.rzk
-#            ^ source.rzk variable.parameter.rzk
-#             ^ source.rzk
-#              ^ source.rzk variable.parameter.rzk
-#               ^ source.rzk
-#                ^ source.rzk keyword.operator.colon.params.rzk
-#                 ^ source.rzk
-#                  ^ source.rzk entity.name.tag.rzk
-#                   ^ source.rzk
-#                    ^ source.rzk support.type.rzk
-#                     ^ source.rzk
-#                      ^ source.rzk
-#                       ^ source.rzk
-#                        ^ source.rzk variable.parameter.rzk
-#                         ^ source.rzk
-#                          ^ source.rzk keyword.operator.colon.params.rzk
-#                           ^ source.rzk
-#                            ^ source.rzk entity.name.tag.rzk
-#                             ^^^ source.rzk
-#                                ^ source.rzk keyword.operator.rzk
-#                                 ^^ source.rzk
-#                                   ^ source.rzk
->  : <| ♭ | A |> → <| ♭ | B |>
+#          ^^^^^^ source.rzk
+#                ^^ source.rzk entity.name.tag.rzk
+#                  ^ source.rzk
+#                   ^ source.rzk support.type.rzk
+#                    ^^^^^ source.rzk
+#                         ^^ source.rzk entity.name.tag.rzk
+#                           ^^^ source.rzk
+#                              ^ source.rzk keyword.operator.rzk
+#                               ^^^^ source.rzk
+>  : ♭ A → ♭ B
 #^^ source.rzk
 #  ^ source.rzk keyword.operator.rzk
 #   ^ source.rzk
-#    ^^ source.rzk punctuation.definition.modtype.rzk
-#      ^ source.rzk
-#       ^ source.rzk entity.name.tag.rzk
-#        ^ source.rzk
-#         ^ source.rzk keyword.operator.rzk
-#          ^^^ source.rzk
-#             ^^ source.rzk punctuation.definition.modtype.rzk
-#               ^ source.rzk
-#                ^ source.rzk keyword.operator.rzk
-#                 ^ source.rzk
-#                  ^^ source.rzk punctuation.definition.modtype.rzk
-#                    ^ source.rzk
-#                     ^ source.rzk entity.name.tag.rzk
-#                      ^ source.rzk
-#                       ^ source.rzk keyword.operator.rzk
-#                        ^^^ source.rzk
-#                           ^^ source.rzk punctuation.definition.modtype.rzk
+#    ^ source.rzk entity.name.tag.rzk
+#     ^^^ source.rzk
+#        ^ source.rzk keyword.operator.rzk
+#         ^ source.rzk
+#          ^ source.rzk entity.name.tag.rzk
+#           ^^^ source.rzk
 >  :=
 #^^ source.rzk
 #  ^^ source.rzk keyword.operator.rzk
->  \ (x : ♭ A) → mod ♭ (f x)
+>  \ (x :♭ A) → mod ♭ (f x)
 #^^ source.rzk
 #  ^ source.rzk keyword.operator.lambda.slash.rzk
-#   ^ source.rzk
-#    ^ source.rzk
+#   ^^ source.rzk
 #     ^ source.rzk variable.parameter.rzk
 #      ^ source.rzk
-#       ^ source.rzk keyword.operator.colon.params.rzk
-#        ^ source.rzk
-#         ^ source.rzk entity.name.tag.rzk
-#          ^^ source.rzk
-#            ^ source.rzk
-#             ^ source.rzk
-#              ^ source.rzk keyword.operator.lambda.to.rzk
-#               ^ source.rzk
-#                ^^^ source.rzk support.function.rzk
-#                   ^ source.rzk
-#                    ^ source.rzk entity.name.tag.rzk
-#                     ^^^^^^^ source.rzk
+#       ^^ source.rzk variable.parameter.rzk
+#         ^ source.rzk
+#          ^ source.rzk variable.parameter.rzk
+#           ^^ source.rzk
+#             ^ source.rzk keyword.operator.lambda.to.rzk
+#              ^ source.rzk
+#               ^^^ source.rzk support.function.rzk
+#                  ^ source.rzk
+#                   ^ source.rzk entity.name.tag.rzk
+#                    ^^^^^^^ source.rzk
 >
->#def b-dup (A : ♭ U) (x : ♭ A)
+>#def b-dup (A :♭ U) (x :♭ A)
 #^^^^ source.rzk meta.preprocessor.rzk
 #    ^ source.rzk
 #     ^^^^^ source.rzk entity.name.function.rzk
-#          ^ source.rzk
-#           ^ source.rzk
-#            ^ source.rzk variable.parameter.rzk
-#             ^ source.rzk
-#              ^ source.rzk keyword.operator.colon.params.rzk
-#               ^ source.rzk
-#                ^ source.rzk entity.name.tag.rzk
-#                 ^ source.rzk
-#                  ^ source.rzk support.type.rzk
-#                   ^ source.rzk
-#                    ^ source.rzk
-#                     ^ source.rzk
-#                      ^ source.rzk variable.parameter.rzk
-#                       ^ source.rzk
-#                        ^ source.rzk keyword.operator.colon.params.rzk
-#                         ^ source.rzk
-#                          ^ source.rzk entity.name.tag.rzk
-#                           ^^ source.rzk
-#                             ^ source.rzk
->  : <| ♭ | <| ♭ | A |> |>
+#          ^^^^ source.rzk
+#              ^^ source.rzk entity.name.tag.rzk
+#                ^ source.rzk
+#                 ^ source.rzk support.type.rzk
+#                  ^^^^^ source.rzk
+#                       ^^ source.rzk entity.name.tag.rzk
+#                         ^^^^ source.rzk
+>  : ♭ ♭ A
 #^^ source.rzk
 #  ^ source.rzk keyword.operator.rzk
 #   ^ source.rzk
-#    ^^ source.rzk punctuation.definition.modtype.rzk
-#      ^ source.rzk
-#       ^ source.rzk entity.name.tag.rzk
-#        ^ source.rzk
-#         ^ source.rzk keyword.operator.rzk
-#          ^ source.rzk
-#           ^^ source.rzk punctuation.definition.modtype.rzk
-#             ^ source.rzk
-#              ^ source.rzk entity.name.tag.rzk
-#               ^ source.rzk
-#                ^ source.rzk keyword.operator.rzk
-#                 ^^^ source.rzk
-#                    ^^ source.rzk punctuation.definition.modtype.rzk
-#                      ^ source.rzk
-#                       ^^ source.rzk punctuation.definition.modtype.rzk
+#    ^ source.rzk entity.name.tag.rzk
+#     ^ source.rzk
+#      ^ source.rzk entity.name.tag.rzk
+#       ^^^ source.rzk
 >  :=
 #^^ source.rzk
 #  ^^ source.rzk keyword.operator.rzk
@@ -165,78 +102,50 @@
 #             ^ source.rzk entity.name.tag.rzk
 #              ^^^^^^ source.rzk
 >
->#def op-map (A B : ᵒᵖ U) (f : ᵒᵖ A → B)
+>#def op-map (A B :ᵒᵖ U) (f :ᵒᵖ A → B)
 #^^^^ source.rzk meta.preprocessor.rzk
 #    ^ source.rzk
 #     ^^^^^^ source.rzk entity.name.function.rzk
-#           ^ source.rzk
-#            ^ source.rzk
-#             ^ source.rzk variable.parameter.rzk
-#              ^ source.rzk
-#               ^ source.rzk variable.parameter.rzk
-#                ^ source.rzk
-#                 ^ source.rzk keyword.operator.colon.params.rzk
-#                  ^ source.rzk
-#                   ^^ source.rzk entity.name.tag.rzk
-#                     ^ source.rzk
-#                      ^ source.rzk support.type.rzk
-#                       ^ source.rzk
-#                        ^ source.rzk
-#                         ^ source.rzk
-#                          ^ source.rzk variable.parameter.rzk
-#                           ^ source.rzk
-#                            ^ source.rzk keyword.operator.colon.params.rzk
-#                             ^ source.rzk
-#                              ^^ source.rzk entity.name.tag.rzk
-#                                ^^^ source.rzk
-#                                   ^ source.rzk keyword.operator.rzk
-#                                    ^^ source.rzk
-#                                      ^ source.rzk
->  : <| ᵒᵖ | A |> → <| ᵒᵖ | B |>
+#           ^^^^^^ source.rzk
+#                 ^^^ source.rzk entity.name.tag.rzk
+#                    ^ source.rzk
+#                     ^ source.rzk support.type.rzk
+#                      ^^^^^ source.rzk
+#                           ^^^ source.rzk entity.name.tag.rzk
+#                              ^^^ source.rzk
+#                                 ^ source.rzk keyword.operator.rzk
+#                                  ^^^^ source.rzk
+>  : ᵒᵖ A → ᵒᵖ B
 #^^ source.rzk
 #  ^ source.rzk keyword.operator.rzk
 #   ^ source.rzk
-#    ^^ source.rzk punctuation.definition.modtype.rzk
-#      ^ source.rzk
-#       ^^ source.rzk entity.name.tag.rzk
-#         ^ source.rzk
-#          ^ source.rzk keyword.operator.rzk
-#           ^^^ source.rzk
-#              ^^ source.rzk punctuation.definition.modtype.rzk
-#                ^ source.rzk
-#                 ^ source.rzk keyword.operator.rzk
-#                  ^ source.rzk
-#                   ^^ source.rzk punctuation.definition.modtype.rzk
-#                     ^ source.rzk
-#                      ^^ source.rzk entity.name.tag.rzk
-#                        ^ source.rzk
-#                         ^ source.rzk keyword.operator.rzk
-#                          ^^^ source.rzk
-#                             ^^ source.rzk punctuation.definition.modtype.rzk
+#    ^^ source.rzk entity.name.tag.rzk
+#      ^^^ source.rzk
+#         ^ source.rzk keyword.operator.rzk
+#          ^ source.rzk
+#           ^^ source.rzk entity.name.tag.rzk
+#             ^^^ source.rzk
 >  :=
 #^^ source.rzk
 #  ^^ source.rzk keyword.operator.rzk
->  \ (x : ᵒᵖ A) → mod ᵒᵖ (f x)
+>  \ (x :ᵒᵖ A) → mod ᵒᵖ (f x)
 #^^ source.rzk
 #  ^ source.rzk keyword.operator.lambda.slash.rzk
-#   ^ source.rzk
-#    ^ source.rzk
+#   ^^ source.rzk
 #     ^ source.rzk variable.parameter.rzk
 #      ^ source.rzk
-#       ^ source.rzk keyword.operator.colon.params.rzk
-#        ^ source.rzk
-#         ^^ source.rzk entity.name.tag.rzk
-#           ^^ source.rzk
-#             ^ source.rzk
-#              ^ source.rzk
-#               ^ source.rzk keyword.operator.lambda.to.rzk
-#                ^ source.rzk
-#                 ^^^ source.rzk support.function.rzk
-#                    ^ source.rzk
-#                     ^^ source.rzk entity.name.tag.rzk
-#                       ^^^^^^^ source.rzk
+#       ^^^ source.rzk variable.parameter.rzk
+#          ^ source.rzk
+#           ^ source.rzk variable.parameter.rzk
+#            ^^ source.rzk
+#              ^ source.rzk keyword.operator.lambda.to.rzk
+#               ^ source.rzk
+#                ^^^ source.rzk support.function.rzk
+#                   ^ source.rzk
+#                    ^^ source.rzk entity.name.tag.rzk
+#                      ^^^^^^^ source.rzk
 >
->#def double-op (A : U) (x : <| ᵒᵖ | <| ᵒᵖ | A |> |>)
+>#def double-op (A : U) (x :ᵒᵖ ᵒᵖ A)
 #^^^^ source.rzk meta.preprocessor.rzk
 #    ^ source.rzk
 #     ^^^^^^^^^ source.rzk entity.name.function.rzk
@@ -248,28 +157,11 @@
 #                   ^ source.rzk
 #                    ^ source.rzk support.type.rzk
 #                     ^ source.rzk
-#                      ^ source.rzk
-#                       ^ source.rzk
-#                        ^ source.rzk variable.parameter.rzk
-#                         ^ source.rzk
-#                          ^ source.rzk keyword.operator.colon.params.rzk
-#                           ^ source.rzk
-#                            ^^ source.rzk punctuation.definition.modtype.rzk
-#                              ^ source.rzk
-#                               ^^ source.rzk entity.name.tag.rzk
-#                                 ^ source.rzk
-#                                  ^ source.rzk keyword.operator.rzk
-#                                   ^ source.rzk
-#                                    ^^ source.rzk punctuation.definition.modtype.rzk
-#                                      ^ source.rzk
-#                                       ^^ source.rzk entity.name.tag.rzk
-#                                         ^ source.rzk
-#                                          ^ source.rzk keyword.operator.rzk
-#                                           ^^^ source.rzk
-#                                              ^^ source.rzk punctuation.definition.modtype.rzk
-#                                                ^ source.rzk
-#                                                 ^^ source.rzk punctuation.definition.modtype.rzk
-#                                                   ^ source.rzk
+#                      ^^^^ source.rzk
+#                          ^^^ source.rzk entity.name.tag.rzk
+#                             ^ source.rzk
+#                              ^^ source.rzk entity.name.tag.rzk
+#                                ^^^^ source.rzk
 >  : A
 #^^ source.rzk
 #  ^ source.rzk keyword.operator.rzk
@@ -319,17 +211,12 @@
 #                           ^ source.rzk keyword.operator.colon.params.rzk
 #                            ^^ source.rzk
 #                              ^ source.rzk
->  : <| ♯ | A |>
+>  : ♯ A
 #^^ source.rzk
 #  ^ source.rzk keyword.operator.rzk
 #   ^ source.rzk
-#    ^^ source.rzk punctuation.definition.modtype.rzk
-#      ^ source.rzk
-#       ^ source.rzk entity.name.tag.rzk
-#        ^ source.rzk
-#         ^ source.rzk keyword.operator.rzk
-#          ^^^ source.rzk
-#             ^^ source.rzk punctuation.definition.modtype.rzk
+#    ^ source.rzk entity.name.tag.rzk
+#     ^^^ source.rzk
 >  := mod ♯ x
 #^^ source.rzk
 #  ^^ source.rzk keyword.operator.rzk
@@ -362,51 +249,37 @@
 #                                ^ source.rzk keyword.operator.rzk
 #                                 ^^ source.rzk
 #                                   ^ source.rzk
->  : <| ♯ | A |> → <| ♯ | B |>
+>  : ♯ A → ♯ B
 #^^ source.rzk
 #  ^ source.rzk keyword.operator.rzk
 #   ^ source.rzk
-#    ^^ source.rzk punctuation.definition.modtype.rzk
-#      ^ source.rzk
-#       ^ source.rzk entity.name.tag.rzk
-#        ^ source.rzk
-#         ^ source.rzk keyword.operator.rzk
-#          ^^^ source.rzk
-#             ^^ source.rzk punctuation.definition.modtype.rzk
-#               ^ source.rzk
-#                ^ source.rzk keyword.operator.rzk
-#                 ^ source.rzk
-#                  ^^ source.rzk punctuation.definition.modtype.rzk
-#                    ^ source.rzk
-#                     ^ source.rzk entity.name.tag.rzk
-#                      ^ source.rzk
-#                       ^ source.rzk keyword.operator.rzk
-#                        ^^^ source.rzk
-#                           ^^ source.rzk punctuation.definition.modtype.rzk
+#    ^ source.rzk entity.name.tag.rzk
+#     ^^^ source.rzk
+#        ^ source.rzk keyword.operator.rzk
+#         ^ source.rzk
+#          ^ source.rzk entity.name.tag.rzk
+#           ^^^ source.rzk
 >  :=
 #^^ source.rzk
 #  ^^ source.rzk keyword.operator.rzk
->  \ (x : ♯ A) → mod ♯ (f x)
+>  \ (x :♯ A) → mod ♯ (f x)
 #^^ source.rzk
 #  ^ source.rzk keyword.operator.lambda.slash.rzk
-#   ^ source.rzk
-#    ^ source.rzk
+#   ^^ source.rzk
 #     ^ source.rzk variable.parameter.rzk
 #      ^ source.rzk
-#       ^ source.rzk keyword.operator.colon.params.rzk
-#        ^ source.rzk
-#         ^ source.rzk entity.name.tag.rzk
-#          ^^ source.rzk
-#            ^ source.rzk
-#             ^ source.rzk
-#              ^ source.rzk keyword.operator.lambda.to.rzk
-#               ^ source.rzk
-#                ^^^ source.rzk support.function.rzk
-#                   ^ source.rzk
-#                    ^ source.rzk entity.name.tag.rzk
-#                     ^^^^^^^ source.rzk
+#       ^^ source.rzk variable.parameter.rzk
+#         ^ source.rzk
+#          ^ source.rzk variable.parameter.rzk
+#           ^^ source.rzk
+#             ^ source.rzk keyword.operator.lambda.to.rzk
+#              ^ source.rzk
+#               ^^^ source.rzk support.function.rzk
+#                  ^ source.rzk
+#                   ^ source.rzk entity.name.tag.rzk
+#                    ^^^^^^^ source.rzk
 >
->#def sharp-join (A : U) (a : <| ♯ | <| ♯ | A |> |>)
+>#def sharp-join (A : U) (a :♯ ♯ A)
 #^^^^ source.rzk meta.preprocessor.rzk
 #    ^ source.rzk
 #     ^^^^^^^^^^ source.rzk entity.name.function.rzk
@@ -418,39 +291,17 @@
 #                    ^ source.rzk
 #                     ^ source.rzk support.type.rzk
 #                      ^ source.rzk
-#                       ^ source.rzk
-#                        ^ source.rzk
-#                         ^ source.rzk variable.parameter.rzk
-#                          ^ source.rzk
-#                           ^ source.rzk keyword.operator.colon.params.rzk
-#                            ^ source.rzk
-#                             ^^ source.rzk punctuation.definition.modtype.rzk
-#                               ^ source.rzk
-#                                ^ source.rzk entity.name.tag.rzk
-#                                 ^ source.rzk
-#                                  ^ source.rzk keyword.operator.rzk
-#                                   ^ source.rzk
-#                                    ^^ source.rzk punctuation.definition.modtype.rzk
-#                                      ^ source.rzk
-#                                       ^ source.rzk entity.name.tag.rzk
-#                                        ^ source.rzk
-#                                         ^ source.rzk keyword.operator.rzk
-#                                          ^^^ source.rzk
-#                                             ^^ source.rzk punctuation.definition.modtype.rzk
-#                                               ^ source.rzk
-#                                                ^^ source.rzk punctuation.definition.modtype.rzk
-#                                                  ^ source.rzk
->  : <| ♯ | A |>
+#                       ^^^^ source.rzk
+#                           ^^ source.rzk entity.name.tag.rzk
+#                             ^ source.rzk
+#                              ^ source.rzk entity.name.tag.rzk
+#                               ^^^^ source.rzk
+>  : ♯ A
 #^^ source.rzk
 #  ^ source.rzk keyword.operator.rzk
 #   ^ source.rzk
-#    ^^ source.rzk punctuation.definition.modtype.rzk
-#      ^ source.rzk
-#       ^ source.rzk entity.name.tag.rzk
-#        ^ source.rzk
-#         ^ source.rzk keyword.operator.rzk
-#          ^^^ source.rzk
-#             ^^ source.rzk punctuation.definition.modtype.rzk
+#    ^ source.rzk entity.name.tag.rzk
+#     ^^^ source.rzk
 >  :=
 #^^ source.rzk
 #  ^^ source.rzk keyword.operator.rzk
@@ -485,19 +336,13 @@
 #^^^^ source.rzk meta.preprocessor.rzk
 #    ^ source.rzk
 #     ^^^ source.rzk entity.name.function.rzk
->  : <| ♭ | U |>
+>  : ♭ U
 #^^ source.rzk
 #  ^ source.rzk keyword.operator.rzk
 #   ^ source.rzk
-#    ^^ source.rzk punctuation.definition.modtype.rzk
-#      ^ source.rzk
-#       ^ source.rzk entity.name.tag.rzk
-#        ^ source.rzk
-#         ^ source.rzk keyword.operator.rzk
-#          ^ source.rzk
-#           ^ source.rzk support.type.rzk
-#            ^ source.rzk
-#             ^^ source.rzk punctuation.definition.modtype.rzk
+#    ^ source.rzk entity.name.tag.rzk
+#     ^ source.rzk
+#      ^ source.rzk support.type.rzk
 >  := mod ♭ U
 #^^ source.rzk
 #  ^^ source.rzk keyword.operator.rzk
@@ -538,19 +383,13 @@
 #^^^^ source.rzk meta.preprocessor.rzk
 #    ^ source.rzk
 #     ^^^^^^ source.rzk entity.name.function.rzk
->  : <| ♭ | U |>
+>  : ♭ U
 #^^ source.rzk
 #  ^ source.rzk keyword.operator.rzk
 #   ^ source.rzk
-#    ^^ source.rzk punctuation.definition.modtype.rzk
-#      ^ source.rzk
-#       ^ source.rzk entity.name.tag.rzk
-#        ^ source.rzk
-#         ^ source.rzk keyword.operator.rzk
-#          ^ source.rzk
-#           ^ source.rzk support.type.rzk
-#            ^ source.rzk
-#             ^^ source.rzk punctuation.definition.modtype.rzk
+#    ^ source.rzk entity.name.tag.rzk
+#     ^ source.rzk
+#      ^ source.rzk support.type.rzk
 >  := mod ♭ prop
 #^^ source.rzk
 #  ^^ source.rzk keyword.operator.rzk
@@ -591,19 +430,13 @@
 #^^^^ source.rzk meta.preprocessor.rzk
 #    ^ source.rzk
 #     ^^^^^^^^^^^^^^^^^^ source.rzk entity.name.function.rzk
->  : <| ♭ | U |>
+>  : ♭ U
 #^^ source.rzk
 #  ^ source.rzk keyword.operator.rzk
 #   ^ source.rzk
-#    ^^ source.rzk punctuation.definition.modtype.rzk
-#      ^ source.rzk
-#       ^ source.rzk entity.name.tag.rzk
-#        ^ source.rzk
-#         ^ source.rzk keyword.operator.rzk
-#          ^ source.rzk
-#           ^ source.rzk support.type.rzk
-#            ^ source.rzk
-#             ^^ source.rzk punctuation.definition.modtype.rzk
+#    ^ source.rzk entity.name.tag.rzk
+#     ^ source.rzk
+#      ^ source.rzk support.type.rzk
 >  := mod ♭ univ-family-prop
 #^^ source.rzk
 #  ^^ source.rzk keyword.operator.rzk
@@ -617,19 +450,13 @@
 #^^^^ source.rzk meta.preprocessor.rzk
 #    ^ source.rzk
 #     ^^^^^^ source.rzk entity.name.function.rzk
->  : <| ♭ | U |>
+>  : ♭ U
 #^^ source.rzk
 #  ^ source.rzk keyword.operator.rzk
 #   ^ source.rzk
-#    ^^ source.rzk punctuation.definition.modtype.rzk
-#      ^ source.rzk
-#       ^ source.rzk entity.name.tag.rzk
-#        ^ source.rzk
-#         ^ source.rzk keyword.operator.rzk
-#          ^ source.rzk
-#           ^ source.rzk support.type.rzk
-#            ^ source.rzk
-#             ^^ source.rzk punctuation.definition.modtype.rzk
+#    ^ source.rzk entity.name.tag.rzk
+#     ^ source.rzk
+#      ^ source.rzk support.type.rzk
 >  := mod ♭ Unit
 #^^ source.rzk
 #  ^^ source.rzk keyword.operator.rzk
@@ -640,36 +467,25 @@
 #          ^ source.rzk
 #           ^^^^ source.rzk entity.name.type.rzk
 >
->#def b-extract-eq (A : ♭ U) (x y : <| ♭ | A |>)
+>#def b-extract-eq (A :♭ U) (x y : ♭ A)
 #^^^^ source.rzk meta.preprocessor.rzk
 #    ^ source.rzk
 #     ^^^^^^^^^^^^ source.rzk entity.name.function.rzk
-#                 ^ source.rzk
-#                  ^ source.rzk
-#                   ^ source.rzk variable.parameter.rzk
-#                    ^ source.rzk
-#                     ^ source.rzk keyword.operator.colon.params.rzk
-#                      ^ source.rzk
-#                       ^ source.rzk entity.name.tag.rzk
-#                        ^ source.rzk
-#                         ^ source.rzk support.type.rzk
-#                          ^ source.rzk
+#                 ^^^^ source.rzk
+#                     ^^ source.rzk entity.name.tag.rzk
+#                       ^ source.rzk
+#                        ^ source.rzk support.type.rzk
+#                         ^^ source.rzk
 #                           ^ source.rzk
-#                            ^ source.rzk
-#                             ^ source.rzk variable.parameter.rzk
-#                              ^ source.rzk
-#                               ^ source.rzk variable.parameter.rzk
-#                                ^ source.rzk
-#                                 ^ source.rzk keyword.operator.colon.params.rzk
-#                                  ^ source.rzk
-#                                   ^^ source.rzk punctuation.definition.modtype.rzk
+#                            ^ source.rzk variable.parameter.rzk
+#                             ^ source.rzk
+#                              ^ source.rzk variable.parameter.rzk
+#                               ^ source.rzk
+#                                ^ source.rzk keyword.operator.colon.params.rzk
+#                                 ^ source.rzk
+#                                  ^ source.rzk entity.name.tag.rzk
+#                                   ^^ source.rzk
 #                                     ^ source.rzk
-#                                      ^ source.rzk entity.name.tag.rzk
-#                                       ^ source.rzk
-#                                        ^ source.rzk keyword.operator.rzk
-#                                         ^^^ source.rzk
-#                                            ^^ source.rzk punctuation.definition.modtype.rzk
-#                                              ^ source.rzk
 >  ( p : x = y)
 #^^ source.rzk
 #  ^^ source.rzk
@@ -694,20 +510,14 @@
 #                                          ^ source.rzk
 #                                           ^ source.rzk entity.name.tag.rzk
 #                                            ^^^^^^ source.rzk
->  := ap <| ♭ | A |> A x y (b-extract (mod ♭ A)) p
+>  := ap (♭ A) A x y (b-extract (mod ♭ A)) p
 #^^ source.rzk
 #  ^^ source.rzk keyword.operator.rzk
-#    ^^^^ source.rzk
-#        ^^ source.rzk punctuation.definition.modtype.rzk
-#          ^ source.rzk
-#           ^ source.rzk entity.name.tag.rzk
-#            ^ source.rzk
-#             ^ source.rzk keyword.operator.rzk
-#              ^^^ source.rzk
-#                 ^^ source.rzk punctuation.definition.modtype.rzk
-#                   ^^^^^^^^^^^^^^^^^^^ source.rzk
-#                                      ^^^ source.rzk support.function.rzk
-#                                         ^ source.rzk
-#                                          ^ source.rzk entity.name.tag.rzk
-#                                           ^^^^^^^ source.rzk
+#    ^^^^^ source.rzk
+#         ^ source.rzk entity.name.tag.rzk
+#          ^^^^^^^^^^^^^^^^^^^^^^ source.rzk
+#                                ^^^ source.rzk support.function.rzk
+#                                   ^ source.rzk
+#                                    ^ source.rzk entity.name.tag.rzk
+#                                     ^^^^^^^ source.rzk
 >
