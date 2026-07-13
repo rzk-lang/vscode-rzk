@@ -154,6 +154,21 @@
           "description": "The path and file name of the Rzk executable to use. If not set, will default to using `rzk` from the system PATH",
           "scope": "machine-overridable"
         },
+        "rzk.manageInstallation": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "always",
+            "never"
+          ],
+          "enumDescriptions": [
+            "Install rzk from GitHub releases only when it cannot be found on the system.",
+            "Always use an rzk installed and automatically updated by the extension, even when rzk is available on the PATH. An explicitly configured `rzk.path` still takes precedence.",
+            "Never download rzk. Use only an rzk you installed yourself."
+          ],
+          "default": "auto",
+          "description": "Whether the extension should install and update its own copy of rzk. Set to \"always\" to get automatic updates even when rzk is on your PATH."
+        },
         "rzk.fetchPrereleases": {
           "type": "boolean",
           "default": false,
