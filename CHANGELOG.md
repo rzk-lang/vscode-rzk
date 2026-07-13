@@ -4,6 +4,38 @@ All notable changes to the "rzk-1-experimental-highlighting" extension will be d
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## v0.5.0 - 2026-07-14
+
+This release pins the extension to `rzk` v0.9.2 or above. Everything new in
+`rzk` v0.9.2 is provided by the language server, so updating `rzk` is all it
+takes to get, in the editor:
+
+- a typechecking progress indicator, with a working Cancel button;
+- cross-file go-to-references and hover;
+- workspace symbol search (<kbd>CTRL + T</kbd> / <kbd>⌘ + T</kbd>);
+- highlighting for holes;
+- warnings for modules blocked by an error in an earlier module;
+- cleaner rendering of types in hovers and error messages.
+
+Installation and updates:
+
+- Require `rzk` v0.9.2 or above (previously v0.6.0).
+- Add the `rzk.manageInstallation` setting. Set it to `"always"` to have the
+  extension install and update `rzk` for you even when `rzk` is available in
+  `PATH` — previously, an `rzk` in `PATH` meant no automatic updates at all.
+  `"never"` disables downloading `rzk` altogether. An explicitly configured
+  `rzk.path` still takes precedence in either case.
+- Download the ARM64 binary on Apple Silicon, instead of running the Intel
+  binary under Rosetta.
+- Reinstall an extension-managed `rzk` when it is older than the minimum
+  supported version, so that pinning the version actually reaches existing
+  users.
+- Warn (once per version) when your own `rzk` is older than the minimum
+  supported version. Such an `rzk` is still used: pinning `rzk.path` to a
+  particular binary is treated as deliberate.
+- Report an available update at most once per version, rather than on every
+  activation, for installations the extension does not manage.
+
 ## v0.4.6 - 2026-05-31
 
 Syntax highlighting:
