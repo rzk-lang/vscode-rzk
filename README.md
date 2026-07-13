@@ -11,11 +11,12 @@ Syntax and semantic highlighting for [`rzk`](https://rzk-lang.github.io/rzk/), a
 Features:
 
 1. Basic syntax highlighting with a simple TextMate grammar (for `*.rzk`, `*.rzk.md`, and `*.rzk.tex` files).
-2. Semantic highlighting via LSP (you must have `rzk` version v0.6 or above).
-3. Prompts for installing/updating `rzk` binaries from GitHub Releases automatically (usable from local Terminal).
+2. Semantic highlighting via LSP (you must have `rzk` version v0.9.2 or above).
+3. Prompts for installing/updating `rzk` binaries from GitHub Releases automatically (usable from local Terminal). Set `rzk.manageInstallation` to `"always"` to let the extension install and update `rzk` for you even when `rzk` is already available in `PATH`.
 4. Markdown Preview button for `*.rzk.md` files.
-5. Automatic typechecking for all files listed in `rzk.yaml`
+5. Automatic typechecking for all files listed in `rzk.yaml`, with a progress indicator.
 6. Automatic code formatting on save (can be disabled via the `rzk.format.enable` setting).
+7. Code navigation across the project: hover, go to definition and references, and workspace symbol search (<kbd>CTRL + T</kbd> on Windows/Linux, <kbd>⌘ + T</kbd> on macOS).
 
 See [Changelog](CHANGELOG.md) for recent updated and changes.
 
@@ -46,7 +47,8 @@ The currently available settings are:
 
 | Name                             | Type      | Default value | Description                                                                                                                                                                                                                  |
 | -------------------------------- | --------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `rzk.path`                       | `string`  | `""`          | The path to the `rzk` executable to use for the language server. `""` (default) means that `rzk` executable available in `PATH` will be used.                                                                                |
+| `rzk.path`                       | `string`  | `""`          | The path to the `rzk` executable to use for the language server. `""` (default) means that `rzk` executable available in `PATH` will be used. Takes precedence over `rzk.manageInstallation`.                                |
+| `rzk.manageInstallation`         | `string`  | `"auto"`      | Whether the extension should install and update its own copy of `rzk`. `"auto"` installs `rzk` only when it cannot be found on the system; `"always"` uses an extension-managed (automatically updated) `rzk` even when `rzk` is available in `PATH`; `"never"` never downloads `rzk`. |
 | `rzk.fetchPrereleases`           | `boolean` | `false`       | If true, will include releases marked as \"pre-release\" on GitHub when fetching the latest binaries.                                                                                                                        |
 | `rzk.format.enable`              | `boolean` | `true`        | Enable the Rzk formatter (provided via LSP). Disable to opt out of formatting on save.                                                                                                                                       |
 | `rzk.updateCheckIntervalMinutes` | `number`  | `60`          | How often (in minutes) to check GitHub for new releases of `rzk`. Only applies to extension-managed installations; set to `0` to disable periodic checks. You can always trigger a check via the `Rzk: Check for updates` command. |
