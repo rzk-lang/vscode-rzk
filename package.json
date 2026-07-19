@@ -66,6 +66,50 @@
         }
       }
     ],
+    "semanticTokenScopes": [
+      {
+        "language": "rzk",
+        "scopes": {
+          "function.abstract.static": [
+            "invalid"
+          ],
+          "function.abstract": [
+            "string.regexp"
+          ],
+          "parameter.abstract": [
+            "markup.italic"
+          ]
+        }
+      },
+      {
+        "language": "literate rzk markdown",
+        "scopes": {
+          "function.abstract.static": [
+            "invalid"
+          ],
+          "function.abstract": [
+            "string.regexp"
+          ],
+          "parameter.abstract": [
+            "markup.italic"
+          ]
+        }
+      },
+      {
+        "language": "literate rzk latex",
+        "scopes": {
+          "function.abstract.static": [
+            "invalid"
+          ],
+          "function.abstract": [
+            "string.regexp"
+          ],
+          "parameter.abstract": [
+            "markup.italic"
+          ]
+        }
+      }
+    ],
     "languages": [
       {
         "id": "rzk",
