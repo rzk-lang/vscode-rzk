@@ -178,6 +178,26 @@
         }
       ]
     },
+    "param-topes": {
+      "patterns": [
+        {
+          "match": "(\\|)([^)}]*)",
+          "captures": {
+            "1": {
+              "name": "keyword.operator.param-topes.rzk"
+            },
+            "2": {
+              "name": "string.interpolated.rzk",
+              "patterns": [
+                {
+                  "include": "#builtins"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
     "ext-type-topes": {
       "patterns": []
     },
@@ -220,7 +240,7 @@
     "params": {
       "patterns": [
         {
-          "begin": "\\(\\s*([^{:]+)\\s*(:)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])",
+          "begin": "\\(\\s*((?:[^{:()]|(\\((?:[^()]|\\g<2>)*\\)))+)\\s*(:)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])",
           "end": "\\)",
           "beginCaptures": {
             "1": {
@@ -236,11 +256,14 @@
                 }
               ]
             },
-            "2": {
+            "3": {
               "name": "keyword.operator.colon.params.rzk"
             }
           },
           "patterns": [
+            {
+              "include": "#param-topes"
+            },
             {
               "include": "#terms"
             }

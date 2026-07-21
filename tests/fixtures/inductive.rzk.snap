@@ -168,13 +168,10 @@
 #                                 ^^ source.rzk variable.parameter.rzk
 #                                   ^ source.rzk
 #                                    ^ source.rzk keyword.operator.colon.params.rzk
-#                                     ^^^^^^^ source.rzk
-#                                            ^ source.rzk
-#                                             ^^^ source.rzk variable.parameter.rzk
-#                                                ^ source.rzk
-#                                                 ^ source.rzk variable.parameter.rzk
-#                                                  ^^^ source.rzk
-#                                                     ^ source.rzk keyword.operator.colon.params.rzk
+#                                     ^^^^^^^^^^^^^ source.rzk
+#                                                  ^ source.rzk
+#                                                   ^^ source.rzk
+#                                                     ^ source.rzk keyword.operator.rzk
 #                                                      ^^^ source.rzk
 >  := match xs into (\ k v → match k (zero ⇒ Unit | suc j jh ⇒ A))
 #^^ source.rzk
@@ -201,9 +198,7 @@
 #                                                 ^ source.rzk keyword.operator.rzk
 #                                                  ^^^^^^^^^^ source.rzk
 #                                                            ^ source.rzk keyword.operator.branch.rzk
-#                                                             ^^ source.rzk
-#                                                               ^ source.rzk
-#                                                                ^ source.rzk
+#                                                             ^^^^^ source.rzk
 >      ( nil ⇒ unit
 #^^^^^^^^^^^^ source.rzk
 #            ^ source.rzk keyword.operator.branch.rzk
@@ -242,10 +237,10 @@
 #          ^ source.rzk
 #           ^ source.rzk keyword.operator.colon.params.rzk
 #            ^^^^ source.rzk
-#                ^ source.rzk keyword.operator.rzk
-#                 ^^^^ source.rzk
-#                     ^^ source.rzk string.regexp
-#                       ^^ source.rzk
+#                ^ source.rzk keyword.operator.param-topes.rzk
+#                 ^^^^ source.rzk string.interpolated.rzk
+#                     ^^ source.rzk string.interpolated.rzk string.regexp
+#                       ^^ source.rzk string.interpolated.rzk
 #                         ^ source.rzk
 #                          ^ source.rzk
 #                           ^^ source.rzk string.regexp

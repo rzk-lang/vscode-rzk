@@ -17,6 +17,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
     single-line block comment containing a colon was coloured as a
     brace parameter instead of a comment.
 - Drop the highlighting of the old modal-type syntax `<| m | A |>`.
+- Colour the tope of a paren-form shaped parameter `(t : 2 | φ)` as the
+  brace form used to (possible now that the modal-type bar is gone).
+- Fix a parameter region opened by a non-parameter group (such as
+  `(suc n)`) before a later colon, which could span to following lines
+  and mis-colour them.
 
 ## v0.5.0 - 2026-07-14
 

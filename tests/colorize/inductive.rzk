@@ -52,6 +52,20 @@ match-into
   := match b (false => b)
 --   ^^^^^ keyword.control.rzk
 
--- A shaped parameter colours its tope constants in the paren form
+-- A shaped parameter colours its tope after the bar in the paren form
 #define f (t : 2 | TOP) : U
+--               ^ keyword.operator.param-topes.rzk
 --                 ^^^ support.constant.rzk
+--                 ^^^ string.interpolated.rzk
+
+-- A pair-pattern parameter still colours as a parameter list
+#define g ((t , s) : A) : U
+--          ^ variable.parameter.rzk
+--              ^ variable.parameter.rzk
+--                 ^ keyword.operator.colon.params.rzk
+
+-- A non-parameter group before a colon must not open a parameter
+-- region spanning lines; the branch bar below is not a tope bar
+#define vhead (xs : vec A (suc n)) : A
+  := match xs (nil ⇒ unit | cons m x t th ⇒ x)
+--                        ^ keyword.operator.rzk

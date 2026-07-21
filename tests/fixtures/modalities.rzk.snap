@@ -267,24 +267,12 @@
 #                          ^ source.rzk keyword.operator.colon.params.rzk
 #                           ^ source.rzk
 #                            ^ source.rzk keyword.operator.rzk
-#                             ^ source.rzk keyword.operator.rzk
-#                              ^ source.rzk
-#                               ^^ source.rzk entity.name.tag.rzk
-#                                 ^ source.rzk
-#                                  ^ source.rzk keyword.operator.rzk
-#                                   ^ source.rzk
-#                                    ^ source.rzk keyword.operator.rzk
-#                                     ^ source.rzk keyword.operator.rzk
-#                                      ^ source.rzk
-#                                       ^^ source.rzk entity.name.tag.rzk
-#                                         ^ source.rzk
-#                                          ^ source.rzk keyword.operator.rzk
-#                                           ^^^ source.rzk
-#                                              ^ source.rzk keyword.operator.rzk
-#                                               ^ source.rzk keyword.operator.rzk
-#                                                ^ source.rzk
-#                                                 ^ source.rzk keyword.operator.rzk
-#                                                  ^ source.rzk keyword.operator.rzk
+#                             ^ source.rzk keyword.operator.param-topes.rzk
+#                              ^ source.rzk string.interpolated.rzk
+#                               ^^ source.rzk string.interpolated.rzk entity.name.tag.rzk
+#                                 ^^^^^^ source.rzk string.interpolated.rzk
+#                                       ^^ source.rzk string.interpolated.rzk entity.name.tag.rzk
+#                                         ^^^^^^^^^^ source.rzk string.interpolated.rzk
 #                                                   ^ source.rzk
 >  : A
 #^^ source.rzk
@@ -447,24 +435,12 @@
 #                           ^ source.rzk keyword.operator.colon.params.rzk
 #                            ^ source.rzk
 #                             ^ source.rzk keyword.operator.rzk
-#                              ^ source.rzk keyword.operator.rzk
-#                               ^ source.rzk
-#                                ^ source.rzk entity.name.tag.rzk
-#                                 ^ source.rzk
-#                                  ^ source.rzk keyword.operator.rzk
-#                                   ^ source.rzk
-#                                    ^ source.rzk keyword.operator.rzk
-#                                     ^ source.rzk keyword.operator.rzk
-#                                      ^ source.rzk
-#                                       ^ source.rzk entity.name.tag.rzk
-#                                        ^ source.rzk
-#                                         ^ source.rzk keyword.operator.rzk
-#                                          ^^^ source.rzk
-#                                             ^ source.rzk keyword.operator.rzk
-#                                              ^ source.rzk keyword.operator.rzk
-#                                               ^ source.rzk
-#                                                ^ source.rzk keyword.operator.rzk
-#                                                 ^ source.rzk keyword.operator.rzk
+#                              ^ source.rzk keyword.operator.param-topes.rzk
+#                               ^ source.rzk string.interpolated.rzk
+#                                ^ source.rzk string.interpolated.rzk entity.name.tag.rzk
+#                                 ^^^^^^ source.rzk string.interpolated.rzk
+#                                       ^ source.rzk string.interpolated.rzk entity.name.tag.rzk
+#                                        ^^^^^^^^^^ source.rzk string.interpolated.rzk
 #                                                  ^ source.rzk
 >  : <| ♯ | A |>
 #^^ source.rzk
@@ -699,14 +675,10 @@
 #                                 ^ source.rzk keyword.operator.colon.params.rzk
 #                                  ^ source.rzk
 #                                   ^ source.rzk keyword.operator.rzk
-#                                    ^ source.rzk keyword.operator.rzk
-#                                     ^ source.rzk
-#                                      ^ source.rzk entity.name.tag.rzk
-#                                       ^ source.rzk
-#                                        ^ source.rzk keyword.operator.rzk
-#                                         ^^^ source.rzk
-#                                            ^ source.rzk keyword.operator.rzk
-#                                             ^ source.rzk keyword.operator.rzk
+#                                    ^ source.rzk keyword.operator.param-topes.rzk
+#                                     ^ source.rzk string.interpolated.rzk
+#                                      ^ source.rzk string.interpolated.rzk entity.name.tag.rzk
+#                                       ^^^^^^^ source.rzk string.interpolated.rzk
 #                                              ^ source.rzk
 >  ( p : x = y)
 #^^ source.rzk

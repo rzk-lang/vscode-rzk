@@ -93,6 +93,16 @@ repository:
     patterns:
       - match: (?![-?!.])[^.\\;,#"\]\[)(}{><|\s]+
         name: variable.parameter.rzk
+  param-topes:
+    patterns:
+      - match: (\|)([^)}]*)
+        captures:
+          "1":
+            name: keyword.operator.param-topes.rzk
+          "2":
+            name: string.interpolated.rzk
+            patterns:
+              - include: "#builtins"
   ext-type-topes:
     patterns:
       []
@@ -122,7 +132,14 @@ repository:
           - include: "#comments"
   params:
     patterns:
-      - begin: \(\s*([^{:]+)\s*(:)(?=$|[.\\;,#"\]\[)(}{><|\s])
+      # The identifier part must not cross an unbalanced closing paren:
+      # with a plain [^{:]+ a non-parameter group such as `(suc n)` before
+      # a later colon opened a parameter region spanning to the next line
+      # (see the vhead fixture). Balanced paren groups of any depth are
+      # allowed for pair patterns, `( ( (a , b) , c) : A)`, via Oniguruma
+      # subexpression recursion (\g<2> re-enters the paren-group
+      # alternative).
+      - begin: \(\s*((?:[^{:()]|(\((?:[^()]|\g<2>)*\)))+)\s*(:)(?=$|[.\\;,#"\]\[)(}{><|\s])
         end: \)
         beginCaptures:
           "1":
@@ -130,9 +147,10 @@ repository:
               - include: "#param-identifiers"
               - include: "#builtins"
               - include: "#comments"
-          "2":
+          "3":
             name: keyword.operator.colon.params.rzk
         patterns:
+          - include: "#param-topes"
           - include: "#terms"
   lambda-abstractions:
     patterns:
