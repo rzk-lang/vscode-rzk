@@ -7,11 +7,17 @@ import { output } from './logging';
 const octokit = new Octokit();
 
 /** In semver range format */
-const supportedRzkVersions = '>=0.6.0 <1.0.0';
+const supportedRzkVersions = '>=0.9.2 <1.0.0';
+
+/** The lowest version of rzk this extension works with, e.g. "0.9.2" */
+export const minimumRzkVersion =
+  semver.minVersion(supportedRzkVersions)?.version ?? '0.9.2';
 
 type Release =
   RestEndpointMethodTypes['repos']['listReleases']['response']['data'][number];
+type Asset = Release['assets'][number];
 type RzkPlatform = 'Windows' | 'macOS' | 'Linux';
+type RzkArch = 'X64' | 'ARM64';
 
 const platformMapping: Partial<Record<NodeJS.Platform, RzkPlatform>> = {
   win32: 'Windows',
@@ -19,12 +25,35 @@ const platformMapping: Partial<Record<NodeJS.Platform, RzkPlatform>> = {
   linux: 'Linux',
 };
 
-function getReleaseAssetName(release: Release) {
+const archMapping: Record<string, RzkArch | undefined> = {
+  x64: 'X64',
+  arm64: 'ARM64',
+};
+
+/**
+ * The names of the release assets usable on the current platform, most preferred first.
+ * Only macOS ships an ARM64 build (as of rzk v0.9.x), so an X64 asset is always
+ * listed as a fallback: it runs under emulation on Apple Silicon and Windows on ARM.
+ */
+function getReleaseAssetNames(release: Release) {
   const platform = platformMapping[process.platform];
   if (!platform) {
     throw new Error(`Unsupported platform: ${process.platform}`);
   }
-  return `rzk-${release.tag_name}-${platform}-X64.tar.gz`;
+  const arch = archMapping[process.arch];
+  const archs: RzkArch[] = arch && arch !== 'X64' ? [arch, 'X64'] : ['X64'];
+  return archs.map(
+    (arch) => `rzk-${release.tag_name}-${platform}-${arch}.tar.gz`
+  );
+}
+
+/** The best release asset for the current platform, if the release has one */
+function findReleaseAsset(release: Release): Asset | undefined {
+  for (const name of getReleaseAssetNames(release)) {
+    const asset = release.assets.find((asset) => asset.name === name);
+    if (asset) return asset;
+  }
+  return undefined;
 }
 
 /**
@@ -56,9 +85,7 @@ export async function fetchLatestCompatibleRelease(): Promise<
     (release) =>
       isCompatibleVersion(release.tag_name) &&
       (fetchPrereleases || !release.prerelease) &&
-      release.assets.find(
-        (asset) => asset.name === getReleaseAssetName(release)
-      )
+      findReleaseAsset(release)
   );
   return latestRelease;
 }
@@ -67,17 +94,16 @@ export async function fetchLatestCompatibleRelease(): Promise<
  * Fetches the appropriate executable file from GitHub for the current platform
  */
 export async function fetchReleaseBinary(release: Release) {
-  const asset = release.assets.find(
-    (asset) => asset.name === getReleaseAssetName(release)
-  );
+  const asset = findReleaseAsset(release);
   if (!asset) {
     output.appendLine(
-      `Error: ${getReleaseAssetName(release)} not found in release ${
-        release.tag_name
-      }`
+      `Error: none of ${getReleaseAssetNames(release).join(
+        ', '
+      )} were found in release ${release.tag_name}`
     );
     return undefined;
   }
+  output.appendLine(`Downloading ${asset.name}`);
   const { data } = await octokit.rest.repos.getReleaseAsset({
     owner: 'rzk-lang',
     repo: 'rzk',

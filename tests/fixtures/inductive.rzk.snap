@@ -1,0 +1,297 @@
+>#lang rzk-1
+#^^^^^ source.rzk keyword.control.lang.rzk
+#     ^ source.rzk
+#      ^^^^^ source.rzk entity.name.label.rzk
+>
+>#data bool := false | true
+#^^^^^ source.rzk meta.preprocessor.rzk
+#     ^ source.rzk
+#      ^^^^ source.rzk entity.name.type.rzk
+#          ^ source.rzk
+#           ^^ source.rzk keyword.operator.rzk
+#             ^^^^^^^ source.rzk
+#                    ^ source.rzk keyword.operator.rzk
+#                     ^^^^^^ source.rzk
+>
+>#data nat := zero | suc (n : nat)
+#^^^^^ source.rzk meta.preprocessor.rzk
+#     ^ source.rzk
+#      ^^^ source.rzk entity.name.type.rzk
+#         ^ source.rzk
+#          ^^ source.rzk keyword.operator.rzk
+#            ^^^^^^ source.rzk
+#                  ^ source.rzk keyword.operator.rzk
+#                   ^^^^^ source.rzk
+#                        ^ source.rzk
+#                         ^ source.rzk variable.parameter.rzk
+#                          ^ source.rzk
+#                           ^ source.rzk keyword.operator.colon.params.rzk
+#                            ^^^^ source.rzk
+#                                ^ source.rzk
+>
+>#data vec
+#^^^^^ source.rzk meta.preprocessor.rzk
+#     ^ source.rzk
+#      ^^^ source.rzk entity.name.type.rzk
+>  ( A : U)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk keyword.operator.colon.params.rzk
+#       ^ source.rzk
+#        ^ source.rzk support.type.rzk
+#         ^ source.rzk
+>  : nat → U
+#^^ source.rzk
+#  ^ source.rzk keyword.operator.rzk
+#   ^^^^^ source.rzk
+#        ^ source.rzk keyword.operator.rzk
+#         ^ source.rzk
+#          ^ source.rzk support.type.rzk
+>  :=
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+>    nil : vec A zero
+#^^^^^^^^ source.rzk
+#        ^ source.rzk keyword.operator.rzk
+#         ^^^^^^^^^^^^ source.rzk
+>  | cons (n : nat) (x : A) (xs : vec A n) : vec A (suc n)
+#^^ source.rzk
+#  ^ source.rzk keyword.operator.rzk
+#   ^^^^^^ source.rzk
+#         ^ source.rzk
+#          ^ source.rzk variable.parameter.rzk
+#           ^ source.rzk
+#            ^ source.rzk keyword.operator.colon.params.rzk
+#             ^^^^ source.rzk
+#                 ^ source.rzk
+#                  ^ source.rzk
+#                   ^ source.rzk
+#                    ^ source.rzk variable.parameter.rzk
+#                     ^ source.rzk
+#                      ^ source.rzk keyword.operator.colon.params.rzk
+#                       ^^ source.rzk
+#                         ^ source.rzk
+#                          ^ source.rzk
+#                           ^ source.rzk
+#                            ^^ source.rzk variable.parameter.rzk
+#                              ^ source.rzk
+#                               ^ source.rzk keyword.operator.colon.params.rzk
+#                                ^^^^^^^^ source.rzk
+#                                        ^ source.rzk
+#                                         ^ source.rzk
+#                                          ^ source.rzk keyword.operator.rzk
+#                                           ^^^^^^^^^^^^^^^ source.rzk
+>
+>#define plus (n m : nat) : nat
+#^^^^^^^ source.rzk meta.preprocessor.rzk
+#       ^ source.rzk
+#        ^^^^ source.rzk entity.name.function.rzk
+#            ^ source.rzk
+#             ^ source.rzk
+#              ^ source.rzk variable.parameter.rzk
+#               ^ source.rzk
+#                ^ source.rzk variable.parameter.rzk
+#                 ^ source.rzk
+#                  ^ source.rzk keyword.operator.colon.params.rzk
+#                   ^^^^ source.rzk
+#                       ^ source.rzk
+#                        ^ source.rzk
+#                         ^ source.rzk keyword.operator.rzk
+#                          ^^^^^ source.rzk
+>  := match n
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^ source.rzk
+#     ^^^^^ source.rzk keyword.control.rzk
+#          ^^^ source.rzk
+>      ( zero ⇒ m
+#^^^^^^^^^^^^^ source.rzk
+#             ^ source.rzk keyword.operator.branch.rzk
+#              ^^^ source.rzk
+>      | suc k ih ⇒ suc ih)
+#^^^^^^ source.rzk
+#      ^ source.rzk keyword.operator.rzk
+#       ^^^^^^^^^^ source.rzk
+#                 ^ source.rzk keyword.operator.branch.rzk
+#                  ^^^^^^^^^ source.rzk
+>
+>#define not (b : bool) : bool
+#^^^^^^^ source.rzk meta.preprocessor.rzk
+#       ^ source.rzk
+#        ^^^ source.rzk entity.name.function.rzk
+#           ^ source.rzk
+#            ^ source.rzk
+#             ^ source.rzk variable.parameter.rzk
+#              ^ source.rzk
+#               ^ source.rzk keyword.operator.colon.params.rzk
+#                ^^^^^ source.rzk
+#                     ^ source.rzk
+#                      ^ source.rzk
+#                       ^ source.rzk keyword.operator.rzk
+#                        ^^^^^^ source.rzk
+>  := match b (false => true | true => false)
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^ source.rzk
+#     ^^^^^ source.rzk keyword.control.rzk
+#          ^^^^^^^^^^ source.rzk
+#                    ^^ source.rzk keyword.operator.branch.rzk
+#                      ^^^^^^ source.rzk
+#                            ^ source.rzk keyword.operator.rzk
+#                             ^^^^^^ source.rzk
+#                                   ^^ source.rzk keyword.operator.branch.rzk
+#                                     ^^^^^^^^ source.rzk
+>
+>#define vhead (A : U) (n : nat) (xs : vec A (suc n)) : A
+#^^^^^^^ source.rzk meta.preprocessor.rzk
+#       ^ source.rzk
+#        ^^^^^ source.rzk entity.name.function.rzk
+#             ^ source.rzk
+#              ^ source.rzk
+#               ^ source.rzk variable.parameter.rzk
+#                ^ source.rzk
+#                 ^ source.rzk keyword.operator.colon.params.rzk
+#                  ^ source.rzk
+#                   ^ source.rzk support.type.rzk
+#                    ^ source.rzk
+#                     ^ source.rzk
+#                      ^ source.rzk
+#                       ^ source.rzk variable.parameter.rzk
+#                        ^ source.rzk
+#                         ^ source.rzk keyword.operator.colon.params.rzk
+#                          ^^^^ source.rzk
+#                              ^ source.rzk
+#                               ^ source.rzk
+#                                ^ source.rzk
+#                                 ^^ source.rzk variable.parameter.rzk
+#                                   ^ source.rzk
+#                                    ^ source.rzk keyword.operator.colon.params.rzk
+#                                     ^^^^^^^^^^^^^ source.rzk
+#                                                  ^ source.rzk
+#                                                   ^^ source.rzk
+#                                                     ^ source.rzk keyword.operator.rzk
+#                                                      ^^^ source.rzk
+>  := match xs into (\ k v → match k (zero ⇒ Unit | suc j jh ⇒ A))
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^ source.rzk
+#     ^^^^^ source.rzk keyword.control.rzk
+#          ^^^^ source.rzk
+#              ^^^^ source.rzk keyword.control.rzk
+#                  ^^ source.rzk
+#                    ^ source.rzk keyword.operator.lambda.slash.rzk
+#                     ^ source.rzk
+#                      ^ source.rzk variable.parameter.rzk
+#                       ^ source.rzk
+#                        ^ source.rzk variable.parameter.rzk
+#                         ^ source.rzk
+#                          ^ source.rzk keyword.operator.lambda.to.rzk
+#                           ^ source.rzk
+#                            ^^^^^ source.rzk keyword.control.rzk
+#                                 ^^^^^^^^^ source.rzk
+#                                          ^ source.rzk keyword.operator.branch.rzk
+#                                           ^ source.rzk
+#                                            ^^^^ source.rzk entity.name.type.rzk
+#                                                ^ source.rzk
+#                                                 ^ source.rzk keyword.operator.rzk
+#                                                  ^^^^^^^^^^ source.rzk
+#                                                            ^ source.rzk keyword.operator.branch.rzk
+#                                                             ^^^^^ source.rzk
+>      ( nil ⇒ unit
+#^^^^^^^^^^^^ source.rzk
+#            ^ source.rzk keyword.operator.branch.rzk
+#             ^ source.rzk
+#              ^^^^ source.rzk support.function.rzk
+>      | cons m x tail th ⇒ x)
+#^^^^^^ source.rzk
+#      ^ source.rzk keyword.operator.rzk
+#       ^^^^^^^^^^^^^^^^^^ source.rzk
+#                         ^ source.rzk keyword.operator.branch.rzk
+#                          ^^^^ source.rzk
+>
+>#define meet-is-a-lower-bound
+#^^^^^^^ source.rzk meta.preprocessor.rzk
+#       ^ source.rzk
+#        ^^^^^^^^^^^^^^^^^^^^^ source.rzk entity.name.function.rzk
+>  ( a b : 𝕀)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk variable.parameter.rzk
+#       ^ source.rzk
+#        ^ source.rzk keyword.operator.colon.params.rzk
+#         ^ source.rzk
+#          ^^ source.rzk entity.name.type.rzk
+#            ^ source.rzk
+>  ( f : (x : 𝕀 | (x <= a) /\ (x <= b)) -> U)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk keyword.operator.colon.params.rzk
+#       ^ source.rzk
+#        ^ source.rzk
+#         ^ source.rzk variable.parameter.rzk
+#          ^ source.rzk
+#           ^ source.rzk keyword.operator.colon.params.rzk
+#            ^ source.rzk
+#             ^^ source.rzk entity.name.type.rzk
+#               ^ source.rzk
+#                ^ source.rzk keyword.operator.param-topes.rzk
+#                 ^^^^ source.rzk string.interpolated.rzk
+#                     ^^ source.rzk string.interpolated.rzk string.regexp
+#                       ^^ source.rzk string.interpolated.rzk
+#                         ^ source.rzk
+#                          ^ source.rzk
+#                           ^^ source.rzk string.regexp
+#                             ^^^^ source.rzk
+#                                 ^^ source.rzk string.regexp
+#                                   ^^ source.rzk
+#                                     ^ source.rzk
+#                                      ^^ source.rzk
+#                                        ^^ source.rzk keyword.operator.rzk
+#                                          ^ source.rzk
+#                                           ^ source.rzk support.type.rzk
+#                                            ^^ source.rzk
+>  : U
+#^^ source.rzk
+#  ^ source.rzk keyword.operator.rzk
+#   ^ source.rzk
+#    ^ source.rzk support.type.rzk
+>  := f (inf a b)
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^^^^ source.rzk
+#        ^^^ source.rzk support.function.rzk
+#           ^^^^^^ source.rzk
+>
+>#define join-unicode (a b : 𝕀) : 𝕀
+#^^^^^^^ source.rzk meta.preprocessor.rzk
+#       ^ source.rzk
+#        ^^^^^^^^^^^^ source.rzk entity.name.function.rzk
+#                    ^ source.rzk
+#                     ^ source.rzk
+#                      ^ source.rzk variable.parameter.rzk
+#                       ^ source.rzk
+#                        ^ source.rzk variable.parameter.rzk
+#                         ^ source.rzk
+#                          ^ source.rzk keyword.operator.colon.params.rzk
+#                           ^ source.rzk
+#                            ^^ source.rzk entity.name.type.rzk
+#                              ^ source.rzk
+#                               ^ source.rzk
+#                                ^ source.rzk keyword.operator.rzk
+#                                 ^ source.rzk
+#                                  ^^ source.rzk entity.name.type.rzk
+>  := a ⊔ (a ⊓ b)
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^^^ source.rzk
+#       ^ source.rzk keyword.operator.lattice.rzk
+#        ^^^^ source.rzk
+#            ^ source.rzk keyword.operator.lattice.rzk
+#             ^^^^ source.rzk
+>

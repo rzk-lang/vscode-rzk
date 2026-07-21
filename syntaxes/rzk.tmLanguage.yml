@@ -34,6 +34,16 @@ patterns:
         name: support.constant.property-value.rzk
       "5":
         name: variable.parameter.rzk
+  - match: ^(#data)\s+((?![-?!.])[^.\\;,#"\]\[)(}{><|\s]*)(?=$|[.\\;,#"\]\[)(}{><|\s])(\s+(uses)\s+\(((?![-?!.])[^.\\;,#"\]\[)(}{><|]*)\))?
+    captures:
+      "1":
+        name: meta.preprocessor.rzk
+      "2":
+        name: entity.name.type.rzk
+      "4":
+        name: support.constant.property-value.rzk
+      "5":
+        name: variable.parameter.rzk
   - include: "#strings"
   - include: "#terms"
 repository:
@@ -58,7 +68,9 @@ repository:
       - name: support.constant.rzk
         match: (⊤|⊥|\*(_1|₁)|⋆)|(?<=^|[.\\;,#"\]\[)(}{><|\s])(0(_2|₂|_I|ᵢ)|1(_2|₂|_I|ᵢ)|TOP|BOT)(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: support.function.rzk
-        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(recOR|recBOT|idJ|refl|first|second|π₁|π₂|unit|invᵒᵖ|uninvᵒᵖ|flipᵒᵖ|unflipᵒᵖ|inv_op|uninv_op|flip_op|unflip_op)((?=$|[.\\;,#"\]\[)(}{><|\s])|(?=_{))
+        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(recOR|recBOT|idJ|refl|first|second|π₁|π₂|unit|sup|inf|invᵒᵖ|uninvᵒᵖ|flipᵒᵖ|unflipᵒᵖ|inv_op|uninv_op|flip_op|unflip_op)((?=$|[.\\;,#"\]\[)(}{><|\s])|(?=_{))
+      - name: keyword.control.rzk
+        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(match|into|eliminator)(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: keyword.control.as.rzk
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])as(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: keyword.control.rzk
@@ -69,8 +81,6 @@ repository:
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])in(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: support.function.rzk
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])mod(?=$|[.\\;,#"\]\[)(}{><|\s])
-      - name: punctuation.definition.modtype.rzk
-        match: (<\||\|>)
       - name: invalid.rzk
         match: \$extract\$
       - name: entity.name.tag.rzk
@@ -87,7 +97,7 @@ repository:
         name: variable.parameter.rzk
   param-topes:
     patterns:
-      - match: (\|)([^}]*)
+      - match: (\|)([^)}]*)
         captures:
           "1":
             name: keyword.operator.param-topes.rzk
@@ -124,7 +134,14 @@ repository:
           - include: "#comments"
   params:
     patterns:
-      - begin: \(\s*([^{:]+)\s*(:)(?=$|[.\\;,#"\]\[)(}{><|\s])
+      # The identifier part must not cross an unbalanced closing paren:
+      # with a plain [^{:]+ a non-parameter group such as `(suc n)` before
+      # a later colon opened a parameter region spanning to the next line
+      # (see the vhead fixture). Balanced paren groups of any depth are
+      # allowed for pair patterns, `( ( (a , b) , c) : A)`, via Oniguruma
+      # subexpression recursion (\g<2> re-enters the paren-group
+      # alternative).
+      - begin: \(\s*((?:[^{:()]|(\((?:[^()]|\g<2>)*\)))+)\s*(:)(?=$|[.\\;,#"\]\[)(}{><|\s])
         end: \)
         beginCaptures:
           "1":
@@ -132,19 +149,7 @@ repository:
               - include: "#param-identifiers"
               - include: "#builtins"
               - include: "#comments"
-          "2":
-            name: keyword.operator.colon.params.rzk
-        patterns:
-          - include: "#terms"
-      - begin: \{\s*([^:]+)\s*(:)(?=$|[.\\;,#"\]\[)(}{><|\s])
-        end: "}"
-        beginCaptures:
-          "1":
-            patterns:
-              - include: "#param-identifiers"
-              - include: "#builtins"
-              - include: "#comments"
-          "2":
+          "3":
             name: keyword.operator.colon.params.rzk
         patterns:
           - include: "#param-topes"
@@ -183,6 +188,10 @@ repository:
         match: \\.
   operators:
     patterns:
+      - name: keyword.operator.branch.rzk
+        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(=>|⇒)(?=$|[.\\;,#"\]\[)(}{><|\s])
+      - name: keyword.operator.lattice.rzk
+        match: (⊔|⊓)
       - name: keyword.operator.rzk
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(:=|->|:|→)(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: punctuation.equals.rzk
@@ -192,5 +201,5 @@ repository:
       - name: punctuation.multiplication.rzk
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(\*|×)(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: keyword.operator.rzk
-        match: (?<!(?<=^|[.\\;,#"\]\[)(}{><|\s])-)>|[\\]
+        match: (?<!(?<=^|[.\\;,#"\]\[)(}{><|\s])-)>|[\\|]
 scopeName: source.rzk

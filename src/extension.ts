@@ -12,39 +12,52 @@ import {
   LanguageClientOptions,
   ServerOptions,
 } from 'vscode-languageclient/node';
+import { getConfiguredRzkPath, getManageInstallation } from './config';
 
-function locateRzk(context: vscode.ExtensionContext) {
-  let path = vscode.workspace.getConfiguration().get<string>('rzk.path') ?? '';
-  // Probe 1 - extension settings
-  if (path) {
-    const result = spawnSync(path, ['version']);
-    if (result.status === 0) {
-      return path;
-    } else {
-      output.appendLine(
-        'The configured `rzk.path` option does not point to a valid rzk executable'
-      );
-    }
-  }
-  // Probe 2 - global PATH
-  const binExtension = process.platform === 'win32' ? '.exe' : '';
-  path = 'rzk' + binExtension;
-  let result = spawnSync(path, ['version']);
-  if (result.status === 0) {
-    return path;
-  } else {
-    output.appendLine('Cannot find rzk globally');
-  }
+const binExtension = process.platform === 'win32' ? '.exe' : '';
 
-  // Probe 3 - extension storage bin folder
-  path = vscode.Uri.joinPath(
+function isRzkExecutable(path: string) {
+  return spawnSync(path, ['version']).status === 0;
+}
+
+function getManagedRzkPath(context: vscode.ExtensionContext) {
+  return vscode.Uri.joinPath(
     context.globalStorageUri,
     'bin',
     'rzk' + binExtension
   ).fsPath;
-  result = spawnSync(path, ['version']);
-  if (result.status === 0) {
-    return path;
+}
+
+function locateRzk(context: vscode.ExtensionContext) {
+  // Probe 1 - extension settings
+  const configuredPath = getConfiguredRzkPath();
+  if (configuredPath) {
+    if (isRzkExecutable(configuredPath)) {
+      return configuredPath;
+    }
+    output.appendLine(
+      'The configured `rzk.path` option does not point to a valid rzk executable'
+    );
+  }
+
+  // Probes 2 and 3 - the global PATH and the extension storage bin folder. When the
+  // extension is asked to always manage the installation, its own copy is preferred,
+  // so that it is the (auto-updated) binary the language server actually runs.
+  const globalPath = 'rzk' + binExtension;
+  const managedPath = getManagedRzkPath(context);
+  const paths =
+    getManageInstallation() === 'always'
+      ? [managedPath, globalPath]
+      : [globalPath, managedPath];
+  for (const path of paths) {
+    if (isRzkExecutable(path)) {
+      return path;
+    }
+    output.appendLine(
+      path === globalPath
+        ? 'Cannot find rzk globally'
+        : 'Cannot find an extension-managed installation of rzk'
+    );
   }
 
   return null;
@@ -57,12 +70,29 @@ export function activate(context: vscode.ExtensionContext) {
 
   const binFolder = vscode.Uri.joinPath(context.globalStorageUri, 'bin');
 
-  installRzkIfNotExists({ binFolder });
-
-  context.environmentVariableCollection.append(
-    'PATH',
-    delimiter + binFolder.fsPath
+  installRzkIfNotExists({ binFolder, globalState: context.globalState }).catch(
+    (e) => {
+      output.appendLine(
+        'installRzkIfNotExists failed: ' +
+          (e instanceof Error ? (e.stack ?? e.message) : String(e))
+      );
+    }
   );
+
+  // Make the managed rzk available in the integrated terminal. When the extension is
+  // asked to always manage the installation, its copy also takes precedence there, so
+  // that the terminal and the language server agree on which rzk is in use.
+  if (getManageInstallation() === 'always') {
+    context.environmentVariableCollection.prepend(
+      'PATH',
+      binFolder.fsPath + delimiter
+    );
+  } else {
+    context.environmentVariableCollection.append(
+      'PATH',
+      delimiter + binFolder.fsPath
+    );
+  }
 
   vscode.commands.registerCommand(
     'rzk.clearLocalInstallations',
@@ -81,12 +111,12 @@ export function activate(context: vscode.ExtensionContext) {
     }
     // Pass binFolder only when rzk is the extension-managed installation,
     // so an interactive update prompt is offered (instead of just a notice).
-    const binExtension = process.platform === 'win32' ? '.exe' : '';
-    const managedPath = vscode.Uri.joinPath(
-      binFolder,
-      'rzk' + binExtension
-    ).fsPath;
-    await checkForUpdates(path, path === managedPath ? binFolder : undefined);
+    // globalState is deliberately omitted: an explicit check always reports its result.
+    const managedPath = getManagedRzkPath(context);
+    await checkForUpdates(path, {
+      binFolder: path === managedPath ? binFolder : undefined,
+      isConfiguredPath: path === getConfiguredRzkPath(),
+    });
   });
 
   let client: LanguageClient;
