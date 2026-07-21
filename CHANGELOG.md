@@ -4,7 +4,11 @@ All notable changes to the "rzk-1-experimental-highlighting" extension will be d
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## Unreleased
+## v0.6.0 - 2026-07-21
+
+This release accompanies `rzk` v0.11.0 and pins the extension to it: the
+minimum supported `rzk` version is now v0.11.0 (previously v0.9.2), and
+an extension-managed `rzk` updates automatically.
 
 - Postulates and assumptions are now highlighted distinctly, at the declaration and at every use site, so a proof that leans on an axiom is visible at a glance. There are three tiers, in decreasing order of severity: a `#postulate` (a permanent axiom) renders in the error red of the `invalid` scope; a top-level `#assume` (a file-wide axiom such as `funext`, discharged at module end) renders in the same reddish colour as holes; an `#assume` inside a `#section` (a hypothesis the section abstracts over at its `#end`) renders in italics. The colours come from the language server marking these names with standard semantic token modifiers (`abstract`, plus `static` for postulates), which the extension maps to TextMate scopes. Requires `rzk` v0.11.0 or higher.
 - Update the TextMate grammar for the `rzk` v0.11.0 syntax:
@@ -23,6 +27,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Fix a parameter region opened by a non-parameter group (such as
   `(suc n)`) before a later colon, which could span to following lines
   and mis-colour them.
+- Highlighting for the experimental modal syntax, contributed by
+  [Islam Talipov](https://github.com/LIshy2)
+  ([#74](https://github.com/rzk-lang/vscode-rzk/pull/74)): the cubical
+  interval `𝕀` / `II` with its endpoints (`0_I`, `1ᵢ`, and variants),
+  and modality annotations in binders (`(x :♭ A)`) in place of the
+  retired modal-type brackets.
 
 ## v0.5.0 - 2026-07-14
 

@@ -11,7 +11,7 @@ Syntax and semantic highlighting for [`rzk`](https://rzk-lang.github.io/rzk/), a
 Features:
 
 1. Basic syntax highlighting with a simple TextMate grammar (for `*.rzk`, `*.rzk.md`, and `*.rzk.tex` files).
-2. Semantic highlighting via LSP (you must have `rzk` version v0.9.2 or above).
+2. Semantic highlighting via LSP (you must have `rzk` version v0.11.0 or above).
 3. Prompts for installing/updating `rzk` binaries from GitHub Releases automatically (usable from local Terminal). Set `rzk.manageInstallation` to `"always"` to let the extension install and update `rzk` for you even when `rzk` is already available in `PATH`.
 4. Markdown Preview button for `*.rzk.md` files.
 5. Automatic typechecking for all files listed in `rzk.yaml`, with a progress indicator.
