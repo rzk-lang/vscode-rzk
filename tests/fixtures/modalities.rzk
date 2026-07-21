@@ -2,26 +2,26 @@
 
 #lang rzk-1
 
-#def b-extract (A : ♭ U) (x : ♭ A)
+#def b-extract (A :♭ U) (x :♭ A)
   : A
   := x
 
-#def b-map (A B : ♭ U) (f : ♭ A → B)
-  : <| ♭ | A |> → <| ♭ | B |>
+#def b-map (A B :♭ U) (f :♭ A → B)
+  : ♭ A → ♭ B
   :=
-  \ (x : ♭ A) → mod ♭ (f x)
+  \ (x :♭ A) → mod ♭ (f x)
 
-#def b-dup (A : ♭ U) (x : ♭ A)
-  : <| ♭ | <| ♭ | A |> |>
+#def b-dup (A :♭ U) (x :♭ A)
+  : ♭ ♭ A
   :=
   mod ♭ (mod ♭ (x))
 
-#def op-map (A B : ᵒᵖ U) (f : ᵒᵖ A → B)
-  : <| ᵒᵖ | A |> → <| ᵒᵖ | B |>
+#def op-map (A B :ᵒᵖ U) (f :ᵒᵖ A → B)
+  : ᵒᵖ A → ᵒᵖ B
   :=
-  \ (x : ᵒᵖ A) → mod ᵒᵖ (f x)
+  \ (x :ᵒᵖ A) → mod ᵒᵖ (f x)
 
-#def double-op (A : U) (x : <| ᵒᵖ | <| ᵒᵖ | A |> |>)
+#def double-op (A : U) (x :ᵒᵖ ᵒᵖ A)
   : A
   :=
   let mod ᵒᵖ x_1 := x in
@@ -29,23 +29,23 @@
   x_2
 
 #def sharp-pure (A : U) (x : A)
-  : <| ♯ | A |>
+  : ♯ A
   := mod ♯ x
 
 #def sharp-map (A B : U) (f : A → B)
-  : <| ♯ | A |> → <| ♯ | B |>
+  : ♯ A → ♯ B
   :=
-  \ (x : ♯ A) → mod ♯ (f x)
+  \ (x :♯ A) → mod ♯ (f x)
 
-#def sharp-join (A : U) (a : <| ♯ | <| ♯ | A |> |>)
-  : <| ♯ | A |>
+#def sharp-join (A : U) (a :♯ ♯ A)
+  : ♯ A
   :=
   let mod ♯ x_1 := a in
   let mod ♯ / ♯ x_2 := x_1 in
   mod ♯ (x_2)
 
 #def U-b
-  : <| ♭ | U |>
+  : ♭ U
   := mod ♭ U
 
 #def prop
@@ -53,7 +53,7 @@
   := Σ (A : U) , is-prop A
 
 #def prop-b
-  : <| ♭ | U |>
+  : ♭ U
   := mod ♭ prop
 
 #def univ-family-prop
@@ -61,14 +61,14 @@
   := Σ (A : prop) , (first A)
 
 #def univ-family-prop-b
-  : <| ♭ | U |>
+  : ♭ U
   := mod ♭ univ-family-prop
 
 #def Unit-b
-  : <| ♭ | U |>
+  : ♭ U
   := mod ♭ Unit
 
-#def b-extract-eq (A : ♭ U) (x y : <| ♭ | A |>)
+#def b-extract-eq (A :♭ U) (x y : ♭ A)
   ( p : x = y)
   : b-extract (mod ♭ A) x = b-extract (mod ♭ A) y
-  := ap <| ♭ | A |> A x y (b-extract (mod ♭ A)) p
+  := ap (♭ A) A x y (b-extract (mod ♭ A)) p

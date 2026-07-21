@@ -223,7 +223,8 @@
 #      ^ source.rzk variable.parameter.rzk
 #       ^ source.rzk
 #        ^ source.rzk keyword.operator.colon.params.rzk
-#         ^^^ source.rzk
+#         ^ source.rzk
+#          ^^ source.rzk entity.name.type.rzk
 #            ^ source.rzk
 >  ( f : (x : 𝕀 | (x <= a) /\ (x <= b)) -> U)
 #^^ source.rzk
@@ -236,7 +237,9 @@
 #         ^ source.rzk variable.parameter.rzk
 #          ^ source.rzk
 #           ^ source.rzk keyword.operator.colon.params.rzk
-#            ^^^^ source.rzk
+#            ^ source.rzk
+#             ^^ source.rzk entity.name.type.rzk
+#               ^ source.rzk
 #                ^ source.rzk keyword.operator.param-topes.rzk
 #                 ^^^^ source.rzk string.interpolated.rzk
 #                     ^^ source.rzk string.interpolated.rzk string.regexp
@@ -276,11 +279,13 @@
 #                        ^ source.rzk variable.parameter.rzk
 #                         ^ source.rzk
 #                          ^ source.rzk keyword.operator.colon.params.rzk
-#                           ^^^ source.rzk
+#                           ^ source.rzk
+#                            ^^ source.rzk entity.name.type.rzk
 #                              ^ source.rzk
 #                               ^ source.rzk
 #                                ^ source.rzk keyword.operator.rzk
-#                                 ^^^^ source.rzk
+#                                 ^ source.rzk
+#                                  ^^ source.rzk entity.name.type.rzk
 >  := a ⊔ (a ⊓ b)
 #^^ source.rzk
 #  ^^ source.rzk keyword.operator.rzk

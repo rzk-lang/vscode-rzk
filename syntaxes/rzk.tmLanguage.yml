@@ -62,11 +62,11 @@ repository:
       - name: support.type.rzk
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(CUBE|TOPE|U|𝒰)(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: entity.name.type.rzk
-        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(1|2|Unit|Sigma|∑|Σ)(?=$|[.\\;,#"\]\[)(}{><|\s])
+        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(1|2|Unit|II|𝕀|Sigma|∑|Σ)(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: string.regexp
         match: (===|<=|\\/|/\\|≡|≤|∨|∧)
       - name: support.constant.rzk
-        match: (⊤|⊥|\*(_1|₁)|⋆)|(?<=^|[.\\;,#"\]\[)(}{><|\s])(0(_2|₂)|1(_2|₂)|TOP|BOT)(?=$|[.\\;,#"\]\[)(}{><|\s])
+        match: (⊤|⊥|\*(_1|₁)|⋆)|(?<=^|[.\\;,#"\]\[)(}{><|\s])(0(_2|₂|_I|ᵢ)|1(_2|₂|_I|ᵢ)|TOP|BOT)(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: support.function.rzk
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(recOR|recBOT|idJ|refl|first|second|π₁|π₂|unit|sup|inf|invᵒᵖ|uninvᵒᵖ|flipᵒᵖ|unflipᵒᵖ|inv_op|uninv_op|flip_op|unflip_op)((?=$|[.\\;,#"\]\[)(}{><|\s])|(?=_{))
       - name: keyword.control.rzk
@@ -83,6 +83,8 @@ repository:
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])mod(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: invalid.rzk
         match: \$extract\$
+      - name: entity.name.tag.rzk
+        match: :(♭|ᵒᵖ|♯|_b|_op|_#|_id)(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: entity.name.tag.rzk
         match: (♭|ᵒᵖ|♯|_b|_op|_#|_id)
   param-identifiers:
@@ -199,5 +201,5 @@ repository:
       - name: punctuation.multiplication.rzk
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(\*|×)(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: keyword.operator.rzk
-        match: (?<!(?<=^|[.\\;,#"\]\[)(}{><|\s])-)>|[\\|<]
+        match: (?<!(?<=^|[.\\;,#"\]\[)(}{><|\s])-)>|[\\|]
 scopeName: source.rzk
