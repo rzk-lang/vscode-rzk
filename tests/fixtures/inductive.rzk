@@ -1,0 +1,34 @@
+#lang rzk-1
+
+#data bool := false | true
+
+#data nat := zero | suc (n : nat)
+
+#data vec
+  ( A : U)
+  : nat → U
+  :=
+    nil : vec A zero
+  | cons (n : nat) (x : A) (xs : vec A n) : vec A (suc n)
+
+#define plus (n m : nat) : nat
+  := match n
+      ( zero ⇒ m
+      | suc k ih ⇒ suc ih)
+
+#define not (b : bool) : bool
+  := match b (false => true | true => false)
+
+#define vhead (A : U) (n : nat) (xs : vec A (suc n)) : A
+  := match xs into (\ k v → match k (zero ⇒ Unit | suc j jh ⇒ A))
+      ( nil ⇒ unit
+      | cons m x tail th ⇒ x)
+
+#define meet-is-a-lower-bound
+  ( a b : 𝕀)
+  ( f : (x : 𝕀 | (x <= a) /\ (x <= b)) -> U)
+  : U
+  := f (inf a b)
+
+#define join-unicode (a b : 𝕀) : 𝕀
+  := a ⊔ (a ⊓ b)
