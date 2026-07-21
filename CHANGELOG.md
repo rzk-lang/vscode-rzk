@@ -7,6 +7,22 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## Unreleased
 
 - Postulates and assumptions are now highlighted distinctly, at the declaration and at every use site, so a proof that leans on an axiom is visible at a glance. There are three tiers, in decreasing order of severity: a `#postulate` (a permanent axiom) renders in the error red of the `invalid` scope; a top-level `#assume` (a file-wide axiom such as `funext`, discharged at module end) renders in the same reddish colour as holes; an `#assume` inside a `#section` (a hypothesis the section abstracts over at its `#end`) renders in italics. The colours come from the language server marking these names with standard semantic token modifiers (`abstract`, plus `static` for postulates), which the extension maps to TextMate scopes. Requires `rzk` v0.11.0 or higher.
+- Update the TextMate grammar for the `rzk` v0.11.0 syntax:
+  - highlight the `#data` command (the declared name colours as a type,
+    with the `uses` clause supported as for `#define`);
+  - highlight `match`, `into`, and the `eliminator` clause as keywords,
+    the branch arrows `⇒` / `=>`, and the lattice operations
+    `⊔` / `⊓` / `sup` / `inf`;
+  - drop the patterns for the syntax removed in `rzk` v0.11.0 (brace
+    parameters `{p : A | φ}`). This also fixes a mis-highlighting: a
+    single-line block comment containing a colon was coloured as a
+    brace parameter instead of a comment.
+- Drop the highlighting of the old modal-type syntax `<| m | A |>`.
+- Colour the tope of a paren-form shaped parameter `(t : 2 | φ)` as the
+  brace form used to (possible now that the modal-type bar is gone).
+- Fix a parameter region opened by a non-parameter group (such as
+  `(suc n)`) before a later colon, which could span to following lines
+  and mis-colour them.
 
 ## v0.5.0 - 2026-07-14
 
