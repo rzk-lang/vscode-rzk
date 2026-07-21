@@ -14,22 +14,9 @@
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.line.rzk
 >
 >{- single-line block comment: pretends to be #define foo : U := bar -}
-#^ source.rzk
-# ^^ source.rzk
-#   ^^^^^^^^^^^ source.rzk variable.parameter.rzk
-#              ^ source.rzk
-#               ^^^^^ source.rzk variable.parameter.rzk
-#                    ^ source.rzk
-#                     ^^^^^^^ source.rzk variable.parameter.rzk
-#                            ^ source.rzk keyword.operator.colon.params.rzk
-#                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk
-#                                                         ^ source.rzk keyword.operator.rzk
-#                                                          ^ source.rzk
-#                                                           ^ source.rzk support.type.rzk
-#                                                            ^ source.rzk
-#                                                             ^^ source.rzk keyword.operator.rzk
-#                                                               ^^^^^^ source.rzk
-#                                                                     ^ source.rzk
+#^^ source.rzk comment.block.rzk
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk comment.block.rzk
+#                                                                    ^^ source.rzk comment.block.rzk
 >
 >{-
 #^^ source.rzk comment.block.rzk

@@ -1,0 +1,57 @@
+-- SYNTAX TEST "source.rzk" "v0.11.0: #data, match, and lattice operators"
+
+-- The #data command declares a datatype; the name colours as a type
+#data bool
+-- <-- meta.preprocessor.rzk
+--    ^^^^ entity.name.type.rzk
+
+-- The uses clause of a #data declaration works as for #define
+#data vec uses (nat)
+-- <-- meta.preprocessor.rzk
+--    ^^^ entity.name.type.rzk
+--        ^^^^ support.constant.property-value.rzk
+--              ^^^ variable.parameter.rzk
+
+-- match and into are control keywords
+match
+-- <-- keyword.control.rzk
+
+into
+-- <-- keyword.control.rzk
+
+-- the eliminator re-ascription clause of a #data body
+eliminator
+-- <-- keyword.control.rzk
+
+-- ASCII lattice operations are builtin functions
+sup
+-- <-- support.function.rzk
+
+inf
+-- <-- support.function.rzk
+
+-- Unicode lattice operators
+⊔
+-- <-- keyword.operator.lattice.rzk
+
+⊓
+-- <-- keyword.operator.lattice.rzk
+
+-- The match branch arrow, Unicode and ASCII
+⇒
+-- <-- keyword.operator.branch.rzk
+
+=>
+-- <-- keyword.operator.branch.rzk
+
+-- A keyword is not matched inside a longer identifier
+match-into
+-- <-- source.rzk
+
+-- match in term position
+  := match b (false => b)
+--   ^^^^^ keyword.control.rzk
+
+-- A shaped parameter colours its tope constants in the paren form
+#define f (t : 2 | TOP) : U
+--                 ^^^ support.constant.rzk

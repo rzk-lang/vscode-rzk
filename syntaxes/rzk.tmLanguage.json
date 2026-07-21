@@ -62,6 +62,23 @@
       }
     },
     {
+      "match": "^(#data)\\s+((?![-?!.])[^.\\\\;,#\"\\]\\[)(}{><|\\s]*)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])(\\s+(uses)\\s+\\(((?![-?!.])[^.\\\\;,#\"\\]\\[)(}{><|]*)\\))?",
+      "captures": {
+        "1": {
+          "name": "meta.preprocessor.rzk"
+        },
+        "2": {
+          "name": "entity.name.type.rzk"
+        },
+        "4": {
+          "name": "support.constant.property-value.rzk"
+        },
+        "5": {
+          "name": "variable.parameter.rzk"
+        }
+      }
+    },
+    {
       "include": "#strings"
     },
     {
@@ -117,7 +134,11 @@
         },
         {
           "name": "support.function.rzk",
-          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])(recOR|recBOT|idJ|refl|first|second|π₁|π₂|unit|invᵒᵖ|uninvᵒᵖ|flipᵒᵖ|unflipᵒᵖ|inv_op|uninv_op|flip_op|unflip_op)((?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])|(?=_{))"
+          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])(recOR|recBOT|idJ|refl|first|second|π₁|π₂|unit|sup|inf|invᵒᵖ|uninvᵒᵖ|flipᵒᵖ|unflipᵒᵖ|inv_op|uninv_op|flip_op|unflip_op)((?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])|(?=_{))"
+        },
+        {
+          "name": "keyword.control.rzk",
+          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])(match|into|eliminator)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
         },
         {
           "name": "keyword.control.as.rzk",
@@ -158,26 +179,6 @@
         {
           "match": "(?![-?!.])[^.\\\\;,#\"\\]\\[)(}{><|\\s]+",
           "name": "variable.parameter.rzk"
-        }
-      ]
-    },
-    "param-topes": {
-      "patterns": [
-        {
-          "match": "(\\|)([^}]*)",
-          "captures": {
-            "1": {
-              "name": "keyword.operator.param-topes.rzk"
-            },
-            "2": {
-              "name": "string.interpolated.rzk",
-              "patterns": [
-                {
-                  "include": "#builtins"
-                }
-              ]
-            }
-          }
         }
       ]
     },
@@ -248,36 +249,6 @@
               "include": "#terms"
             }
           ]
-        },
-        {
-          "begin": "\\{\\s*([^:]+)\\s*(:)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])",
-          "end": "}",
-          "beginCaptures": {
-            "1": {
-              "patterns": [
-                {
-                  "include": "#param-identifiers"
-                },
-                {
-                  "include": "#builtins"
-                },
-                {
-                  "include": "#comments"
-                }
-              ]
-            },
-            "2": {
-              "name": "keyword.operator.colon.params.rzk"
-            }
-          },
-          "patterns": [
-            {
-              "include": "#param-topes"
-            },
-            {
-              "include": "#terms"
-            }
-          ]
         }
       ]
     },
@@ -344,6 +315,14 @@
     },
     "operators": {
       "patterns": [
+        {
+          "name": "keyword.operator.branch.rzk",
+          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])(=>|⇒)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
+        },
+        {
+          "name": "keyword.operator.lattice.rzk",
+          "match": "(⊔|⊓)"
+        },
         {
           "name": "keyword.operator.rzk",
           "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])(:=|->|:|→)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
