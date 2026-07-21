@@ -7,11 +7,11 @@ import { output } from './logging';
 const octokit = new Octokit();
 
 /** In semver range format */
-const supportedRzkVersions = '>=0.9.2 <1.0.0';
+const supportedRzkVersions = '>=0.11.0 <1.0.0';
 
-/** The lowest version of rzk this extension works with, e.g. "0.9.2" */
+/** The lowest version of rzk this extension works with, e.g. "0.11.0" */
 export const minimumRzkVersion =
-  semver.minVersion(supportedRzkVersions)?.version ?? '0.9.2';
+  semver.minVersion(supportedRzkVersions)?.version ?? '0.11.0';
 
 type Release =
   RestEndpointMethodTypes['repos']['listReleases']['response']['data'][number];
