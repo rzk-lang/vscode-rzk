@@ -6,6 +6,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## Unreleased
 
+- Postulates and assumptions are now highlighted distinctly, at the declaration and at every use site, so a proof that leans on an axiom is visible at a glance. There are three tiers, in decreasing order of severity: a `#postulate` (a permanent axiom) renders in the error red of the `invalid` scope; a top-level `#assume` (a file-wide axiom such as `funext`, discharged at module end) renders in the same reddish colour as holes; an `#assume` inside a `#section` (a hypothesis the section abstracts over at its `#end`) renders in italics. The colours come from the language server marking these names with standard semantic token modifiers (`abstract`, plus `static` for postulates), which the extension maps to TextMate scopes. Requires `rzk` v0.11.0 or higher.
 - Update the TextMate grammar for the `rzk` v0.11.0 syntax:
   - highlight the `#data` command (the declared name colours as a type,
     with the `uses` clause supported as for `#define`);
