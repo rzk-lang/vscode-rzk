@@ -16,6 +16,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
     parameters `{p : A | φ}`). This also fixes a mis-highlighting: a
     single-line block comment containing a colon was coloured as a
     brace parameter instead of a comment.
+- Drop the highlighting of the old modal-type syntax `<| m | A |>`.
 
 ## v0.5.0 - 2026-07-14
 

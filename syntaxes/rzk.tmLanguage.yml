@@ -81,8 +81,6 @@ repository:
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])in(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: support.function.rzk
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])mod(?=$|[.\\;,#"\]\[)(}{><|\s])
-      - name: punctuation.definition.modtype.rzk
-        match: (<\||\|>)
       - name: invalid.rzk
         match: \$extract\$
       - name: entity.name.tag.rzk

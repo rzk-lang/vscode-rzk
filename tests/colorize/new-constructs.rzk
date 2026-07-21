@@ -29,12 +29,6 @@ let mod
 _id
 -- <-- entity.name.tag.rzk
 
--- Modal type bracketing
-<|
--- <-- punctuation.definition.modtype.rzk
-|>
--- <-- punctuation.definition.modtype.rzk
-
 -- `Unit` type
 Unit
 -- <-- entity.name.type.rzk
