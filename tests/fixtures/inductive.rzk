@@ -32,3 +32,32 @@
 
 #define join-unicode (a b : 𝕀) : 𝕀
   := a ⊔ (a ⊓ b)
+
+#define transport
+  ( A : U) (C : A → U) (x y : A) (p : x =_{A} y) (u : C x)
+  : C y
+  := idJ (A , x , \ y' _ → C x → C y' , \ v → v , y , p) u
+
+#define ap
+  ( A B : U) (f : A → B) (x y : A) (p : x =_{A} y)
+  : f x =_{B} f y
+  := idJ (A , x , \ y' _ → f x =_{B} f y' , refl , y , p)
+
+#data circle
+  :=
+    pt
+  | turn : pt =_{circle} pt
+  eliminate with ind-circle
+    : ( C : circle → U)
+    → ( b : C pt)
+    → ( ℓ : transport circle C pt pt turn b = b)
+    → ( x : circle)
+    → C x
+  compute with compute-rec-circle-turn
+    : ( C : U)
+    → ( b : C)
+    → ( ℓ : b = b)
+    → ap circle C (rec-circle C b ℓ) pt pt turn = ℓ
+
+#define circle-id (x : circle) : circle
+  := match x (pt ⇒ pt | turn ⇒ turn)

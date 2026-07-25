@@ -138,7 +138,11 @@
         },
         {
           "name": "keyword.control.rzk",
-          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])(match|into|eliminator)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
+          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])(match|into)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
+        },
+        {
+          "name": "keyword.control.rzk",
+          "match": "(?<=^|[.\\\\;,#\"\\]\\[)(}{><|\\s])(eliminate|compute)\\s+(with)(?=$|[.\\\\;,#\"\\]\\[)(}{><|\\s])"
         },
         {
           "name": "keyword.control.as.rzk",

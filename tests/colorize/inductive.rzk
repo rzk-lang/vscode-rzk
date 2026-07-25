@@ -19,9 +19,16 @@ match
 into
 -- <-- keyword.control.rzk
 
--- the eliminator re-ascription clause of a #data body
-eliminator
+-- the re-ascription clauses of a #data body (rzk v0.11.1)
+eliminate with
 -- <-- keyword.control.rzk
+
+compute with
+-- <-- keyword.control.rzk
+
+-- neither word is a keyword on its own
+compute
+-- <-- source.rzk
 
 -- ASCII lattice operations are builtin functions
 sup
