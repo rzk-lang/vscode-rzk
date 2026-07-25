@@ -295,3 +295,316 @@
 #            ^ source.rzk keyword.operator.lattice.rzk
 #             ^^^^ source.rzk
 >
+>#define transport
+#^^^^^^^ source.rzk meta.preprocessor.rzk
+#       ^ source.rzk
+#        ^^^^^^^^^ source.rzk entity.name.function.rzk
+>  ( A : U) (C : A → U) (x y : A) (p : x =_{A} y) (u : C x)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk keyword.operator.colon.params.rzk
+#       ^ source.rzk
+#        ^ source.rzk support.type.rzk
+#         ^ source.rzk
+#          ^ source.rzk
+#           ^ source.rzk
+#            ^ source.rzk variable.parameter.rzk
+#             ^ source.rzk
+#              ^ source.rzk keyword.operator.colon.params.rzk
+#               ^^^ source.rzk
+#                  ^ source.rzk keyword.operator.rzk
+#                   ^ source.rzk
+#                    ^ source.rzk support.type.rzk
+#                     ^ source.rzk
+#                      ^ source.rzk
+#                       ^ source.rzk
+#                        ^ source.rzk variable.parameter.rzk
+#                         ^ source.rzk
+#                          ^ source.rzk variable.parameter.rzk
+#                           ^ source.rzk
+#                            ^ source.rzk keyword.operator.colon.params.rzk
+#                             ^^ source.rzk
+#                               ^ source.rzk
+#                                ^ source.rzk
+#                                 ^ source.rzk
+#                                  ^ source.rzk variable.parameter.rzk
+#                                   ^ source.rzk
+#                                    ^ source.rzk keyword.operator.colon.params.rzk
+#                                     ^^^^ source.rzk
+#                                         ^^ source.rzk comment.block.rzk
+#                                           ^ source.rzk comment.block.rzk
+#                                            ^ source.rzk comment.block.rzk
+#                                             ^^ source.rzk
+#                                               ^ source.rzk
+#                                                ^ source.rzk
+#                                                 ^ source.rzk
+#                                                  ^ source.rzk variable.parameter.rzk
+#                                                   ^ source.rzk
+#                                                    ^ source.rzk keyword.operator.colon.params.rzk
+#                                                     ^^^^ source.rzk
+#                                                         ^ source.rzk
+>  : C y
+#^^ source.rzk
+#  ^ source.rzk keyword.operator.rzk
+#   ^^^^^ source.rzk
+>  := idJ (A , x , \ y' _ → C x → C y' , \ v → v , y , p) u
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^ source.rzk
+#     ^^^ source.rzk support.function.rzk
+#        ^^^^ source.rzk
+#            ^ source.rzk punctuation.comma.rzk
+#             ^^^ source.rzk
+#                ^ source.rzk punctuation.comma.rzk
+#                 ^ source.rzk
+#                  ^ source.rzk keyword.operator.lambda.slash.rzk
+#                   ^ source.rzk
+#                    ^^ source.rzk variable.parameter.rzk
+#                      ^ source.rzk
+#                       ^ source.rzk variable.parameter.rzk
+#                        ^ source.rzk
+#                         ^ source.rzk keyword.operator.lambda.to.rzk
+#                          ^^^^^ source.rzk
+#                               ^ source.rzk keyword.operator.rzk
+#                                ^^^^^^ source.rzk
+#                                      ^ source.rzk punctuation.comma.rzk
+#                                       ^ source.rzk
+#                                        ^ source.rzk keyword.operator.lambda.slash.rzk
+#                                         ^ source.rzk
+#                                          ^ source.rzk variable.parameter.rzk
+#                                           ^ source.rzk
+#                                            ^ source.rzk keyword.operator.lambda.to.rzk
+#                                             ^^^ source.rzk
+#                                                ^ source.rzk punctuation.comma.rzk
+#                                                 ^^^ source.rzk
+#                                                    ^ source.rzk punctuation.comma.rzk
+#                                                     ^^^^^^ source.rzk
+>
+>#define ap
+#^^^^^^^ source.rzk meta.preprocessor.rzk
+#       ^ source.rzk
+#        ^^ source.rzk entity.name.function.rzk
+>  ( A B : U) (f : A → B) (x y : A) (p : x =_{A} y)
+#^^ source.rzk
+#  ^^ source.rzk
+#    ^ source.rzk variable.parameter.rzk
+#     ^ source.rzk
+#      ^ source.rzk variable.parameter.rzk
+#       ^ source.rzk
+#        ^ source.rzk keyword.operator.colon.params.rzk
+#         ^ source.rzk
+#          ^ source.rzk support.type.rzk
+#           ^ source.rzk
+#            ^ source.rzk
+#             ^ source.rzk
+#              ^ source.rzk variable.parameter.rzk
+#               ^ source.rzk
+#                ^ source.rzk keyword.operator.colon.params.rzk
+#                 ^^^ source.rzk
+#                    ^ source.rzk keyword.operator.rzk
+#                     ^^ source.rzk
+#                       ^ source.rzk
+#                        ^ source.rzk
+#                         ^ source.rzk
+#                          ^ source.rzk variable.parameter.rzk
+#                           ^ source.rzk
+#                            ^ source.rzk variable.parameter.rzk
+#                             ^ source.rzk
+#                              ^ source.rzk keyword.operator.colon.params.rzk
+#                               ^^ source.rzk
+#                                 ^ source.rzk
+#                                  ^ source.rzk
+#                                   ^ source.rzk
+#                                    ^ source.rzk variable.parameter.rzk
+#                                     ^ source.rzk
+#                                      ^ source.rzk keyword.operator.colon.params.rzk
+#                                       ^^^^ source.rzk
+#                                           ^^ source.rzk comment.block.rzk
+#                                             ^ source.rzk comment.block.rzk
+#                                              ^ source.rzk comment.block.rzk
+#                                               ^^ source.rzk
+#                                                 ^ source.rzk
+>  : f x =_{B} f y
+#^^ source.rzk
+#  ^ source.rzk keyword.operator.rzk
+#   ^^^^^^ source.rzk
+#         ^^ source.rzk comment.block.rzk
+#           ^ source.rzk comment.block.rzk
+#            ^ source.rzk comment.block.rzk
+#             ^^^^^ source.rzk
+>  := idJ (A , x , \ y' _ → f x =_{B} f y' , refl , y , p)
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^ source.rzk
+#     ^^^ source.rzk support.function.rzk
+#        ^^^^ source.rzk
+#            ^ source.rzk punctuation.comma.rzk
+#             ^^^ source.rzk
+#                ^ source.rzk punctuation.comma.rzk
+#                 ^ source.rzk
+#                  ^ source.rzk keyword.operator.lambda.slash.rzk
+#                   ^ source.rzk
+#                    ^^ source.rzk variable.parameter.rzk
+#                      ^ source.rzk
+#                       ^ source.rzk variable.parameter.rzk
+#                        ^ source.rzk
+#                         ^ source.rzk keyword.operator.lambda.to.rzk
+#                          ^^^^^^ source.rzk
+#                                ^^ source.rzk comment.block.rzk
+#                                  ^ source.rzk comment.block.rzk
+#                                   ^ source.rzk comment.block.rzk
+#                                    ^^^^^^ source.rzk
+#                                          ^ source.rzk punctuation.comma.rzk
+#                                           ^ source.rzk
+#                                            ^^^^ source.rzk support.function.rzk
+#                                                ^ source.rzk
+#                                                 ^ source.rzk punctuation.comma.rzk
+#                                                  ^^^ source.rzk
+#                                                     ^ source.rzk punctuation.comma.rzk
+#                                                      ^^^^ source.rzk
+>
+>#data circle
+#^^^^^ source.rzk meta.preprocessor.rzk
+#     ^ source.rzk
+#      ^^^^^^ source.rzk entity.name.type.rzk
+>  :=
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+>    pt
+#^^^^^^^ source.rzk
+>  | turn : pt =_{circle} pt
+#^^ source.rzk
+#  ^ source.rzk keyword.operator.rzk
+#   ^^^^^^ source.rzk
+#         ^ source.rzk keyword.operator.rzk
+#          ^^^^^ source.rzk
+#               ^^ source.rzk comment.block.rzk
+#                 ^^^^^^ source.rzk comment.block.rzk
+#                       ^ source.rzk comment.block.rzk
+#                        ^^^^ source.rzk
+>  eliminate with ind-circle
+#^^ source.rzk
+#  ^^^^^^^^^^^^^^ source.rzk keyword.control.rzk
+#                ^^^^^^^^^^^^ source.rzk
+>    : ( C : circle → U)
+#^^^^ source.rzk
+#    ^ source.rzk keyword.operator.rzk
+#     ^ source.rzk
+#      ^^ source.rzk
+#        ^ source.rzk variable.parameter.rzk
+#         ^ source.rzk
+#          ^ source.rzk keyword.operator.colon.params.rzk
+#           ^^^^^^^^ source.rzk
+#                   ^ source.rzk keyword.operator.rzk
+#                    ^ source.rzk
+#                     ^ source.rzk support.type.rzk
+#                      ^ source.rzk
+>    → ( b : C pt)
+#^^^^ source.rzk
+#    ^ source.rzk keyword.operator.rzk
+#     ^ source.rzk
+#      ^^ source.rzk
+#        ^ source.rzk variable.parameter.rzk
+#         ^ source.rzk
+#          ^ source.rzk keyword.operator.colon.params.rzk
+#           ^^^^^ source.rzk
+#                ^ source.rzk
+>    → ( ℓ : transport circle C pt pt turn b = b)
+#^^^^ source.rzk
+#    ^ source.rzk keyword.operator.rzk
+#     ^ source.rzk
+#      ^^ source.rzk
+#        ^ source.rzk variable.parameter.rzk
+#         ^ source.rzk
+#          ^ source.rzk keyword.operator.colon.params.rzk
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk
+#                                            ^ source.rzk punctuation.equals.rzk
+#                                             ^^ source.rzk
+#                                               ^ source.rzk
+>    → ( x : circle)
+#^^^^ source.rzk
+#    ^ source.rzk keyword.operator.rzk
+#     ^ source.rzk
+#      ^^ source.rzk
+#        ^ source.rzk variable.parameter.rzk
+#         ^ source.rzk
+#          ^ source.rzk keyword.operator.colon.params.rzk
+#           ^^^^^^^ source.rzk
+#                  ^ source.rzk
+>    → C x
+#^^^^ source.rzk
+#    ^ source.rzk keyword.operator.rzk
+#     ^^^^^ source.rzk
+>  compute with compute-rec-circle-turn
+#^^ source.rzk
+#  ^^^^^^^^^^^^ source.rzk keyword.control.rzk
+#              ^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk
+>    : ( C : U)
+#^^^^ source.rzk
+#    ^ source.rzk keyword.operator.rzk
+#     ^ source.rzk
+#      ^^ source.rzk
+#        ^ source.rzk variable.parameter.rzk
+#         ^ source.rzk
+#          ^ source.rzk keyword.operator.colon.params.rzk
+#           ^ source.rzk
+#            ^ source.rzk support.type.rzk
+#             ^ source.rzk
+>    → ( b : C)
+#^^^^ source.rzk
+#    ^ source.rzk keyword.operator.rzk
+#     ^ source.rzk
+#      ^^ source.rzk
+#        ^ source.rzk variable.parameter.rzk
+#         ^ source.rzk
+#          ^ source.rzk keyword.operator.colon.params.rzk
+#           ^^ source.rzk
+#             ^ source.rzk
+>    → ( ℓ : b = b)
+#^^^^ source.rzk
+#    ^ source.rzk keyword.operator.rzk
+#     ^ source.rzk
+#      ^^ source.rzk
+#        ^ source.rzk variable.parameter.rzk
+#         ^ source.rzk
+#          ^ source.rzk keyword.operator.colon.params.rzk
+#           ^^^ source.rzk
+#              ^ source.rzk punctuation.equals.rzk
+#               ^^ source.rzk
+#                 ^ source.rzk
+>    → ap circle C (rec-circle C b ℓ) pt pt turn = ℓ
+#^^^^ source.rzk
+#    ^ source.rzk keyword.operator.rzk
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.rzk
+#                                                ^ source.rzk punctuation.equals.rzk
+#                                                 ^^^ source.rzk
+>
+>#define circle-id (x : circle) : circle
+#^^^^^^^ source.rzk meta.preprocessor.rzk
+#       ^ source.rzk
+#        ^^^^^^^^^ source.rzk entity.name.function.rzk
+#                 ^ source.rzk
+#                  ^ source.rzk
+#                   ^ source.rzk variable.parameter.rzk
+#                    ^ source.rzk
+#                     ^ source.rzk keyword.operator.colon.params.rzk
+#                      ^^^^^^^ source.rzk
+#                             ^ source.rzk
+#                              ^ source.rzk
+#                               ^ source.rzk keyword.operator.rzk
+#                                ^^^^^^^^ source.rzk
+>  := match x (pt ⇒ pt | turn ⇒ turn)
+#^^ source.rzk
+#  ^^ source.rzk keyword.operator.rzk
+#    ^ source.rzk
+#     ^^^^^ source.rzk keyword.control.rzk
+#          ^^^^^^^ source.rzk
+#                 ^ source.rzk keyword.operator.branch.rzk
+#                  ^^^^ source.rzk
+#                      ^ source.rzk keyword.operator.rzk
+#                       ^^^^^^ source.rzk
+#                             ^ source.rzk keyword.operator.branch.rzk
+#                              ^^^^^^^ source.rzk
+>

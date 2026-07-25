@@ -70,7 +70,12 @@ repository:
       - name: support.function.rzk
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(recOR|recBOT|idJ|refl|first|second|π₁|π₂|unit|sup|inf|invᵒᵖ|uninvᵒᵖ|flipᵒᵖ|unflipᵒᵖ|inv_op|uninv_op|flip_op|unflip_op)((?=$|[.\\;,#"\]\[)(}{><|\s])|(?=_{))
       - name: keyword.control.rzk
-        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(match|into|eliminator)(?=$|[.\\;,#"\]\[)(}{><|\s])
+        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(match|into)(?=$|[.\\;,#"\]\[)(}{><|\s])
+      # The re-ascription clauses of a #data body. Matched as two-word
+      # sequences, as `let mod` is below: `compute` on its own is a plausible
+      # identifier, and only the pair is a keyword.
+      - name: keyword.control.rzk
+        match: (?<=^|[.\\;,#"\]\[)(}{><|\s])(eliminate|compute)\s+(with)(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: keyword.control.as.rzk
         match: (?<=^|[.\\;,#"\]\[)(}{><|\s])as(?=$|[.\\;,#"\]\[)(}{><|\s])
       - name: keyword.control.rzk

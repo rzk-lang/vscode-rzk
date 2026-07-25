@@ -4,6 +4,23 @@ All notable changes to the "rzk-1-experimental-highlighting" extension will be d
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## v0.6.1 - 2026-07-25
+
+This release updates the grammar to match `rzk` v0.11.1, which adds higher
+inductive types. The minimum supported `rzk` version is unchanged (v0.11.0);
+an extension-managed `rzk` picks up v0.11.1 on its own, since it always
+updates to the latest release the extension supports.
+
+- Highlight the re-ascription clauses `eliminate with` and `compute with`,
+  which replace the `eliminator` clause of `rzk` v0.11.0. Both are matched as
+  two-word sequences, as `let mod` already was, because `compute` on its own
+  is a plausible identifier and only the pair is a keyword.
+- The `into` motive of a modal `let mod` (new in `rzk` v0.11.1) needs no
+  grammar change: `into` was already a keyword for `match`.
+- Cover the new syntax in the tests: the circle with a path constructor and
+  both re-ascription clauses, taken from the `rzk` documentation and checked
+  against `rzk` v0.11.1, is added to the snapshot fixtures.
+
 ## v0.6.0 - 2026-07-21
 
 This release accompanies `rzk` v0.11.0 and pins the extension to it: the
